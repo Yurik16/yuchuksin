@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.11.2">
+<file name="D:\projects\yuchuksin\chapter_001\src\main\java\ru\job4j\HelloWorld.java">
+</file>
+<file name="D:\projects\yuchuksin\chapter_001\src\main\java\ru\job4j\package-info.java">
+</file>
+<file name="D:\projects\yuchuksin\chapter_001\src\test\java\ru\job4j\HelloWorldTest.java">
+</file>
+<file name="D:\projects\yuchuksin\chapter_001\src\test\java\ru\job4j\package-info.java">
+</file>
+</checkstyle>
