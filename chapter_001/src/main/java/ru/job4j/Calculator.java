@@ -7,7 +7,7 @@ package ru.job4j;
 
 public class Calculator {
 		/**
-		* @param result stores the result of the methods
+		* result stores the result of the methods.
 		*/
 		private double result;
 		/**
@@ -43,7 +43,8 @@ public class Calculator {
 			this.result = first * second;
 		}
 		/**
-		* @return getResult() getter that returns value of private parametor "result".
+		* Getter method.
+		* @return result returns value of private parametor "result"
 		*/
 		public double getResult() {
 			return result;
