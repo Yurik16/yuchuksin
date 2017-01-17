@@ -1,26 +1,31 @@
-package job4j.area;
+package ru.job4j.area;
+
+import static org.hamcrest.number.IsCloseTo.closeTo;
+import static java.lang.Math.*;
 
 /**
 * Triangle class making triangle with three points.
 * @author Yury Chuksin (chuksin.yury@gmail.com)
 * @since 17.01.2017
 */
+
+
 public class Triangle {
 	/**
 	* First point of triangle.
 	*/
 	public Point a;
-	
+
 	/**
 	* Second point of triangle.
 	*/
 	public Point b;
-	
+
 	/**
 	* Third point of triangle.
 	*/
 	public Point c;
-	
+
 	/**
 	* Constructor for creating new object Triangle with tree points.
 	* @param a First point of triangle

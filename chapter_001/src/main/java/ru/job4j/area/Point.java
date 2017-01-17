@@ -1,5 +1,6 @@
-package job4j.area;
+package ru.job4j.area;
 
+import static org.hamcrest.number.IsCloseTo.closeTo;
 import static java.lang.Math.*;
 
 /**
