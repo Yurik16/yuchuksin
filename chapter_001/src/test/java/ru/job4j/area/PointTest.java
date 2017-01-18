@@ -4,7 +4,6 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.number.IsCloseTo.closeTo;
-import static java.lang.Math.*;
 
 /**
 * Class PointTest.
@@ -29,7 +28,7 @@ public class PointTest {
 	* @see Point
 	*/
 	private Point endP = new Point(4, -3.5);
-	
+
 	/**
 	* whenDistanceToWhenGetChekD method calculates distance between two points.
 	*/

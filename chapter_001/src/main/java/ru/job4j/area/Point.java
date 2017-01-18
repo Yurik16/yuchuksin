@@ -1,7 +1,5 @@
 package ru.job4j.area;
 
-import static java.lang.Math.*;
-
 /**
 * Point class making point with coordinats.
 * @author Yury Chuksin (chuksin.yury@gmail.com)
@@ -37,7 +35,6 @@ public class Point {
 	public double distanceTo(Point point) {
 		double dX = this.x - point.x;
 		double dY = this.y - point.y;
-		double dist = sqrt(pow(dX, 2) + pow(dY, 2));
-		return dist;
+		return sqrt(pow(dX, 2) + pow(dY, 2));
 	}
 }

@@ -1,7 +1,5 @@
 package ru.job4j.area;
 
-import static java.lang.Math.*;
-
 /**
 * Triangle class making triangle with three points.
 * @author Yury Chuksin (chuksin.yury@gmail.com)
@@ -42,9 +40,9 @@ public class Triangle {
 	*/
 	public double area() {
 		/**
-		* Cheking is from this three points can make triangle.
+		* Cheking is from this three points are triangle.
 		*/
-		if ((a.x == b.x) && (b.x == c.x)) {
+		if (((a.x == b.x) && (b.x == c.x)) || ((a.y == b.y) && (b.y == c.y))) {
 			System.out.println("This is not triangle");
 		}
 
