@@ -19,13 +19,14 @@ public class MaxTest {
 	* Making new empty object Max.
 	* @see Max
 	*/
-	public Max max = new Max();
+	private Max max = new Max();
 
 	/**
 	* WhenDoMaxFromTwoThenSearchMaximum checks is this method returns maximum from two variables.
 	*/
 	@Test
-	public void WhenDoMaxFromTwoThenSearchMaximum() {
-		assertThat(this.mTest, is(max.maxFromTwo(10, 5));
+	public void whenDoMaxFromTwoThenSearchMaximum() {
+		int xMax = this.max.maxFromTwo(10, 5)
+		assertThat(this.mTest, is(xMax);
 	}
 }

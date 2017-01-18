@@ -16,8 +16,7 @@ public class Max {
 		int resultMax = 0;
 		if (first > second) {
 			resultMax = first;
-		}
-		else {
+		} else 				{
 			resultMax = second;
 		}
 		return resultMax;
