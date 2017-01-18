@@ -10,12 +10,12 @@ public class Point {
 	/**
 	* Abscissa of this point.
 	*/
-	public double x;
+	private double x;
 
 	/**
 	* Ordinate of this point.
 	*/
-	public double y;
+	private double y;
 
 	/**
 	* Constructor for creating new object Point.

@@ -11,17 +11,17 @@ public class Triangle {
 	/**
 	* First point of triangle.
 	*/
-	public Point a;
+	private Point a;
 
 	/**
 	* Second point of triangle.
 	*/
-	public Point b;
+	private Point b;
 
 	/**
 	* Third point of triangle.
 	*/
-	public Point c;
+	private Point c;
 
 	/**
 	* Constructor for creating new object Triangle with tree points.
