@@ -14,11 +14,9 @@ public class Max {
 	*/
 	public maxFromTwo(int first, int second) {
 		int resultMax = 0;
-		if (first > second) 
-		{
+		if (first > second) {
 			resultMax = first;
-		} else			
-		{
+		} else				{
 			resultMax = second;
 		}
 		return resultMax;

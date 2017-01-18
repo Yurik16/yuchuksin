@@ -26,7 +26,6 @@ public class MaxTest {
 	*/
 	@Test
 	public void whenDoMaxFromTwoThenSearchMaximum() {
-		int xMax = this.max.maxFromTwo(10, 5)
-		assertThat(this.mTest, is(xMax));
+		assertThat(this.mTest, is(this.max.maxFromTwo(10, 5)));
 	}
 }
