@@ -1,5 +1,6 @@
 package ru.job4j.area;
 
+import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.number.IsCloseTo.closeTo;
@@ -17,16 +18,18 @@ public class TriangleTest {
 	* @param a second point of this triangle
 	* @param a third point of this triangle
 	*/
-	private Triangle trOne = new Triangle(new Point(-2, 0), new Point(2, -5), new Point(3, 3))
+	private Triangle trOne = new Triangle(new Point(-2, 0), new Point(2, -5), new Point(3, 3));
 
 	/**
 	* Cheking value of this triangle area.
 	*/
 	private final double chekS = 6.4;
 
+
 	/**
 	* whenDoAreaMethodThenCalculatesAreaOfTriangle calculates area of this triangle.
 	*/
+	@Test
 	public void whenDoAreaMethodThenCalculatesAreaOfTriangle() {
 		double result = this.trOne.area();
 		assertThat(chekS, is(closeTo(result, 0.1)));
