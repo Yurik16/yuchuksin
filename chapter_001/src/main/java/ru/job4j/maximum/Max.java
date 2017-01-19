@@ -29,8 +29,6 @@ public class Max {
 	* @param third of tree compared variables
 	*/
 	public maxFromThree(int first, int second, int third) {
-		int maxFthree = maxFromTwo(first, second);
-		maxFthree = maxFromTwo(maxFthree, third);
-		return maxFthree;
+		return maxFromTwo(maxFromTwo(first, second), third);
 	}
 }
