@@ -34,6 +34,7 @@ public class MaxTest {
 	*/
 	@Test
 	public void whenDoMaxFromThreeThenSearchMaximum() {
-		assertThat(this.mTest, is(this.max.maxFromTwo(1, 10, 5)));
+		
+		assertThat(this.mTest, is(this.max.maxFromThree(1, 10, 5)));
 	}
 }
