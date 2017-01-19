@@ -28,4 +28,12 @@ public class MaxTest {
 	public void whenDoMaxFromTwoThenSearchMaximum() {
 		assertThat(this.mTest, is(this.max.maxFromTwo(10, 5)));
 	}
+
+	/**
+	* WhenDoMaxFromTwoThenSearchMaximum checks is this method returns maximum from two variables.
+	*/
+	@Test
+	public void whenDoMaxFromThreeThenSearchMaximum() {
+		assertThat(this.mTest, is(this.max.maxFromTwo(1, 10, 5)));
+	}
 }

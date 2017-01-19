@@ -21,4 +21,16 @@ public class Max {
 		}
 		return resultMax;
 	}
+
+	/**
+	* maxFromTree method compare tree variables and takes maximum.
+	* @param first first of tree compared variables
+	* @param second second of tree compared variables
+	* @param third of tree compared variables
+	*/
+	public maxFromThree(int first, int second, int third) {
+		int maxFthree = (first > second) ? first : second;
+		maxFthree = (maxFthree > third) ? maxFthree : third;
+		return maxFthree;
+	}
 }
