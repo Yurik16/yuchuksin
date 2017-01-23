@@ -25,7 +25,7 @@ public class CounterTest {
 	* whenDoAddThenCalculateSumOfEven cheks the sum that this method calculate.
 	*/
 	@Test
-	public whenDoAddThenCalculateSumOfEven() {
+	public void whenDoAddThenCalculateSumOfEven() {
 		assertThat(chekSum, is(this.countE.add(11, 42)));
 	}
 

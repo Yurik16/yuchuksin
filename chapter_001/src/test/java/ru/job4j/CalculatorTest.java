@@ -19,7 +19,7 @@ public class CalculatorTest {
 	/**
 	* testArgTwo second value for making this test.
 	*/
-	private final double tesrArgTwo = 3;
+	private final double testArgTwo = 3;
 
 	/**
 	* Making new empty object.
@@ -32,9 +32,9 @@ public class CalculatorTest {
 	*/
 	@Test
 	public void whenDoAddMethodThanGetAddition() {
-		double testRes = this.testArgOne + this.tesrArgTwo;
-		double testValues = this.calc.add(this.testArg1, this.tesrArg2);
-		assertThat(testRes, is(testValues));
+		double testRes = this.testArgOne + this.testArgTwo;
+		this.calc.add(this.testArgOne, this.testArgTwo);
+		assertThat(testRes, is(calc.getResult()));
 	}
 
 	/**
@@ -43,8 +43,8 @@ public class CalculatorTest {
 	@Test
 	public void whenDoSubstructMethodThanGetSubstration() {
 		double testRes = this.testArgOne - this.testArgTwo;
-		double testValues = this.calc.add(this.testArgOne, this.tesrArgTwo);
-		assertThat(testRes, is(testValues));
+		this.calc.substruct(this.testArgOne, this.testArgTwo);
+		assertThat(testRes, is(calc.getResult()));
 	}
 
 	/**
@@ -53,8 +53,8 @@ public class CalculatorTest {
 	@Test
 	public void whenDoDivMethodThanGetDivision() {
 		double testRes = this.testArgOne / this.testArgTwo;
-		double testValues = this.calc.add(this.testArgOne, this.tesrArgTwo);
-		assertThat(testRes, is(testValues));
+		this.calc.div(this.testArgOne, this.testArgTwo);
+		assertThat(testRes, is(calc.getResult()));
 	}
 	/**
 	* whenDoMultipleMethodThanGetMultiplication method compare result of multiplication.
@@ -62,7 +62,7 @@ public class CalculatorTest {
 	@Test
 	public void whenDoMultipleMethodThanGetMultiplication() {
 		double testRes = this.testArgOne * this.testArgTwo;
-		double testValues = this.calc.add(this.testArgOne, this.tesrArgTwo);
-		assertThat(testRes, is(testValues));
+		this.calc.multiple(this.testArgOne, this.testArgTwo);
+		assertThat(testRes, is(calc.getResult()));
 	}
 }

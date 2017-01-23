@@ -42,7 +42,7 @@ public class Triangle {
 		/**
 		* Cheking is from this three points are triangle.
 		*/
-		if (((a.x == b.x) && (b.x == c.x)) || ((a.y == b.y) && (b.y == c.y))) {
+		if (((a.getX() == b.getX()) && (b.getX() == c.getX())) || ((a.getY() == b.getY()) && (b.getY() == c.getY()))) {
 			System.out.println("This is not triangle");
 		}
 
@@ -54,7 +54,7 @@ public class Triangle {
 		/**
 		* Calculate area of Triangle.
 		*/
-		double areaS = sqrt(perim * (perim - a.distanceTo(b)) * (perim - b.distanceTo(c)) * (perim - c.distanceTo(a)));
+		double areaS = Math.sqrt(perim * (perim - a.distanceTo(b)) * (perim - b.distanceTo(c)) * (perim - c.distanceTo(a)));
 
 		return areaS;
 	}

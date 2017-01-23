@@ -11,8 +11,9 @@ public class Max {
 	* maxFromTwo method compare two variables and takes maximum.
 	* @param first first of two compared variables
 	* @param second second of two compared variables
+	* @return resultMax
 	*/
-	public maxFromTwo(int first, int second) {
+	public int maxFromTwo(int first, int second) {
 		int resultMax = 0;
 		if (first > second) {
 			resultMax = first;
@@ -27,8 +28,9 @@ public class Max {
 	* @param first first of tree compared variables
 	* @param second second of tree compared variables
 	* @param third of tree compared variables
+	* @return maxFromTwo
 	*/
-	public maxFromThree(int first, int second, int third) {
+	public int maxFromThree(int first, int second, int third) {
 		return maxFromTwo(maxFromTwo(first, second), third);
 	}
 }

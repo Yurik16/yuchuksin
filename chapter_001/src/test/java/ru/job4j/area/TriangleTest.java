@@ -23,7 +23,7 @@ public class TriangleTest {
 	/**
 	* Cheking value of this triangle area.
 	*/
-	private final double chekS = 6.4;
+	private final double chekS = 18.5;
 
 
 	/**

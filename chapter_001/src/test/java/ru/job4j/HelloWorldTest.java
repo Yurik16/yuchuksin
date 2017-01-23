@@ -22,6 +22,6 @@ public class HelloWorldTest {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 		HelloWorld.main(null);
-		assertThat(out.toString(), is("Hello World\r\n"));
+		assertThat(out.toString(), is("Hello World.\r\n"));
 	}
 }

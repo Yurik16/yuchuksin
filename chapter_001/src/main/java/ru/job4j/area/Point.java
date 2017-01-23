@@ -28,13 +28,27 @@ public class Point {
 	}
 
 	/**
+	* xxx.
+	* @return x
+	*/
+	public double getX() {
+		return this.x;
+	}
+
+	/**
+	* yyy.
+	* @return y
+	*/
+	public double getY() {
+		return this.y;
+	}
+
+	/**
 	* Calculate distance to needful point.
 	* @param point to that point calculates distance
 	* @return dist distance between two points
 	*/
 	public double distanceTo(Point point) {
-		double dX = this.x - point.x;
-		double dY = this.y - point.y;
-		return sqrt(pow(dX, 2) + pow(dY, 2));
+		return Math.sqrt(Math.pow((this.x - point.x), 2) + Math.pow((this.y - point.y), 2));
 	}
 }

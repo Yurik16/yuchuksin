@@ -13,7 +13,7 @@ public class Factorial {
 	* @return result
 	*/
 	public int fctrl(int number) {
-		int result = o;
+		int result = 1;
 		for (int i = 1; i < number; i++) {
 			result = result * (i + 1);
 		}
