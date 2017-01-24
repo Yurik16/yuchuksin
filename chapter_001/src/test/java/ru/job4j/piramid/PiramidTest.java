@@ -44,7 +44,7 @@ public class PiramidTest {
 	/**
 	* string1 1st test string.
 	*/
-	private final String stringTest = String.format("%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n", string1, string2, string3, string4, string5);
+	private final String stringTest = String.format("%s%s%s%s%s%s%s%s%s%s", string1, sr, string2, sr, string3, sr, string4, sr, string5, sr);
 
 	/**
 	* Making empty object Piramid.
