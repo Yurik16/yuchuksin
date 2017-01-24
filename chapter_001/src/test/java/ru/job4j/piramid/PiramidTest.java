@@ -14,38 +14,37 @@ public class PiramidTest {
 	/**
 	* string1 1st test string.
 	*/
-	private String string1 = "    ^    ";
+	private final String string1 = "    ^    ";
 
 	/**
 	* string2 2nd test string.
 	*/
-	private String string2 = "   ^^^   ";
+	private final String string2 = "   ^^^   ";
 
 	/**
 	* string3 3rd test string.
 	*/
-	private String string3 = "  ^ ^ ^  ";
+	private final String string3 = "  ^ ^ ^  ";
 
 	/**
 	* string4 4th test string.
 	*/
-	private String string4 = " ^  ^  ^ ";
+	private final String string4 = " ^  ^  ^ ";
 
 	/**
 	* string5 5th test string.
 	*/
-	private String string5 = "^^^^^^^^^";
+	private final String string5 = "^^^^^^^^^";
 
 	/**
 	* sr line separator.
 	*/
-	private String sr = System.getProperty("line.separator");
+	private final String sr = System.getProperty("line.separator");
 
 	/**
-	* stringTest testing result string.
+	* string1 1st test string.
 	*/
-	StringBuilder stringTest = new StringBuilder();
-	stringTest.append(this.string1, this.sr, this.string2, this.sr, this.string3, this.sr, this.string4, this.sr, this.string5);
+	private final String stringTest = String.format("%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n", string1, string2, string3, string4, string5);
 
 	/**
 	* Making empty object Piramid.
@@ -57,6 +56,6 @@ public class PiramidTest {
 	*/
 	@Test
 	public void whenDoBuildPiramidThenPrintsPiramid() {
-		assertThat(stringTest.toString(), is(this.piramid.buildPiramid(5)));
+		assertThat(stringTest, is(this.piramid.buildPiramid(5)));
 	}
 }
