@@ -19,7 +19,7 @@ public class SortTest {
 	/**
 	* testArray this is array get in taste method.
 	*/
-	private final int[] testArray = {7, 4, 2, 8, 3, 6, 1, 0, 5};
+	private final int[] testArray = {8, 4, 2, 7, 3, 6, 1, 0, 5};
 
 	/**
 	* compareArray resalting array for this test.

@@ -15,7 +15,7 @@ public class Sort {
 	public int[] sortArrayUp(int[] array) {
 		int tmp = 0;
 		for (int i = 0; i < array.length; i++) {
-			for (int k = 0; k < array.length - 1; k++) {
+			for (int k = 0; k < array.length - 1 - i; k++) {
 				if (array[k] > array[k + 1]) {
 					tmp = array[k];
 					array[k] = array[k + 1];
