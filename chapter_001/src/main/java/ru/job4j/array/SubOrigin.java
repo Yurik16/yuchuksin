@@ -16,22 +16,23 @@ public class SubOrigin {
 	public boolean contains(String origin, String sub) {
 		char[] originArray = origin.toCharArray();
 		char[] subArray = sub.toCharArray();
-		int count = 0;
+		int count = subArray.length - 1;
 		for (int i = 0; i < originArray.length - subArray.length; i++) {
 			if (originArray[i] == (subArray[0])) {
-				for (int j = 0; j < subArray.length - 1; j++) {
-					if (subArray[j + 1] == (originArray[i + 1])) {
-						count++;
+				for (int j = 1; j < subArray.length; j++) {
+					if (subArray[j] == (originArray[i + j])) {
+						count--;
 					} else {
-						count = 0;
+						break;
 					}
 				}
 			}
-			if (count == subArray.length) {
+			if (count == 0) {
 				break;
 			}
+			count = subArray.length - 1;
 		}
-		boolean result = count < 1 ? true : false;
+		boolean result = (count == 0) ? true : false;
 		return result;
 	}
 }

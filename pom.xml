@@ -31,6 +31,7 @@
 	</dependencies>
 	<build>
         <plugins>
+		
 			<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-checkstyle-plugin</artifactId>
@@ -40,8 +41,8 @@
 					<id>validate</id>
 					<phase>validate</phase>
 					<configuration>
-                            			<configLocation>checkstyle.xml</configLocation>
-                            			<encoding>UTF-8</encoding>
+                        <configLocation>checkstyle.xml</configLocation>
+                        <encoding>UTF-8</encoding>
 						<consoleOutput>true</consoleOutput>
 						<failsOnError>true</failsOnError>
 						<includeTestSourceDirectory>true</includeTestSourceDirectory>
@@ -51,15 +52,17 @@
 					</goals>
 				</execution>
 			</executions>
-			</plugin>			
+			</plugin>
+
 			<plugin>
-                		<groupId>org.apache.maven.plugins</groupId>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version>
 				<configuration>
 					<compilerVersion>1.8</compilerVersion>
 				</configuration>
 			</plugin>
+
 			<plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
