@@ -1,8 +1,7 @@
 *.class
 target/
 chapter_001/target/
-.idea/
-*.iml
+
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
