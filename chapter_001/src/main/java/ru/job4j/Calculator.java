@@ -4,7 +4,6 @@ package ru.job4j;
 * @author Yury Chuksin (chuksin.yury@gmail.com)
 * @since  14.01.2017
 */
-
 public class Calculator {
 		/**
 		* result stores the result of the methods.

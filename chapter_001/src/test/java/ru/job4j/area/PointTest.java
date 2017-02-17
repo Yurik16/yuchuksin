@@ -21,20 +21,46 @@ public class PointTest {
 	* Making new object - start point.
 	* @see Point
 	*/
-	private Point startP = new Point(-4.5, 2);
+	private final Point startP = new Point(-4.5, 2);
 
 	/**
 	* Making new object - end point.
 	* @see Point
 	*/
-	private Point endP = new Point(4, -3.5);
+	private final Point endP = new Point(4, -3.5);
 
 	/**
-	* whenDistanceToWhenGetChekD method calculates distance between two points.
+	* Knowing ordinate of endP.
+	*/
+	private final double endPx = 4;
+
+	/**
+	* Knowing abscissa of endP.
+	*/
+	private final double endPy = -3.5;
+
+	/**
+	* whenDistanceToThenGetChekD method calculates distance between two points.
 	*/
 	@Test
-	public void whenDistanceToWhenGetChekD() {
+	public void whenDistanceToThenGetChekD() {
 		double dc = this.startP.distanceTo(this.endP);
 		assertThat(chekD, is(closeTo(dc, 0.01)));
+	}
+
+	/**
+	* whenGetXthanReturnXcoordinat test method that returns ordinate.
+	*/
+	@Test
+	public void whenGetXthanReturnXcoordinat() {
+		assertThat(this.endPx, is(this.endP.getX()));
+	}
+
+	/**
+	* whenGetYthanReturnAbscissa test method that returns abscissa.
+	*/
+	@Test
+	public void whenGetYthanReturnAbscissa() {
+		assertThat(this.endPy, is(this.endP.getY()));
 	}
 }
