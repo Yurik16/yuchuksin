@@ -11,7 +11,7 @@ public class Teacher extends Profession {
 	* Teacher constructor.
 	* @param name family
 	* @param age from 1 to 150
-	* @param sex male is true, frmale is false
+	* @param sex male is true, female is false
 	* @param educ graduate from "under school" till "professor"
 	* @param exp practice in years
 	* @param spec with what knowlege person do his job
