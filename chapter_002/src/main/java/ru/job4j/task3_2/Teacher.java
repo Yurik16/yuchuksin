@@ -7,6 +7,7 @@ package ru.job4j.task3_2;
 */
 public class Teacher extends Profession {
 
+
 	/**
 	* Teacher constructor.
 	* @param name family
@@ -23,18 +24,21 @@ public class Teacher extends Profession {
 
 	/**
 	* teach student learn some knowlege and than get mark.
-	* param time how many hours lesson last
-	* param student person that wants to learn
+	* @param time how many hours lesson last
+	* @param student person that wants to learn
+	* @return student.setEducMark() from 0 to 10
 	*/
-	public void teach() { //returns byte (mark) but temporarily make this method void
-
+	public byte teach(int time, Student student) {
+		return student.setEducMark((byte) 22); //typing random 22 just for javac
 	}
 
 	/**
 	* examine resalt teach process.
-	* param student person that wants to learn
+	* @param student person that wants to learn
+	* @param subject what kind of
+	* @return student.setRank() form 0 to 10000
 	*/
-	public void examine() { //returns int (rating) but temporarily make this method void
-
+	public byte examine(String subject, Student student) {
+		return student.setRank((byte) 22); //typing random 22 just for javac
 	}
 }

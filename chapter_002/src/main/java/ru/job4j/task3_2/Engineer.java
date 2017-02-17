@@ -23,15 +23,20 @@ public class Engineer extends Profession {
 
 	/**
 	* work process - engineer doing his job.
+	* @param client employer
+	* @param time hours spending for job
+	* @return setSatisfactoin
 	*/
-	public void work() { //must returnes documentation
-
+	public byte work(Client client, int time) {
+		return client.setSatisfactoin((byte) time);
 	}
 
 	/**
 	* consultation short answer.
+	* @param client employer
+	* @return setBankAcc
 	*/
-	public void consultation() { // must returnes answer
-
+	public int consultation(Client client) {
+		return client.setBankAcc(500);
 	}
 }

@@ -23,15 +23,19 @@ public class Doktor extends Profession {
 
 	/**
 	* diagnostic determines wich problems have patient.
+	* @param patient human who fill illness
+	* @return setDisease get report
 	*/
-	public void diagnostic() { //must returnes report
-
+	public String diagnostic(Patient patient) {
+		return patient.setDisease("Tupojkakdrova");
 	}
 
 	/**
 	* operation treatment process.
+	* @param patient human who fill illness and get diagnostic
+	* @return setHealth how patient filles himself after operation
 	*/
-	public void operation() { //must returnes result
-
+	public byte operation(Patient patient) {
+		return patient.setHealth((byte) 100);
 	}
 }
