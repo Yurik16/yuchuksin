@@ -67,6 +67,7 @@ public class TrackerTest {
     /**
      * whenFindByIdThenGetItemById compare two array with finding one by id.
      */
+    @Test
     public void whenFindByIdThenGetItemById() {
         this.tracker.addItem(this.itemT1);
         this.tracker.addItem(this.itemT2);
@@ -76,6 +77,7 @@ public class TrackerTest {
     /**
      * whenDoRedactItemThenGetEditItem method must update Item.
      */
+    @Test
     public void whenDoRedactItemThenGetEditItem() {
         this.tracker.addItem(this.itemT1);
         this.tracker.addItem(this.itemT2);
@@ -87,6 +89,7 @@ public class TrackerTest {
     /**
      * whenDoDeleteItemThenGetEraseOneItem method must delete Item.
      */
+    @Test
     public void whenDoDeleteItemThenGetEraseOneItem() {
         this.tracker.addItem(this.itemT1);
         this.tracker.addItem(this.itemT2);
@@ -97,6 +100,7 @@ public class TrackerTest {
     /**
      * whenDoGetListOfItemsThenGetArrayList method must get all items.
      */
+    @Test
     public void whenDoGetListOfItemsThenGetArrayList() {
         this.tracker.addItem(this.itemT1);
         this.tracker.addItem(this.itemT2);
