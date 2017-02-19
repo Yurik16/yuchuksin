@@ -21,9 +21,11 @@ public class Tracker {
 	/**
 	* addItem adding new object Item in array items.
 	* @param item new object of Item
+	* @return item
 	*/
-	public addItem(Item item) {
+	public Item addItem(Item item) {
 		this.items[this.count++] = item;
+		return item;
 	}
 
 	/**
@@ -53,16 +55,15 @@ public class Tracker {
 	}
 
 	/**
-	* editItem edit name of Item.
-	* @param id unique name of Item
-	* @param name new name of existing Item
+	* redactItem edit Item.
+	* @param item object of Item
 	*/
-	public void editItem(String id, Item item) {
-		this.items.findById(id).setName(item.name);
-		this.items.findById(id).setDesc(item.description);
-		this.items.findById(id).setTime(item.time);
-		this.items.findById(id).setComment(item.comment);
-
+	public redactItem(Item item) {
+		for (int i = 0; i < this.count; i++) {
+			if (this.items[i] != null && this.items[i].getId().equals(item.getId)) {
+				this.items[i] = item;
+			}
+		}
 	}
 
 	/**
@@ -70,11 +71,11 @@ public class Tracker {
 	* @param id unique name of Item
 	*/
 	public deleteItem(String id) {
-		this.items.findById(id).setName(null);
-		this.items.findById(id).setDesc(null);
-		this.items.findById(id).setTime(null);
-		this.items.findById(id).setComment(null);
-		this.items.findById(id).setId(null);
+		for (int i = 0; i < this.count; i++) {
+			if (this.items[i] != null && this.items[i].getId().equals(item.getId)) {
+				this.items[i] = null;
+			}
+		}
 	}
 
 	/**
@@ -87,5 +88,17 @@ public class Tracker {
 			list[i] = this.items[i];
 		}
 		return list;
+	}
+	
+	/**
+	* findByFilter find Item by filter.
+	* @param item object of Item
+	* @return result
+	*/
+	public Item findByFilter(Item item) {
+		Item result = null;
+		for (Item x : this.items) {
+
+		}
 	}
 } 
