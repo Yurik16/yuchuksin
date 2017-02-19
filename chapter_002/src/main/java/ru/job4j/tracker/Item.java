@@ -15,7 +15,7 @@ public class Item {
 	/**
 	* description short describe of Item.
 	*/
-	private String describe;
+	private String description;
 
 	/**
 	* time date of create Item.
@@ -37,15 +37,12 @@ public class Item {
 	* @param name name of Item
 	* @param description short describe of Item
 	* @param time date of create Item
-	* @param comment comment of Item
-	* @param id unique name of Item
-	*/	
-	public Item(String name, String description, long time, String comment, String id) {
+	*/
+	public Item(String name, String description, long time) {
 		this.name = name;
-		this.descrption = description;
+		this.description = description;
 		this.time = time;
-		this.comment = comment;
-		this.id = id;
+
 	}
 
 	/**
@@ -66,7 +63,7 @@ public class Item {
 
 	/**
 	* getDesc getter for description of Item.
-	* @return description 
+	* @return description
 	*/
 	public String getDesc() {
 		return this.description;
@@ -87,7 +84,7 @@ public class Item {
 	public long getTime() {
 		return this.time;
 	}
-	
+
 	/**
 	* setTime setter for time of Item.
 	* @param time date of create Item
@@ -103,7 +100,7 @@ public class Item {
 	public String getComment() {
 		return this.comment;
 	}
-	
+
 	/**
 	* setComment setter for comment of Item.
 	* @param comment date of create Item
