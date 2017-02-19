@@ -7,7 +7,6 @@ package ru.job4j.task3_2;
 */
 public class Teacher extends Profession {
 
-
 	/**
 	* Teacher constructor.
 	* @param name family
