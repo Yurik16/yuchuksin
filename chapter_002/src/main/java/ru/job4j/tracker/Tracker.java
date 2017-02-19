@@ -58,7 +58,7 @@ public class Tracker {
 	* redactItem edit Item.
 	* @param item object of Item
 	*/
-	public redactItem(Item item) {
+	public void redactItem(Item item) {
 		for (int i = 0; i < this.count; i++) {
 			if (this.items[i] != null && this.items[i].getId().equals(item.getId)) {
 				this.items[i] = item;
@@ -70,7 +70,7 @@ public class Tracker {
 	* deleteItem purge all variables of Item.
 	* @param id unique name of Item
 	*/
-	public deleteItem(String id) {
+	public void deleteItem(String id) {
 		for (int i = 0; i < this.count; i++) {
 			if (this.items[i] != null && this.items[i].getId().equals(item.getId)) {
 				this.items[i] = null;
