@@ -2,8 +2,6 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
-import java.util.Date;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -16,15 +14,24 @@ import static org.junit.Assert.assertThat;
 public class TrackerTest {
 
     /**
-     * date new empty object Date.
-     */
-    private Date date = new Date();
-
-    /**
      * tracker create new empty object Tracker.
      */
     private Tracker tracker = new Tracker();
 
+    /**
+     * itemT1 create new test object Item.
+     */
+	private final Item itemT1 = new Item("name1", "descipt1", 100);
+
+    /**
+     * itemT2 create new test object Item.
+     */
+    private final Item itemT2 = new Item("name2", "descipt2", 200);
+
+    /**
+     * itemT3 create new test object Item.
+     */
+    private final Item itemT3 = new Item("changeName", "changeDescript", 300);
 
     /**
      * itemsR control array for test.
@@ -32,25 +39,10 @@ public class TrackerTest {
     private Item[] itemsR = {this.itemT1, this.itemT2};
 
     /**
-     * itemT1 create new test object Item.
-     */
-	private final Item itemT1 = new Item("name1", "descipt1", this.date.getTime());
-
-    /**
-     * itemT2 create new test object Item.
-     */
-    private final Item itemT2 = new Item("name2", "descipt2", this.date.getTime());
-
-    /**
-     * itemT3 create new test object Item.
-     */
-    private final Item itemT3 = new Item("changeName", "changeDescript", this.date.getTime());
-
-    /**
-     * whenDoAddItemthenGetAddingItemToArray compare two array.
+     * whenDoAddItemThenGetAddingItemToArray compare two array.
      */
     @Test
-    public void whenDoAddItemthenGetAddingItemToArray() {
+    public void whenDoAddItemThenGetAddingItemToArray() {
         this.tracker.addItem(this.itemT1);
         this.tracker.addItem(this.itemT2);
         assertThat(this.itemsR, is(this.tracker.getListOfItems()));
@@ -86,8 +78,8 @@ public class TrackerTest {
         this.itemT3.setComment("new comment");
         this.itemT3.setId("2");
         this.tracker.redactItem(this.itemT3);
-        Item[] itemsOfTraker = this.tracker.getListOfItems();
-        assertThat(this.itemT3, is(itemsOfTraker[1]));
+        Item[] itemsOfTracker = this.tracker.getListOfItems();
+        assertThat(this.itemT3, is(itemsOfTracker[1]));
     }
 
     /**
