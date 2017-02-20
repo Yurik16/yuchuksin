@@ -65,7 +65,7 @@ public class TrackerTest {
     public void whenFindByIdThenGetItemById() {
         this.tracker.addItem(this.itemT1);
         this.tracker.addItem(this.itemT2);
-        assertThat(this.itemT1, is(this.tracker.findById("1")));
+        assertThat(this.itemT1, is(this.tracker.findById("0")));
     }
 
     /**
@@ -76,7 +76,7 @@ public class TrackerTest {
         this.tracker.addItem(this.itemT1);
         this.tracker.addItem(this.itemT2);
         this.itemT3.setComment("new comment");
-        this.itemT3.setId("2");
+        this.itemT3.setId("1");
         this.tracker.redactItem(this.itemT3);
         Item[] itemsOfTracker = this.tracker.getListOfItems();
         assertThat(this.itemT3, is(itemsOfTracker[1]));

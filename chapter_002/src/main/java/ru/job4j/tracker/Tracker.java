@@ -16,7 +16,7 @@ public class Tracker {
     /**
      * count countes for Item.
      */
-    private int count = 1;
+    private int count = 0;
 
     /**
      * addItem adding new object Item in array items.
