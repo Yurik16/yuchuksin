@@ -148,7 +148,7 @@ public class Item {
 
 	/**
 	 * hashCode overriding.
-	 * @return
+	 * @return result
 	 */
 	@Override
 	public int hashCode() {
