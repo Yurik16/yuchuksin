@@ -1,5 +1,9 @@
 package ru.job4j.tracker;
 
+import ru.job4j.tracker.models.Item;
+
+import java.util.Arrays;
+
 /**
 * class Tracker.
 * @author Yury Chuksin (chuksin.yury@gmail.com)
@@ -85,8 +89,13 @@ public class Tracker {
         for (int i = 0; i < this.count; i++) {
             if (this.items[i] != null && this.items[i].getId().equals(id)) {
                 this.items[i] = null;
+                count--;
             }
+            this.items[i+1] = this.items[i];
         }
+        Item[] result = Arrays.copyOf(this.items, this.items.length - 1);
+        this.items = result;
+
     }
 
     /**

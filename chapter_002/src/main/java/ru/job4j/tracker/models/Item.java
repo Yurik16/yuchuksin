@@ -1,4 +1,4 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.models;
 
 /**
  * Item class.
@@ -81,7 +81,7 @@ public class Item {
 	 * getTime getter for time of Item.
 	 * @return time date of create Item
 	 */
-	public long getTime() {
+	public long getLong() {
 		return this.time;
 	}
 
@@ -89,7 +89,7 @@ public class Item {
 	 * setTime setter for time of Item.
 	 * @param time date of create Item
 	 */
-	public void setTime(long time) {
+	public void setLome(long time) {
 		this.time = time;
 	}
 
@@ -139,8 +139,7 @@ public class Item {
 			return false;
 		}
 		Item stamp = (Item) obj; // time - don`t include in @override cos it must be real time of task
-		return 	(this.time == stamp.time)
-				&& (this.name != null && this.name.equals(stamp.name))
+		return 	(this.name != null && this.name.equals(stamp.name))
 				&& (this.description != null && this.description.equals(stamp.description))
 				&& (this.comment != null && this.comment.equals(stamp.comment))
 				&& (this.id != null && this.id.equals(stamp.id));
