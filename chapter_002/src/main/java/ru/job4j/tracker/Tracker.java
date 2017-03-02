@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 import ru.job4j.tracker.models.Item;
 
-import java.util.Arrays;
+import java.util.Random;
 
 /**
 * class Tracker.
@@ -11,7 +11,10 @@ import java.util.Arrays;
 * @since 18.02.2017
 */
 public class Tracker {
-
+    /**
+     *
+     */
+    Random rnd = new Random();
     /**
      * items list of objects Item.
      */
@@ -29,7 +32,7 @@ public class Tracker {
      * @return item
      */
     public Item addItem(Item item) {
-        item.setId(String.valueOf(this.count));
+        item.setId(String.valueOf(rnd.nextInt(200)));
         this.items[this.count++] = item;
         return item;
     }
@@ -73,10 +76,13 @@ public class Tracker {
      *
      * @param item object of Item
      */
-    public void redactItem(Item item) {
+    public void redactItem(String name, Item item) {
+        Item ask = findByName(name);
+        String oldId = ask.getId();
         for (int i = 0; i < this.count; i++) {
-            if (this.items[i] != null && this.items[i].getId().equals(item.getId())) {
+            if (this.items[i] != null && this.items[i].getId().equals(ask.getId())) {
                 this.items[i] = item;
+                this.items[i].setId(oldId);
             }
         }
     }
@@ -89,14 +95,29 @@ public class Tracker {
         for (int i = 0; i < this.count; i++) {
             if (this.items[i] != null && this.items[i].getId().equals(id)) {
                 this.items[i] = null;
-                count--;
             }
-            this.items[i+1] = this.items[i];
         }
-        Item[] result = Arrays.copyOf(this.items, this.items.length - 1);
-        this.items = result;
-
+        this.items = cutArray(this.items);
+        count--;
     }
+
+	public Item[] cutArray(Item[] item) {
+		Item[] result = new Item[item.length];
+		int k = 0;
+		for (int i = 0; i < item.length; i++) {
+			if (item[i] != null) {
+				result[i] = item[k];
+				k++;
+			}
+			if (item[i] == null) {
+                for (int j = i; j < this.count; j++) {
+                    result[i] = item[k+1];
+                }
+                k += 2;
+			}
+		}
+		return result;
+	}
 
     /**
      * getListOfItems getting list of all Items.
@@ -108,5 +129,13 @@ public class Tracker {
             list[i] = this.items[i];
         }
         return list;
+    }
+
+    /**
+     *
+     */
+    public void addComment(String id, String comment) {
+        Item item = findById(id);
+        item.setComment(comment);
     }
 }

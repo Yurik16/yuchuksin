@@ -69,17 +69,24 @@ public class StartUI {
     public void work(int claim) {
         if (claim == 1) {
             String nameOfClaim = input.ask("Enter: Name of Task?");
-            String descOfClaim = input.ask("Enter: Descriptoin of Task?");
+            String descOfClaim = input.ask("Enter: Description of Task?");
             tracker.addItem(new Item(nameOfClaim, descOfClaim, date.getTime()));
         }
         if (claim == 2) {
-            String nameOfClaim = input.ask("Enter: Name of Task?");
-            String descOfClaim = input.ask("Enter: Descriptoin of Task?");
-            tracker.redactItem(new Item(nameOfClaim, descOfClaim, date.getTime()));
+            String nameOfClaim = input.ask("Enter: Name of Task which you want to update?");
+            if (tracker.findByName(nameOfClaim) != null) {
+                String askNewTask = input.ask("Enter: New name of Task?");
+                String askNewDesk = input.ask("Enter: New Description of Task?");
+                tracker.redactItem(nameOfClaim, new Item(askNewTask, askNewDesk, date.getTime()));
+            }
+            else System.out.println("There is no such Task");
         }
         if (claim == 3) {
             String nameOfClaim = input.ask("Enter: Name of Task?");
-            tracker.deleteItem(tracker.findByName(nameOfClaim).getId());
+            if (tracker.findByName(nameOfClaim) != null) {
+                tracker.deleteItem(tracker.findByName(nameOfClaim).getId());
+            }
+            else System.out.println("There is no such Task");
         }
         if (claim == 4) {
             for (Item x : tracker.getListOfItems()) {
@@ -88,13 +95,21 @@ public class StartUI {
         }
         if (claim == 5) {
             String nameOfClaim = input.ask("Enter: Name of Task?");
-            Item x = tracker.findByName(nameOfClaim);
+            if (tracker.findByName(nameOfClaim) != null) {
+                Item x = tracker.findByName(nameOfClaim);
                 System.out.println(x.getName() + " / " + x.getDesc() + " / " + format1.format(x.getLong()) + " / " + x.getId());
+            }
+            else System.out.println("There is no such Task");
         }
         if (claim == 6) {
             String id = input.ask("Enter: The ID?");
-            Item x = tracker.findById(id);
-            System.out.println(x.getName() + " / " + x.getDesc() + " / " + format1.format(x.getLong()) + " / " + x.getId());
+            if (tracker.findById(id) != null) {
+                String com = input.ask("Enter: The comment?");
+                tracker.addComment(id, com);
+                Item x = tracker.findById(id);
+                System.out.println(x.getName() + " / " + x.getDesc() + " / " + format1.format(x.getLong()) + " / " + x.getId());
+            }
+            else System.out.println("There is no such Task");
         }
         if (claim == 7) {
             isWorking = false;
