@@ -56,7 +56,7 @@ public class TrackerTest {
     public void whenDoFindByNameThenGetItemByName() {
         this.tracker.addItem(this.itemT1);
         this.tracker.addItem(this.itemT2);
-        assertThat(this.itemT2, is(this.tracker.findByName("name2")));
+        assertThat(this.itemT2, is(this.tracker.findByName("name2")[0]));
     }
 
     /**

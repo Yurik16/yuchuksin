@@ -5,16 +5,17 @@ import ru.job4j.tracker.models.Item;
 import java.util.Random;
 
 /**
-* class Tracker.
-* @author Yury Chuksin (chuksin.yury@gmail.com)
-* @version 1.0.0
-* @since 18.02.2017
-*/
+ * class Tracker.
+ *
+ * @author Yury Chuksin (chuksin.yury@gmail.com)
+ * @version 1.0.0
+ * @since 18.02.2017
+ */
 public class Tracker {
     /**
      *
      */
-    Random rnd = new Random();
+    private Random rnd = new Random();
     /**
      * items list of objects Item.
      */
@@ -60,24 +61,26 @@ public class Tracker {
      * @param name of searching Item
      * @return result searching Item by name
      */
-    public Item findByName(String name) {
-        Item result = null;
+    public Item[] findByName(String name) {
+        Item[] result = new Item[10];
+        int pos = 0;
         for (Item x : this.items) {
             if (x != null && x.getName().equals(name)) {
-                result = x;
-                break;
+                result[pos++] = x;
             }
         }
-        return result;
+        return cutArray(result);
     }
 
     /**
      * redactItem edit Item.
      *
-     * @param item object of Item
+     * @param item new object of Item
+     * @param name name of wanted Item
      */
     public void redactItem(String name, Item item) {
-        Item ask = findByName(name);
+        Item[] asking = findByName(name);
+        Item ask = asking[0];
         String oldId = ask.getId();
         for (int i = 0; i < this.count; i++) {
             if (this.items[i] != null && this.items[i].getId().equals(ask.getId())) {
@@ -89,6 +92,7 @@ public class Tracker {
 
     /**
      * deleteItem purge all variables of Item.
+     *
      * @param id unique name of Item
      */
     public void deleteItem(String id) {
@@ -101,26 +105,33 @@ public class Tracker {
         count--;
     }
 
-	public Item[] cutArray(Item[] item) {
-		Item[] result = new Item[item.length];
-		int k = 0;
-		for (int i = 0; i < item.length; i++) {
-			if (item[i] != null) {
-				result[i] = item[k];
-				k++;
-			}
-			if (item[i] == null) {
+    /**
+     * cutArray cuting null-tales.
+     *
+     * @param item Item which have null-tail
+     * @return result
+     */
+    public Item[] cutArray(Item[] item) {
+        Item[] result = new Item[item.length];
+        int k = 0;
+        for (int i = 0; i < item.length; i++) {
+            if (item[i] != null) {
+                result[i] = item[k];
+                k++;
+            }
+            if (item[i] == null) {
                 for (int j = i; j < this.count; j++) {
-                    result[i] = item[k+1];
+                    result[i] = item[k + 1];
                 }
                 k += 2;
-			}
-		}
-		return result;
-	}
+            }
+        }
+        return result;
+    }
 
     /**
      * getListOfItems getting list of all Items.
+     *
      * @return list array of all Item
      */
     public Item[] getListOfItems() {
@@ -132,10 +143,13 @@ public class Tracker {
     }
 
     /**
+     * addComment adding comments.
      *
+     * @param name    name of wanted Item to add comment
+     * @param comment comment for Item
      */
-    public void addComment(String id, String comment) {
-        Item item = findById(id);
+    public void addComment(String name, String comment) {
+        Item item = findByName(name)[0];
         item.setComment(comment);
     }
 }

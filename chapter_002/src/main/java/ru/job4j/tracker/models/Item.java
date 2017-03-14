@@ -42,7 +42,6 @@ public class Item {
 		this.name = name;
 		this.description = description;
 		this.time = time;
-
 	}
 
 	/**
@@ -89,7 +88,7 @@ public class Item {
 	 * setTime setter for time of Item.
 	 * @param time date of create Item
 	 */
-	public void setLome(long time) {
+	public void setLomg(long time) {
 		this.time = time;
 	}
 

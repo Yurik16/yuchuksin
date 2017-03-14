@@ -7,7 +7,9 @@ public interface Input {
 
     /**
      * ask interface for Tracker.
-     * @param question
+     *
+     * @param question depends of implementation
+     * @return null
      */
     String ask(String question);
 }
