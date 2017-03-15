@@ -1,4 +1,4 @@
-package ru.job4j.task3_2;
+package ru.job4j.task3_2.profession;
 
 /**
 * Client class.
