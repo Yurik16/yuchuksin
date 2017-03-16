@@ -131,13 +131,15 @@ public class StartUI {
             tracker.addItem(new Item(nameOfClaim, descOfClaim, date.getTime()));
         }
         if (claim == 2) {
-            String nameOfClaim = input.ask("Enter: Name of Task which you want to update?");
-            if (tracker.findByName(nameOfClaim) != null) {
-                String askNewTask = input.ask("Enter: New name of Task?");
-                String askNewDesk = input.ask("Enter: New Description of Task?");
-                tracker.redactItem(nameOfClaim, new Item(askNewTask, askNewDesk, date.getTime()));
-            } else {
-                System.out.println("There is no such Task");
+            String idOfClaim = input.ask("Enter: ID of Task which you want to update?");
+            for (Item x : tracker.getListOfItems()) {
+                if (tracker.findById(idOfClaim) != null && x.getId().equals(idOfClaim)) {
+                    String askNewTask = input.ask("Enter: New name of Task?");
+                    String askNewDesk = input.ask("Enter: New Description of Task?");
+                    tracker.redactItem(idOfClaim, new Item(askNewTask, askNewDesk, date.getTime()));
+                } else {
+                    System.out.println("There is no such Task");
+                }
             }
         }
         if (claim == 3) {

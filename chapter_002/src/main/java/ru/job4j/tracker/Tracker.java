@@ -76,16 +76,14 @@ public class Tracker {
      * redactItem edit Item.
      *
      * @param item new object of Item
-     * @param name name of wanted Item
+     * @param id name of wanted Item
      */
-    public void redactItem(String name, Item item) {
-        Item[] asking = findByName(name);
-        Item ask = asking[0];
-        String oldId = ask.getId();
+    public void redactItem(String id, Item item) {
+        Item ask = findById(id);
         for (int i = 0; i < this.count; i++) {
             if (this.items[i] != null && this.items[i].getId().equals(ask.getId())) {
                 this.items[i] = item;
-                this.items[i].setId(oldId);
+                this.items[i].setId(ask.getId());
             }
         }
     }
