@@ -22,7 +22,7 @@ public class Tracker {
     private Item[] items = new Item[10];
 
     /**
-     * count countes for Item.
+     * count counter for Item.
      */
     private int count = 0;
 
@@ -66,6 +66,23 @@ public class Tracker {
         int pos = 0;
         for (Item x : this.items) {
             if (x != null && x.getName().equals(name)) {
+                result[pos++] = x;
+            }
+        }
+        return cutArray(result);
+    }
+
+    /**
+     * findByDesc find Item by description.
+     *
+     * @param desc of searching Item
+     * @return result searching Item by name
+     */
+    public Item[] findByDesc(String desc) {
+        Item[] result = new Item[10];
+        int pos = 0;
+        for (Item x : this.items) {
+            if (x != null && x.getDesc().equals(desc)) {
                 result[pos++] = x;
             }
         }

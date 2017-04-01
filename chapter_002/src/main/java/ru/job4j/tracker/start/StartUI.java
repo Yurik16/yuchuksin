@@ -136,7 +136,7 @@ public class StartUI {
                 if (tracker.findById(idOfClaim) != null && x.getId().equals(idOfClaim)) {
                     String askNewTask = input.ask("Enter: New name of Task?");
                     String askNewDesk = input.ask("Enter: New Description of Task?");
-                    tracker.redactItem(idOfClaim, new Item(askNewTask, askNewDesk, date.getTime()));
+                    tracker.redactItem(idOfClaim, new Item(askNewTask, askNewDesk, x.newTime()));
                 } else {
                     System.out.println("There is no such Task");
                 }
