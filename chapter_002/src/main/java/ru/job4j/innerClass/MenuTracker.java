@@ -8,7 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by User on 20.03.2017.
+ * Main class.
+ * @author Yury Chuksin (chuksin.yury@gmail.com)
+ * @since 20.03.2017.
  */
 public class MenuTracker {
     /**
@@ -52,6 +54,7 @@ public class MenuTracker {
         this.actions[2] = new EditItem();
         this.actions[3] = new DeleteItem();
         this.actions[4] = new Filter();
+        this.actions[5] = new Comments();
     }
 
     /**
@@ -88,11 +91,6 @@ public class MenuTracker {
     public void actFind(int key) {
         this.findBy[key - 1].execute(this.input, this.tracker);
     }
-
-    /**
-     *
-     */
-
 
     /**
      *
@@ -308,6 +306,31 @@ public class MenuTracker {
         @Override
         public String info() {
             return String.format("%s. %s.", key(), "... by ID");
+        }
+    }
+
+    class Comments implements UserAction {
+
+        @Override
+        public int key() {
+            return 6;
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+            String name = input.ask("ID of Task to Comment?");
+            for (Item item : tracker.getListOfItems()) {
+                if (tracker.findById(name) != null && tracker.findById(name).getId().equals(item.getId())) {
+                    item.setComment(input.ask("Add comment: ..."));
+                    break;
+                }
+                System.out.println("Wrong ID");
+            }
+        }
+
+        @Override
+        public String info() {
+            return String.format("%s. %s", key(), "Comment");
         }
     }
 }

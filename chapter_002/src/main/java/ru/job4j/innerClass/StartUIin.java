@@ -5,7 +5,9 @@ import ru.job4j.tracker.start.ConsoleInput;
 import ru.job4j.tracker.start.Input;
 
 /**
- * Created by User on 20.03.2017.
+ * Main class.
+ * @author Yury Chuksin (chuksin.yury@gmail.com)
+ * @since 20.03.2017.
  */
 public class StartUIin {
     /**
