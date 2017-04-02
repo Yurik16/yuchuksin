@@ -33,7 +33,8 @@ public class Tracker {
      * @return item
      */
     public Item addItem(Item item) {
-        item.setId(String.valueOf(rnd.nextInt(200)));
+        //item.setId(String.valueOf(rnd.nextInt(200)));
+        item.setId(String.valueOf(count + 1));
         this.items[this.count++] = item;
         return item;
     }

@@ -71,13 +71,13 @@ public class StartUI {
      * creating menu.
      */
     private final String[] menu = {
-            "1.Добавление новой заявки",
-            "2.Редактирование заявки.",
-            "3.Удаление заявки.",
-            "4.Отображение списка всех заявок.",
-            "5.Отображение заявок с условием фильтра.",
-            "6.Добавить к заявке комментарий.",
-            "7.Выход из программы."
+            "1.Adding new task",
+            "2.Redacting task.",
+            "3.Delete task.",
+            "4.Get list of all tasks.",
+            "5.Get list of tasks with filter.",
+            "6.Add comment to task.",
+            "7.Exit from program."
     };
 
     /**
@@ -194,7 +194,7 @@ public class StartUI {
         Tracker tracker = new Tracker();
 
         /**
-         * Creating new object of StartUI class with Consol Interface.
+         * Creating new object of StartUI class with Console Interface.
          */
         StartUI start = new StartUI(input, tracker);
         while (start.getIsWorking()) {

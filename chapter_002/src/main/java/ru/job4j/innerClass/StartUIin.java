@@ -31,6 +31,9 @@ public class StartUIin {
         this.tracker = tracker;
     }
 
+    /**
+     * Screening menu and asking what to do form User.
+     */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         menu.fillActions();
@@ -50,10 +53,14 @@ public class StartUIin {
                     break;
                 }
             }
-            System.out.println("... choose you action again");
+            //System.out.println("... choose you action again");
         }
     }
 
+    /**
+     * Main method.
+     * @param args arguments
+     */
     public static void main(String[] args) {
         /**
          * Creating new object of Console Interface.

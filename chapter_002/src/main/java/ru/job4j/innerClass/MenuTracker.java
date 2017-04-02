@@ -28,7 +28,9 @@ public class MenuTracker {
     private UserAction[] actions = new UserAction[7];
 
     /**
-     * Constructor
+     * Constructor of MenuTracker.
+     * @param input enter data
+     * @param tracker tasks
      */
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -46,19 +48,19 @@ public class MenuTracker {
     private SimpleDateFormat format1 = new SimpleDateFormat("dd.mm.yyyy hh:mm");
 
     /**
-     * fillActions
+     * fillActions filling menu with possible actions.
      */
     public void fillActions() {
         this.actions[0] = this.new AddItem();
-        this.actions[1] = new MenuTracker.ShowItems();
-        this.actions[2] = new EditItem();
-        this.actions[3] = new DeleteItem();
+        this.actions[1] = new EditItem();
+        this.actions[2] = new DeleteItem();
+        this.actions[3] = new MenuTracker.ShowItems();
         this.actions[4] = new Filter();
         this.actions[5] = new Comments();
     }
 
     /**
-     *
+     * Showing all possible commands to user.
      */
     public void show() {
         for (UserAction x : actions) {
@@ -68,19 +70,32 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Transfer to interface key to execute.
+     * @param key number of action to execute
+     */
     public void act(int key) {
         this.actions[key - 1].execute(this.input, this.tracker);
     }
 
-    UserAction[] findBy = new UserAction[3];
+    /**
+     * findBy list of filters.
+     */
+    private UserAction[] findBy = new UserAction[3];
 
-    public void fillFilter() {
+    /**
+     * Create list of 'Filter by ...'.
+     */
+    private void fillFilter() {
         findBy[0] = new FilterByName();
         findBy[1] = new FilterByDesc();
         findBy[2] = new FilterById();
     }
 
-    public void showFilter() {
+    /**
+     * Showing all possible filters to user.
+     */
+    private void showFilter() {
         for (UserAction x : findBy) {
             if (x != null) {
                 System.out.println(x.info());
@@ -88,12 +103,16 @@ public class MenuTracker {
         }
     }
 
-    public void actFind(int key) {
+    /**
+     * actFind transfer to interface key to execute.
+     * @param key number of filter to execute
+     */
+    private void actFind(int key) {
         this.findBy[key - 1].execute(this.input, this.tracker);
     }
 
     /**
-     *
+     * Inner class AddItem.
      */
     private class AddItem implements UserAction {
 
@@ -104,6 +123,7 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
+            System.out.println("adding:");
             String nameOfClaim = input.ask("Enter: Name of Task?");
             String descOfClaim = input.ask("Enter: Description of Task?");
             tracker.addItem(new Item(nameOfClaim, descOfClaim, date.getTime()));
@@ -116,7 +136,7 @@ public class MenuTracker {
     }
 
     /**
-     *
+     * Inner class ShowItems.
      */
     private static class ShowItems implements UserAction {
 
@@ -127,11 +147,12 @@ public class MenuTracker {
 
         @Override
         public int key() {
-            return 2;
+            return 4;
         }
 
         @Override
         public void execute(Input input, Tracker tracker) {
+            System.out.println("list of Items:");
             for (Item x : tracker.getListOfItems()) {
                 System.out.println(String.format("%s | %s | %s | %s", x.getName(), x.getDesc(), x.getId(), format1.format(x.getLong())));
             }
@@ -143,15 +164,19 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Inner class EditItem.
+     */
     class EditItem implements UserAction {
 
         @Override
         public int key() {
-            return 3;
+            return 2;
         }
 
         @Override
         public void execute(Input input, Tracker tracker) {
+            System.out.println("editing Item:");
             String id = input.ask("Enter: ID of Task to update?");
             for (Item x : tracker.getListOfItems()) {
                 if (tracker.findById(id) != null && x.getId().equals(id)) {
@@ -171,15 +196,19 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Inner class DeleteItem.
+     */
     class DeleteItem implements UserAction {
 
         @Override
         public int key() {
-            return 4;
+            return 3;
         }
 
         @Override
         public void execute(Input input, Tracker tracker) {
+            System.out.println("deleting:");
             String name = input.ask("Enter: name of task to delete.");
             if (tracker.findByName(name) != null) {
                 tracker.deleteItem(tracker.findByName(name)[0].getId());
@@ -194,6 +223,9 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Inner class Filter.
+     */
     class Filter implements UserAction {
 
         @Override
@@ -231,6 +263,9 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Inner class FilterByName.
+     */
     class FilterByName implements UserAction {
 
         @Override
@@ -257,6 +292,9 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Inner class FilterByDesc.
+     */
     class FilterByDesc implements UserAction {
 
         @Override
@@ -283,6 +321,9 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Inner class FilterById.
+     */
     class FilterById implements UserAction {
 
         @Override
@@ -309,6 +350,9 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Inner class Comments.
+     */
     class Comments implements UserAction {
 
         @Override
@@ -318,6 +362,7 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
+            System.out.println("commenting:");
             String name = input.ask("ID of Task to Comment?");
             for (Item item : tracker.getListOfItems()) {
                 if (tracker.findById(name) != null && tracker.findById(name).getId().equals(item.getId())) {
