@@ -1,7 +1,6 @@
 package ru.job4j.innerClass;
 
 import ru.job4j.tracker.Tracker;
-import ru.job4j.tracker.start.ConsoleInput;
 import ru.job4j.tracker.start.Input;
 
 /**
@@ -36,18 +35,13 @@ public class StartUIin {
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        menu.fillActions();
-        int[] listOfActions = {1, 2, 3, 4, 5, 6};
+        UserAction[] listOfAct = menu.fillActions();
+        int[] listOfPoints = menu.fillRange(listOfAct);
         int key;
         while (true) {
             menu.show();
-            System.out.println("7. Exit");
-            key = Integer.valueOf(input.ask("Enter 1 ... 7"));
-            for (int x : listOfActions) {
-                if (x == key) {
-                    menu.act(key);
-                }
-            }
+            key = input.ask("Enter 1 ... 7", listOfPoints);
+            menu.act(key);
             if (key == 7) {
                 if ("y".equals(input.ask("EXIT!?('y')"))) {
                     break;
@@ -65,7 +59,7 @@ public class StartUIin {
         /**
          * Creating new object of Console Interface.
          */
-        Input input = new ConsoleInput();
+        Input input = new ValidateInput();
         Tracker tracker = new Tracker();
 
         StartUIin startUIin = new StartUIin(input, tracker);

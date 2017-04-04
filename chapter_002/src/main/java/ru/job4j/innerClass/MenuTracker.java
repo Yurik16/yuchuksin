@@ -27,6 +27,8 @@ public class MenuTracker {
      */
     private UserAction[] actions = new UserAction[7];
 
+    private int[] menuRange = new int[7];
+
     /**
      * Constructor of MenuTracker.
      * @param input enter data
@@ -50,13 +52,22 @@ public class MenuTracker {
     /**
      * fillActions filling menu with possible actions.
      */
-    public void fillActions() {
+    public UserAction[] fillActions() {
         this.actions[0] = this.new AddItem();
         this.actions[1] = new EditItem();
         this.actions[2] = new DeleteItem();
         this.actions[3] = new MenuTracker.ShowItems();
         this.actions[4] = new Filter();
         this.actions[5] = new Comments();
+        this.actions[6] = new Exit();
+        return this.actions;
+    }
+
+    public int[] fillRange(UserAction[] list) {
+       for(int i = 0; i < list.length; i++) {
+           this.menuRange[i] = list[i].key();
+       }
+       return this.menuRange;
     }
 
     /**
@@ -86,10 +97,11 @@ public class MenuTracker {
     /**
      * Create list of 'Filter by ...'.
      */
-    private void fillFilter() {
+    private UserAction[] fillFilter() {
         findBy[0] = new FilterByName();
         findBy[1] = new FilterByDesc();
         findBy[2] = new FilterById();
+        return this.findBy;
     }
 
     /**
@@ -236,18 +248,14 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             MenuTracker menuFilter = new MenuTracker(input, tracker);
-            menuFilter.fillFilter();
+            UserAction[] listOfFilter = menuFilter.fillFilter();
+            int[] rangeOfFilter = menuFilter.fillRange(listOfFilter);
             int filter;
-            int[] listOfFilter = {1, 2, 3};
             while (true) {
                 menuFilter.showFilter();
                 System.out.println("4. Exit");
-                filter = Integer.valueOf(input.ask("What filter? Choose number :"));
-                for (int x : listOfFilter) {
-                    if (x == filter) {
+                filter = input.ask("What filter? Choose number :", rangeOfFilter);
                         menuFilter.actFind(filter);
-                    }
-                }
                 if (filter == 4) {
                     if ("y".equals(input.ask("EXIT!?('y')"))) {
                         break;
@@ -378,4 +386,25 @@ public class MenuTracker {
             return String.format("%s. %s", key(), "Comment");
         }
     }
-}
+
+    class Exit implements UserAction {
+
+        @Override
+        public int key() {
+            return 7;
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+
+            }
+
+        @Override
+        public String info() {
+            return String.format("%s. %s", key(), "Exit");
+        }
+    }
+
+
+    }
+

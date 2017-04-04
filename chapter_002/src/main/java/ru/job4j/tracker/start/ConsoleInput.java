@@ -1,5 +1,7 @@
 package ru.job4j.tracker.start;
 
+import ru.job4j.innerClass.MenuOutException;
+
 import java.util.Scanner;
 
 /**
@@ -20,5 +22,15 @@ public class ConsoleInput implements Input {
     public String ask(String question) {
         System.out.println(question);
         return this.scanner.nextLine();
+    }
+
+    public int ask(String question, int[] range) {
+        int key = Integer.valueOf(ask(question));
+        for (int x : range) {
+            if (x == key) {
+                return key;
+            }
+        }
+        throw new MenuOutException("Out of menu range!");
     }
 }
