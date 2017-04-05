@@ -31,7 +31,8 @@ public class MenuTracker {
 
     /**
      * Constructor of MenuTracker.
-     * @param input enter data
+     *
+     * @param input   enter data
      * @param tracker tasks
      */
     public MenuTracker(Input input, Tracker tracker) {
@@ -64,10 +65,10 @@ public class MenuTracker {
     }
 
     public int[] fillRange(UserAction[] list) {
-       for(int i = 0; i < list.length; i++) {
-           this.menuRange[i] = list[i].key();
-       }
-       return this.menuRange;
+        for (int i = 0; i < list.length; i++) {
+            this.menuRange[i] = list[i].key();
+        }
+        return this.menuRange;
     }
 
     /**
@@ -83,6 +84,7 @@ public class MenuTracker {
 
     /**
      * Transfer to interface key to execute.
+     *
      * @param key number of action to execute
      */
     public void act(int key) {
@@ -92,7 +94,7 @@ public class MenuTracker {
     /**
      * findBy list of filters.
      */
-    private UserAction[] findBy = new UserAction[3];
+    private UserAction[] findBy = new UserAction[4];
 
     /**
      * Create list of 'Filter by ...'.
@@ -101,6 +103,8 @@ public class MenuTracker {
         findBy[0] = new FilterByName();
         findBy[1] = new FilterByDesc();
         findBy[2] = new FilterById();
+        findBy[3] = new ExitFromFilter();
+
         return this.findBy;
     }
 
@@ -117,6 +121,7 @@ public class MenuTracker {
 
     /**
      * actFind transfer to interface key to execute.
+     *
      * @param key number of filter to execute
      */
     private void actFind(int key) {
@@ -253,15 +258,14 @@ public class MenuTracker {
             int filter;
             while (true) {
                 menuFilter.showFilter();
-                System.out.println("4. Exit");
                 filter = input.ask("What filter? Choose number :", rangeOfFilter);
-                        menuFilter.actFind(filter);
+                menuFilter.actFind(filter);
                 if (filter == 4) {
                     if ("y".equals(input.ask("EXIT!?('y')"))) {
                         break;
                     }
                 }
-                System.out.println("... choose again");
+                System.out.println("... choose again?");
             }
         }
 
@@ -290,8 +294,8 @@ public class MenuTracker {
                     System.out.println(String.format("%s | %s | %s | %s", item[0].getName(), item[0].getDesc(), item[0].getId(), format1.format(item[0].getLong())));
                     break;
                 }
+                System.out.println("No such Name.");
             }
-            System.out.println("No such Name.");
         }
 
         @Override
@@ -397,7 +401,7 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
 
-            }
+        }
 
         @Override
         public String info() {
@@ -405,6 +409,24 @@ public class MenuTracker {
         }
     }
 
+        class ExitFromFilter implements UserAction {
+
+            @Override
+            public int key() {
+                return 4;
+            }
+
+            @Override
+            public void execute(Input input, Tracker tracker) {
+
+            }
+
+            @Override
+            public String info() {
+                return String.format("%s. %s", key(), "Exit");
+            }
+        }
 
     }
+
 
