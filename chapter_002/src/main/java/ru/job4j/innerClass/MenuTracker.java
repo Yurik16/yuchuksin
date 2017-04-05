@@ -9,6 +9,7 @@ import java.util.Date;
 
 /**
  * Main class.
+ *
  * @author Yury Chuksin (chuksin.yury@gmail.com)
  * @since 20.03.2017.
  */
@@ -409,24 +410,24 @@ public class MenuTracker {
         }
     }
 
-        class ExitFromFilter implements UserAction {
+    class ExitFromFilter implements UserAction {
 
-            @Override
-            public int key() {
-                return 4;
-            }
-
-            @Override
-            public void execute(Input input, Tracker tracker) {
-
-            }
-
-            @Override
-            public String info() {
-                return String.format("%s. %s", key(), "Exit");
-            }
+        @Override
+        public int key() {
+            return 4;
         }
 
+        @Override
+        public void execute(Input input, Tracker tracker) {
+
+        }
+
+        @Override
+        public String info() {
+            return String.format("%s. %s", key(), "Exit");
+        }
     }
+
+}
 
 
