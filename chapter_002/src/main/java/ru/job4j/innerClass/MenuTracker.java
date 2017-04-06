@@ -52,18 +52,32 @@ public class MenuTracker {
     private SimpleDateFormat format1 = new SimpleDateFormat("dd.mm.yyyy hh:mm");
 
     /**
+     * position counter of number UserActions in MenuTracker.
+     */
+    private int position = 0;
+
+    /**
      * fillActions filling menu with possible actions.
      */
     public UserAction[] fillActions() {
-        this.actions[0] = this.new AddItem();
-        this.actions[1] = new EditItem();
-        this.actions[2] = new DeleteItem();
-        this.actions[3] = new MenuTracker.ShowItems();
-        this.actions[4] = new Filter();
-        this.actions[5] = new Comments();
-        this.actions[6] = new Exit();
+        this.actions[position++] = this.new AddItem();
+        this.actions[position++] = new EditItem();
+        this.actions[position++] = new DeleteItem();
+        this.actions[position++] = new MenuTracker.ShowItems();
+        this.actions[position++] = new Filter();
+        this.actions[position++] = new Comments();
+        this.actions[position++] = new Exit();
         return this.actions;
     }
+
+    /**
+     * addActions filling menu with pointing actions.
+     * @param action pointing action
+     */
+    public void addActions(UserAction action) {
+        this.actions[position++] = action;
+    }
+
 
     public int[] fillRange(UserAction[] list) {
         for (int i = 0; i < list.length; i++) {
