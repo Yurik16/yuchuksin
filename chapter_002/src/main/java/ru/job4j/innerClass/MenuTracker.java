@@ -30,6 +30,8 @@ public class MenuTracker {
 
     public String[] pointsOfMenu = {"Add", "Edit", "Delete", "List", "Filter", "Comment", "Exit"};
 
+    public String[] pointsOfFilter = {"... by Name", "... by Description", "... by ID", "Exit from Filter"};
+
     private int[] menuRange = new int[7];
 
     /**
@@ -63,12 +65,12 @@ public class MenuTracker {
      */
     public UserAction[] fillActions() {
         this.actions[position++] = this.new AddItemFromAbstract(pointsOfMenu[position - 1], position);
-        this.actions[position++] = new EditItem();
-        this.actions[position++] = new DeleteItem();
-        this.actions[position++] = new MenuTracker.ShowItems();
-        this.actions[position++] = new Filter();
-        this.actions[position++] = new Comments();
-        this.actions[position++] = new Exit();
+        this.actions[position++] = new EditItemFromAbstract(pointsOfMenu[position - 1], position);
+        this.actions[position++] = new DeleteItemFromAbstract(pointsOfMenu[position - 1], position);
+        this.actions[position++] = new MenuTracker.ShowItemsFromAbstract(pointsOfMenu[position - 1], position);
+        this.actions[position++] = new FilterFromAbstract(pointsOfMenu[position - 1], position);
+        this.actions[position++] = new Comments(pointsOfMenu[position - 1], position);
+        this.actions[position++] = new Exit(pointsOfMenu[position - 1], position);
         return this.actions;
     }
 
@@ -114,14 +116,16 @@ public class MenuTracker {
      */
     private UserAction[] findBy = new UserAction[4];
 
+    private int point = 0;
+
     /**
      * Create list of 'Filter by ...'.
      */
     private UserAction[] fillFilter() {
-        findBy[0] = new FilterByName();
-        findBy[1] = new FilterByDesc();
-        findBy[2] = new FilterById();
-        findBy[3] = new ExitFromFilter();
+        findBy[point++] = new FilterByName(pointsOfFilter[point - 1], point);
+        findBy[point++] = new FilterByDesc(pointsOfFilter[point - 1], point);
+        findBy[point++] = new FilterById(pointsOfFilter[point - 1], point);
+        findBy[point++] = new ExitFromFilter(pointsOfFilter[point - 1], point);
 
         return this.findBy;
     }
@@ -146,6 +150,9 @@ public class MenuTracker {
         this.findBy[key - 1].execute(this.input, this.tracker);
     }
 
+    /**
+     * Inner class AddItemFromAbstract.
+     */
     private class AddItemFromAbstract extends AbstractAction {
 
         public AddItemFromAbstract(String name, int count) {
@@ -162,66 +169,13 @@ public class MenuTracker {
     }
 
     /**
-     * Inner class AddItem.
+     * Inner class ShowItemsFromAbstract.
      */
-    private class AddItem implements UserAction {
 
-        @Override
-        public int key() {
-            return 1;
-        }
+    class EditItemFromAbstract extends AbstractAction {
 
-        @Override
-        public void execute(Input input, Tracker tracker) {
-            System.out.println("adding:");
-            String nameOfClaim = input.ask("Enter: Name of Task?");
-            String descOfClaim = input.ask("Enter: Description of Task?");
-            tracker.addItem(new Item(nameOfClaim, descOfClaim, date.getTime()));
-        }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Add");
-        }
-    }
-
-    /**
-     * Inner class ShowItems.
-     */
-    private static class ShowItems implements UserAction {
-
-        /**
-         * creating new class SimpleDateFormat.
-         */
-        private SimpleDateFormat format1 = new SimpleDateFormat("dd.mm.yyyy hh:mm");
-
-        @Override
-        public int key() {
-            return 4;
-        }
-
-        @Override
-        public void execute(Input input, Tracker tracker) {
-            System.out.println("list of Items:");
-            for (Item x : tracker.getListOfItems()) {
-                System.out.println(String.format("%s | %s | %s | %s", x.getName(), x.getDesc(), x.getId(), format1.format(x.getLong())));
-            }
-        }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "List");
-        }
-    }
-
-    /**
-     * Inner class EditItem.
-     */
-    class EditItem implements UserAction {
-
-        @Override
-        public int key() {
-            return 2;
+        public EditItemFromAbstract(String name, int num) {
+            super(name, num);
         }
 
         @Override
@@ -239,21 +193,15 @@ public class MenuTracker {
                 }
             }
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", key(), "Edit");
-        }
     }
 
     /**
-     * Inner class DeleteItem.
+     * Inner class DeleteItemFromAbstract.
      */
-    class DeleteItem implements UserAction {
+    class DeleteItemFromAbstract extends AbstractAction {
 
-        @Override
-        public int key() {
-            return 3;
+        public DeleteItemFromAbstract(String name, int num) {
+            super(name, num);
         }
 
         @Override
@@ -269,23 +217,39 @@ public class MenuTracker {
             } catch (NullPointerException npe) {
                 System.out.println("Please, enter validate data.");
             }
-
-        }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", key(), "Delete");
         }
     }
 
     /**
-     * Inner class Filter.
+     * Inner class EditItemFromAbstract.
      */
-    class Filter implements UserAction {
+    private static class ShowItemsFromAbstract extends AbstractAction {
+
+        /**
+         * creating new class SimpleDateFormat.
+         */
+        private SimpleDateFormat format1 = new SimpleDateFormat("dd.mm.yyyy hh:mm");
+
+        public ShowItemsFromAbstract(String name, int num) {
+            super(name, num);
+        }
 
         @Override
-        public int key() {
-            return 5;
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("list of Items:");
+            for (Item x : tracker.getListOfItems()) {
+                System.out.println(String.format("%s | %s | %s | %s", x.getName(), x.getDesc(), x.getId(), format1.format(x.getLong())));
+            }
+        }
+    }
+
+    /**
+     * Inner class FilterFromAbstract.
+     */
+    class FilterFromAbstract extends AbstractAction {
+
+        public FilterFromAbstract(String name, int num) {
+            super(name, num);
         }
 
         @Override
@@ -306,21 +270,15 @@ public class MenuTracker {
                 System.out.println("... choose again?");
             }
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", key(), "Find");
-        }
     }
 
     /**
      * Inner class FilterByName.
      */
-    class FilterByName implements UserAction {
+    class FilterByName extends AbstractAction {
 
-        @Override
-        public int key() {
-            return 1;
+        public FilterByName(String name, int num) {
+            super(name, num);
         }
 
         @Override
@@ -335,21 +293,15 @@ public class MenuTracker {
                 System.out.println("No such Name.");
             }
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s.", key(), "... by Name");
-        }
     }
 
     /**
      * Inner class FilterByDesc.
      */
-    class FilterByDesc implements UserAction {
+    class FilterByDesc extends AbstractAction {
 
-        @Override
-        public int key() {
-            return 2;
+        public FilterByDesc(String name, int num) {
+            super(name, num);
         }
 
         @Override
@@ -364,21 +316,15 @@ public class MenuTracker {
             }
             System.out.println("No such Description.");
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s.", key(), "... by Description");
-        }
     }
 
     /**
      * Inner class FilterById.
      */
-    class FilterById implements UserAction {
+    class FilterById extends AbstractAction {
 
-        @Override
-        public int key() {
-            return 3;
+        public FilterById(String name, int num) {
+            super(name, num);
         }
 
         @Override
@@ -393,21 +339,15 @@ public class MenuTracker {
             }
             System.out.println("No such ID.");
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s.", key(), "... by ID");
-        }
     }
 
     /**
      * Inner class Comments.
      */
-    class Comments implements UserAction {
+    class Comments extends AbstractAction {
 
-        @Override
-        public int key() {
-            return 6;
+        public Comments(String name, int num) {
+            super(name, num);
         }
 
         @Override
@@ -422,46 +362,29 @@ public class MenuTracker {
                 System.out.println("Wrong ID");
             }
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", key(), "Comment");
-        }
     }
 
-    class Exit implements UserAction {
+    class Exit extends AbstractAction {
 
-        @Override
-        public int key() {
-            return 7;
+        public Exit(String nameOfAction, int numOfKey) {
+            super(nameOfAction, numOfKey);
         }
 
         @Override
         public void execute(Input input, Tracker tracker) {
 
         }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", key(), "Exit");
-        }
     }
 
-    class ExitFromFilter implements UserAction {
+    class ExitFromFilter extends AbstractAction {
 
-        @Override
-        public int key() {
-            return 4;
+        public ExitFromFilter(String nameOfAction, int numOfKey) {
+            super(nameOfAction, numOfKey);
         }
 
         @Override
         public void execute(Input input, Tracker tracker) {
 
-        }
-
-        @Override
-        public String info() {
-            return String.format("%s. %s", key(), "Exit");
         }
     }
 

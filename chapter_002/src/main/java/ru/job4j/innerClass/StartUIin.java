@@ -47,7 +47,6 @@ public class StartUIin {
                     break;
                 }
             }
-            //System.out.println("... choose you action again");
         }
     }
 
