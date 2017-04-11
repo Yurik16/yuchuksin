@@ -28,6 +28,8 @@ public class MenuTracker {
      */
     private UserAction[] actions = new UserAction[7];
 
+    public String[] pointsOfMenu = {"Add", "Edit", "Delete", "List", "Filter", "Comment", "Exit"};
+
     private int[] menuRange = new int[7];
 
     /**
@@ -60,7 +62,7 @@ public class MenuTracker {
      * fillActions filling menu with possible actions.
      */
     public UserAction[] fillActions() {
-        this.actions[position++] = this.new AddItem();
+        this.actions[position++] = this.new AddItemFromAbstract(pointsOfMenu[position - 1], position);
         this.actions[position++] = new EditItem();
         this.actions[position++] = new DeleteItem();
         this.actions[position++] = new MenuTracker.ShowItems();
@@ -72,6 +74,7 @@ public class MenuTracker {
 
     /**
      * addActions filling menu with pointing actions.
+     *
      * @param action pointing action
      */
     public void addActions(UserAction action) {
@@ -141,6 +144,21 @@ public class MenuTracker {
      */
     private void actFind(int key) {
         this.findBy[key - 1].execute(this.input, this.tracker);
+    }
+
+    private class AddItemFromAbstract extends AbstractAction {
+
+        public AddItemFromAbstract(String name, int count) {
+            super(name, count);
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("adding:");
+            String nameOfClaim = input.ask("Enter: Name of Task?");
+            String descOfClaim = input.ask("Enter: Description of Task?");
+            tracker.addItem(new Item(nameOfClaim, descOfClaim, date.getTime()));
+        }
     }
 
     /**
@@ -242,11 +260,16 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("deleting:");
             String name = input.ask("Enter: name of task to delete.");
-            if (tracker.findByName(name) != null) {
-                tracker.deleteItem(tracker.findByName(name)[0].getId());
-            } else {
-                System.out.println("Are you sure?");
+            try {
+                if (tracker.findByName(name) != null) {
+                    tracker.deleteItem(tracker.findByName(name)[0].getId());
+                } else {
+                    System.out.println("Are you sure?");
+                }
+            } catch (NullPointerException npe) {
+                System.out.println("Please, enter validate data.");
             }
+
         }
 
         @Override
