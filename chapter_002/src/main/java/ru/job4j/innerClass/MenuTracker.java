@@ -28,10 +28,20 @@ public class MenuTracker {
      */
     private UserAction[] actions = new UserAction[7];
 
-    public String[] pointsOfMenu = {"Add", "Edit", "Delete", "List", "Filter", "Comment", "Exit"};
+    /**
+     * pointsOfMenu names of menus.
+     */
+    private String[] pointsOfMenu = {"Add", "Edit", "Delete", "List", "Filter", "Comment", "Exit"};
 
-    public String[] pointsOfFilter = {"... by Name", "... by Description", "... by ID", "Exit from Filter"};
+    /**
+     * pointsOfFilter names of filter menus.
+     */
 
+    private String[] pointsOfFilter = {"... by Name", "... by Description", "... by ID", "Exit from Filter"};
+
+    /**
+     * menuRange range of menu.
+     */
     private int[] menuRange = new int[7];
 
     /**
@@ -62,6 +72,8 @@ public class MenuTracker {
 
     /**
      * fillActions filling menu with possible actions.
+     *
+     * @return actions list of actions
      */
     public UserAction[] fillActions() {
         this.actions[position++] = this.new AddItemFromAbstract(pointsOfMenu[position - 1], position);
@@ -84,6 +96,12 @@ public class MenuTracker {
     }
 
 
+    /**
+     * fillRange filling range with keys.
+     *
+     * @param list list of possible menus
+     * @return menuRange
+     */
     public int[] fillRange(UserAction[] list) {
         for (int i = 0; i < list.length; i++) {
             this.menuRange[i] = list[i].key();
@@ -116,10 +134,15 @@ public class MenuTracker {
      */
     private UserAction[] findBy = new UserAction[4];
 
+    /**
+     * point counter for the filter menu.
+     */
     private int point = 0;
 
     /**
      * Create list of 'Filter by ...'.
+     *
+     * @return findBy list of filter menu
      */
     private UserAction[] fillFilter() {
         findBy[point++] = new FilterByName(pointsOfFilter[point - 1], point);
@@ -155,10 +178,22 @@ public class MenuTracker {
      */
     private class AddItemFromAbstract extends AbstractAction {
 
-        public AddItemFromAbstract(String name, int count) {
+        /**
+         * constructor.
+         *
+         * @param name  name of action
+         * @param count number of action
+         */
+        AddItemFromAbstract(String name, int count) {
             super(name, count);
         }
 
+        /**
+         * execute adding task.
+         *
+         * @param input   enter data
+         * @param tracker existing tasks
+         */
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("adding:");
@@ -174,10 +209,22 @@ public class MenuTracker {
 
     class EditItemFromAbstract extends AbstractAction {
 
-        public EditItemFromAbstract(String name, int num) {
+        /**
+         * constructor.
+         *
+         * @param name name of action
+         * @param num  number of action
+         */
+        EditItemFromAbstract(String name, int num) {
             super(name, num);
         }
 
+        /**
+         * edit task.
+         *
+         * @param input   enter data
+         * @param tracker existing tasks
+         */
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("editing Item:");
@@ -200,10 +247,22 @@ public class MenuTracker {
      */
     class DeleteItemFromAbstract extends AbstractAction {
 
-        public DeleteItemFromAbstract(String name, int num) {
+        /**
+         * constructor.
+         *
+         * @param name name of action
+         * @param num  number of action
+         */
+        DeleteItemFromAbstract(String name, int num) {
             super(name, num);
         }
 
+        /**
+         * Delete task.
+         *
+         * @param input   enter data
+         * @param tracker existing tasks
+         */
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("deleting:");
@@ -230,10 +289,22 @@ public class MenuTracker {
          */
         private SimpleDateFormat format1 = new SimpleDateFormat("dd.mm.yyyy hh:mm");
 
-        public ShowItemsFromAbstract(String name, int num) {
+        /**
+         * constructor.
+         *
+         * @param name name of action
+         * @param num  number of action
+         */
+        ShowItemsFromAbstract(String name, int num) {
             super(name, num);
         }
 
+        /**
+         * Show list of all items.
+         *
+         * @param input   enter data
+         * @param tracker existing tasks
+         */
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("list of Items:");
@@ -248,10 +319,22 @@ public class MenuTracker {
      */
     class FilterFromAbstract extends AbstractAction {
 
-        public FilterFromAbstract(String name, int num) {
+        /**
+         * constructor.
+         *
+         * @param name name of action
+         * @param num  number of action
+         */
+        FilterFromAbstract(String name, int num) {
             super(name, num);
         }
 
+        /**
+         * Show list of items by filter.
+         *
+         * @param input   enter data
+         * @param tracker existing tasks
+         */
         @Override
         public void execute(Input input, Tracker tracker) {
             MenuTracker menuFilter = new MenuTracker(input, tracker);
@@ -277,10 +360,22 @@ public class MenuTracker {
      */
     class FilterByName extends AbstractAction {
 
-        public FilterByName(String name, int num) {
+        /**
+         * constructor.
+         *
+         * @param name name of action
+         * @param num  number of action
+         */
+        FilterByName(String name, int num) {
             super(name, num);
         }
 
+        /**
+         * searching filter by name.
+         *
+         * @param input   enter data
+         * @param tracker existing tasks
+         */
         @Override
         public void execute(Input input, Tracker tracker) {
             String name = input.ask("Name to find?");
@@ -300,10 +395,22 @@ public class MenuTracker {
      */
     class FilterByDesc extends AbstractAction {
 
-        public FilterByDesc(String name, int num) {
+        /**
+         * constructor.
+         *
+         * @param name name of action
+         * @param num  number of action
+         */
+        FilterByDesc(String name, int num) {
             super(name, num);
         }
 
+        /**
+         * searching filter by description.
+         *
+         * @param input   enter data
+         * @param tracker existing tasks
+         */
         @Override
         public void execute(Input input, Tracker tracker) {
             String name = input.ask("Description to find?");
@@ -323,10 +430,22 @@ public class MenuTracker {
      */
     class FilterById extends AbstractAction {
 
-        public FilterById(String name, int num) {
+        /**
+         * constructor.
+         *
+         * @param name name of action
+         * @param num  number of action
+         */
+        FilterById(String name, int num) {
             super(name, num);
         }
 
+        /**
+         * searching filter by ID.
+         *
+         * @param input   enter data
+         * @param tracker existing tasks
+         */
         @Override
         public void execute(Input input, Tracker tracker) {
             String name = input.ask("ID to find?");
@@ -346,10 +465,22 @@ public class MenuTracker {
      */
     class Comments extends AbstractAction {
 
-        public Comments(String name, int num) {
+        /**
+         * constructor.
+         *
+         * @param name name of action
+         * @param num  number of action
+         */
+        Comments(String name, int num) {
             super(name, num);
         }
 
+        /**
+         * Adding comment to task.
+         *
+         * @param input   enter data
+         * @param tracker existing tasks
+         */
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("commenting:");
@@ -364,24 +495,54 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Inner class Exit.
+     */
     class Exit extends AbstractAction {
 
-        public Exit(String nameOfAction, int numOfKey) {
+        /**
+         * constructor.
+         *
+         * @param nameOfAction name of action
+         * @param numOfKey     number of action
+         */
+        Exit(String nameOfAction, int numOfKey) {
             super(nameOfAction, numOfKey);
         }
 
+        /**
+         * Exit from program.
+         *
+         * @param input   enter data
+         * @param tracker existing tasks
+         */
         @Override
         public void execute(Input input, Tracker tracker) {
 
         }
     }
 
+    /**
+     * Inner class ExitFromFilter.
+     */
     class ExitFromFilter extends AbstractAction {
 
-        public ExitFromFilter(String nameOfAction, int numOfKey) {
+        /**
+         * constructor.
+         *
+         * @param nameOfAction name of action
+         * @param numOfKey     number of action
+         */
+        ExitFromFilter(String nameOfAction, int numOfKey) {
             super(nameOfAction, numOfKey);
         }
 
+        /**
+         * Exit from filter.
+         *
+         * @param input   enter data
+         * @param tracker existing tasks
+         */
         @Override
         public void execute(Input input, Tracker tracker) {
 

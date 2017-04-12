@@ -24,6 +24,13 @@ public class ConsoleInput implements Input {
         return this.scanner.nextLine();
     }
 
+    /**
+     * ask asking user.
+     *
+     * @param question question for user
+     * @param range list of validate data
+     * @return key number of action
+     */
     public int ask(String question, int[] range) {
         int key = Integer.valueOf(ask(question));
         for (int x : range) {

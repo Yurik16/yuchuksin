@@ -10,6 +10,13 @@ import ru.job4j.tracker.start.ConsoleInput;
  */
 public class ValidateInput extends ConsoleInput {
 
+    /**
+     * ask asking user with checking entering data is it validate.
+     *
+     * @param question question for user
+     * @param range list of validate data
+     * @return key number of action
+     */
     public int ask(String question, int[] range) {
         boolean actual = true;
         int key = 7;

@@ -8,6 +8,11 @@ package ru.job4j.innerClass;
  */
 public class MenuOutException extends RuntimeException {
 
+    /**
+     * MenuOutException my exception.
+     *
+     * @param msg explain what is wrong in entering data
+     */
     public MenuOutException(String msg) {
         super(msg);
     }
