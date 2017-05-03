@@ -24,7 +24,6 @@ public class Bishop extends AbstractFigure {
     Cell[] way(Cell dist) throws ImpossibleMoveException {
         Cell[] result = new Cell[7];
         int count = 0;
-        while (!this.getFigurePosition().equals(dist)) {
             if(this.getFigurePosition().getX() < dist.getX() && this.getFigurePosition().getY() < dist.getY()) {
                 for (int i = 0; i < dist.getX() - this.getFigurePosition().getX(); i++) {
                     result[count++] = this.oneStepUp(this.oneStepRight(this.getFigurePosition()));
@@ -45,12 +44,15 @@ public class Bishop extends AbstractFigure {
                     result[count++] = this.oneStepUp(this.oneStepLeft(this.getFigurePosition()));
                 }
             }
-        }
         return Arrays.copyOf(result, count);
     }
 
     @Override
     boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
-        return true;
+        if((this.getFigurePosition().getX() + this.getFigurePosition().getY() == cell.getX() + cell.getY()) ||
+                this.getFigurePosition().getX() - this.getFigurePosition().getY() == cell.getX() - cell.getY()) {
+            return true;
+        }
+        return false;
     }
 }

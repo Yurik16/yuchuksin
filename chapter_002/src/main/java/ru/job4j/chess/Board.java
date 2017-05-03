@@ -41,13 +41,14 @@ public class Board {
         if(!movingFigure.isCorrectWay(source)) {
             throw new ImpossibleMoveException("Illegal path for this figure.");
         }
-        try {
             Cell[] resaltCellArray = movingFigure.way(dist);
-        }
-        catch(ImpossibleMoveException fwe) {
-            System.out.println(String.format("%s%n%s", fwe.getMessage(), "There is another figure on the way."));
-            return false;
-        }
+            for(AbstractFigure x : this.figures) {
+                for(Cell cellFromWay : resaltCellArray) {
+                    if(x.getFigurePosition().equals(cellFromWay)){
+                        throw new ImpossibleMoveException("There is another figure on the way.");
+                    }
+                }
+            }
         return true;
     }
 }
