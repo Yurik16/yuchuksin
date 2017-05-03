@@ -49,6 +49,7 @@ public class Board {
                     }
                 }
             }
+        movingFigure.setFigurePosition(dist);
         return true;
     }
 }
