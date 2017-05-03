@@ -11,48 +11,29 @@ public class Cell {
     /**
      * Position of Cell at Board.
      */
-    final private String[] position = new String[2];
+    final private int X;
+    final private int Y;
 
-    private AbstractFigure figure;
-
-    /**
-     * Default constructor for Cell.
-     * @param position coordinate
-     */
-    public Cell(String[] position) {
-        this.position[0] = position[0];
-        this.position[1] = position[1];
-        this.figure = null;
+    public Cell(int x, int y) {
+        X = x;
+        Y = y;
     }
 
-    /**
-     * Constructor for Cell with figure on it.
-     * @param position coordinate
-     */
-    public Cell(String[] position, AbstractFigure figure) {
-        this.position[0] = position[0];
-        this.position[1] = position[1];
-        this.figure = figure;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cell cell = (Cell) o;
+
+        if (X != cell.X) return false;
+        return Y == cell.Y;
     }
 
-    /**
-     * Getter Figure from Cell.
-     */
-    public AbstractFigure getFigure() {
-        return this.figure;
-    }
-
-    /**
-     * Getter literal coordinate from Cell.
-     */
-    public String getPositionX() {
-        return this.position[0];
-    }
-
-    /**
-     * Getter numerical coordinate from Cell.
-     */
-    public String getPositionY() {
-        return this.position[1];
+    @Override
+    public int hashCode() {
+        int result = X;
+        result = 31 * result + Y;
+        return result;
     }
 }

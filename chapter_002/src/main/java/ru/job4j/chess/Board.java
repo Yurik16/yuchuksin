@@ -25,7 +25,7 @@ public class Board {
                 }
             }
         try {
-            movingFigure = source.getFigure();
+
         }
         catch(FigureNotFoundException ffe) {
             System.out.println(String.format("%s%n%s", ffe.getMessage(), "Cell is empty."));
@@ -35,7 +35,7 @@ public class Board {
             throw new ImpossibleMoveException("Illegal  path for this figure.");
         }
         try {
-            movingFigure.way(dist);
+            Cell[] resaltCellArray = movingFigure.way(dist);
         }
         catch(ImpossibleMoveException fwe) {
             System.out.println(String.format("%s%n%s", fwe.getMessage(), "There is another figure on the way."));
