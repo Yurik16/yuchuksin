@@ -11,12 +11,12 @@ public class Cell {
     /**
      * Position of Cell at Board.
      */
-    final private int X;
-    final private int Y;
+    final private int x;
+    final private int y;
 
     public Cell(int x, int y) {
-        X = x;
-        Y = y;
+        this.x = x;
+        this.y = y;
     }
 
     @Override
@@ -26,14 +26,22 @@ public class Cell {
 
         Cell cell = (Cell) o;
 
-        if (X != cell.X) return false;
-        return Y == cell.Y;
+        if (x != cell.x) return false;
+        return y == cell.y;
     }
 
     @Override
     public int hashCode() {
-        int result = X;
-        result = 31 * result + Y;
+        int result = x;
+        result = 31 * result + y;
         return result;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }

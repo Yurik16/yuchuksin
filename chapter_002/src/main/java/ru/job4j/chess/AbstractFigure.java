@@ -48,4 +48,20 @@ abstract class AbstractFigure {
     public void setFigurePosition(Cell position) {
         this.position = position;
     }
+
+    public Cell oneStepRight(Cell cell) {
+        return new Cell(cell.getX() + 1, cell.getY());
+    }
+
+    public  Cell oneStepLeft(Cell cell) {
+        return new Cell(cell.getX() - 1, cell.getY());
+    }
+
+    public Cell oneStepUp(Cell cell) {
+        return new Cell(cell.getX(), cell.getY() + 1);
+    }
+
+    public  Cell oneStepDown(Cell cell) {
+        return new Cell(cell.getX(), cell.getY() - 1);
+    }
 }
