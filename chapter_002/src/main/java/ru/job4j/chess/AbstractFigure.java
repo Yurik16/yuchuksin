@@ -9,16 +9,43 @@ package ru.job4j.chess;
 abstract class AbstractFigure {
 
     /**
-     *
+     * Name of Figure.
      */
-    final Cell position;
+    private String name;
 
     /**
-     *
+     * Position at Board.
      */
-    public AbstractFigure(Cell position) {
+    private Cell position;
+
+    /**
+     * Constructor of AbstractFigure.
+     */
+    public AbstractFigure(String name, Cell position) {
         this.position = position;
+        this.name = name;
     }
 
-    abstract Cell[] way(Cell dist) throws ImposiblMoveException;
+    /**
+     * way Abstract method.
+     *
+     * @param dist destination point.
+     * @return array of Cells
+     * @throws ImpossibleMoveException
+     */
+    abstract Cell[] way(Cell dist) throws ImpossibleMoveException;
+
+    abstract boolean isCorrectWay(Cell cell) throws ImpossibleMoveException;
+    /**
+     * Getter position.
+     *
+     * @return
+     */
+    public Cell getFigurePosition() {
+        return this.position;
+    }
+
+    public void setFigurePosition(Cell position) {
+        this.position = position;
+    }
 }

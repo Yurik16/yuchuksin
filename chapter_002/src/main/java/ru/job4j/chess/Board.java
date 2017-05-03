@@ -7,18 +7,39 @@ package ru.job4j.chess;
  * @since 30.04.2017.
  */
 public class Board {
-    private AbstractFigure[] figures;
+
+    private AbstractFigure[] figures = new AbstractFigure[32];
 
     public Board(AbstractFigure[] figures) {
         this.figures = figures;
     }
 
-    public boolean move(Cell source, Cell dist) throws ImposiblMoveException, FigureNotFoundException {
+
+    public boolean move(Cell source, Cell dist) throws ImpossibleMoveException, FigureNotFoundException {
+
+        AbstractFigure movingFigure = null;
+
+            for(AbstractFigure x : this.figures) {
+                if(x.getFigurePosition().equals(source)) {
+                    movingFigure = x;
+                }
+            }
         try {
-
+            movingFigure = source.getFigure();
         }
-        catch (ImposiblMoveException ime) {
-
+        catch(FigureNotFoundException ffe) {
+            System.out.println(String.format("%s%n%s", ffe.getMessage(), "Cell is empty."));
+            return false;
+        }
+        if(!movingFigure.isCorrectWay(source)) {
+            throw new ImpossibleMoveException("Illegal  path for this figure.");
+        }
+        try {
+            movingFigure.way(dist);
+        }
+        catch(ImpossibleMoveException fwe) {
+            System.out.println(String.format("%s%n%s", fwe.getMessage(), "There is another figure on the way."));
+            return false;
         }
         return true;
     }

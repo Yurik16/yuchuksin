@@ -6,9 +6,9 @@ package ru.job4j.chess;
  * @author Yury Chuksin (chuksin.yury@gmail.com)
  * @since 30.04.2017.
  */
-public class ImposiblMoveException extends IndexOutOfBoundsException {
+public class ImpossibleMoveException extends IndexOutOfBoundsException {
 
-    public ImposiblMoveException(String s) {
+    public ImpossibleMoveException(String s) {
         super(s);
     }
 }
