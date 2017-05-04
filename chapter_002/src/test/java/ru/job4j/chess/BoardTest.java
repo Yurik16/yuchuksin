@@ -1,6 +1,9 @@
 package ru.job4j.chess;
 
 import org.junit.Test;
+import ru.job4j.chess.Exceptions.FigureNotFoundException;
+import ru.job4j.chess.Exceptions.ImpossibleMoveException;
+import ru.job4j.chess.Exceptions.OccupiedWayException;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -19,8 +22,19 @@ public class BoardTest {
         };
 
         Board board = new Board(figures);
-        boolean result = board.move(new Cell(3,1), new Cell(8, 6));
-        assertThat(result, is(true));
+        try {
+            boolean result = board.move(new Cell(3,1), new Cell(10, 6));
+            assertThat(result, is(true));
+        }
+        catch(ImpossibleMoveException ime) {
+            System.out.println(ime.getMessage());
+        }
+        catch(FigureNotFoundException fnf) {
+            System.out.println(fnf.getMessage());
+        }
+        catch(OccupiedWayException owe) {
+            System.out.println(owe.getMessage());
+        }
     }
 
 }

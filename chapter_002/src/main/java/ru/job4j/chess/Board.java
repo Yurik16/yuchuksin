@@ -1,5 +1,9 @@
 package ru.job4j.chess;
 
+import ru.job4j.chess.Exceptions.FigureNotFoundException;
+import ru.job4j.chess.Exceptions.ImpossibleMoveException;
+import ru.job4j.chess.Exceptions.OccupiedWayException;
+
 /**
  * Main class.
  *
@@ -19,33 +23,30 @@ public class Board {
     public void initBorad() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-               board[i][j] = new Cell(i + 1, j + 1);
+                board[i][j] = new Cell(i + 1, j + 1);
             }
         }
     }
 
-    public boolean move(Cell source, Cell dist) throws ImpossibleMoveException, FigureNotFoundException {
+    public boolean move(Cell source, Cell dist) throws ImpossibleMoveException, FigureNotFoundException, OccupiedWayException {
 
         AbstractFigure movingFigure = null;
 
-        for(AbstractFigure x : this.figures) {
-                if(x.getFigurePosition().equals(source)) {
-                    movingFigure = x;
-                }
-                else throw new FigureNotFoundException("There is on any figure at this Cell.");
-            }
-
-        if(!movingFigure.isCorrectWay(dist)){
-            throw new ImpossibleMoveException("This figure can`t move that way.");
+        for (AbstractFigure x : this.figures) {
+            if (x.getFigurePosition().equals(source)) {
+                movingFigure = x;
+            } else throw new FigureNotFoundException("There is no any figure at this Cell.");
         }
-            Cell[] resaltCellArray = movingFigure.way(dist);
-            for(AbstractFigure x : this.figures) {
-                for(Cell cellFromWay : resaltCellArray) {
-                    if(x.getFigurePosition().equals(cellFromWay)){
-                        throw new ImpossibleMoveException("There is another figure on this way.");
-                    }
+        movingFigure.isCorrectWay(dist);
+
+        Cell[] resaltCellArray = movingFigure.way(dist);
+        for (AbstractFigure x : this.figures) {
+            for (Cell cellFromWay : resaltCellArray) {
+                if (x.getFigurePosition().equals(cellFromWay)) {
+                    throw new OccupiedWayException("There is another figure on this way.");
                 }
             }
+        }
         movingFigure.setFigurePosition(dist);
         return true;
     }

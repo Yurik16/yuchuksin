@@ -1,5 +1,7 @@
 package ru.job4j.chess;
 
+import ru.job4j.chess.Exceptions.ImpossibleMoveException;
+
 /**
  * Main class.
  *
