@@ -15,12 +15,12 @@ public class BoardTest {
     @Test
     public void move() throws Exception {
         AbstractFigure[] figures = {
-                new Bishop("name", new Cell(1, 1))
+                new Bishop("name", new Cell(3, 1))
         };
 
         Board board = new Board(figures);
-        boolean resalt = board.move(new Cell(1,1), new Cell(2, 2));
-        assertThat(resalt, is(true));
+        boolean result = board.move(new Cell(3,1), new Cell(8, 6));
+        assertThat(result, is(true));
     }
 
 }

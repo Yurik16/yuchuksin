@@ -38,8 +38,8 @@ public class Board {
             System.out.println(String.format("%s%n%s", ffe.getMessage(), "Cell is empty."));
             return false;
         }
-        if(!movingFigure.isCorrectWay(source)) {
-            throw new ImpossibleMoveException("Illegal path for this figure.");
+        if(!movingFigure.isCorrectWay(dist)){
+            return false;
         }
             Cell[] resaltCellArray = movingFigure.way(dist);
             for(AbstractFigure x : this.figures) {
