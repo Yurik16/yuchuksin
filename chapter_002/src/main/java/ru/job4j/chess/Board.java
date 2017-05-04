@@ -27,25 +27,22 @@ public class Board {
     public boolean move(Cell source, Cell dist) throws ImpossibleMoveException, FigureNotFoundException {
 
         AbstractFigure movingFigure = null;
-        try {
-            for(AbstractFigure x : this.figures) {
+
+        for(AbstractFigure x : this.figures) {
                 if(x.getFigurePosition().equals(source)) {
                     movingFigure = x;
                 }
+                else throw new FigureNotFoundException("There is on any figure at this Cell.");
             }
-        }
-        catch(FigureNotFoundException ffe) {
-            System.out.println(String.format("%s%n%s", ffe.getMessage(), "Cell is empty."));
-            return false;
-        }
+
         if(!movingFigure.isCorrectWay(dist)){
-            return false;
+            throw new ImpossibleMoveException("This figure can`t move that way.");
         }
             Cell[] resaltCellArray = movingFigure.way(dist);
             for(AbstractFigure x : this.figures) {
                 for(Cell cellFromWay : resaltCellArray) {
                     if(x.getFigurePosition().equals(cellFromWay)){
-                        throw new ImpossibleMoveException("There is another figure on the way.");
+                        throw new ImpossibleMoveException("There is another figure on this way.");
                     }
                 }
             }
