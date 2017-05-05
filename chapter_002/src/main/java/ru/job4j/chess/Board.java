@@ -37,17 +37,19 @@ public class Board {
                 movingFigure = x;
             } else throw new FigureNotFoundException("There is no any figure at this Cell.");
         }
-        movingFigure.isCorrectWay(dist);
+        if (movingFigure.isCorrectWay(dist)) {
 
-        Cell[] resaltCellArray = movingFigure.way(dist);
-        for (AbstractFigure x : this.figures) {
-            for (Cell cellFromWay : resaltCellArray) {
-                if (x.getFigurePosition().equals(cellFromWay)) {
-                    throw new OccupiedWayException("There is another figure on this way.");
+            Cell[] resaltCellArray = movingFigure.way(dist);
+            for (AbstractFigure x : this.figures) {
+                for (Cell cellFromWay : resaltCellArray) {
+                    if (x.getFigurePosition().equals(cellFromWay)) {
+                        throw new OccupiedWayException("There is another figure on this way.");
+                    }
                 }
             }
+            movingFigure.setFigurePosition(dist);
+            return true;
         }
-        movingFigure.setFigurePosition(dist);
-        return true;
+        return false;
     }
 }

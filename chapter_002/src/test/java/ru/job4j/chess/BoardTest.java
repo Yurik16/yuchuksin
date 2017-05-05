@@ -18,19 +18,20 @@ public class BoardTest {
     @Test
     public void move() throws Exception {
         AbstractFigure[] figures = {
-                new Bishop("name", new Cell(3, 1))
+                new Bishop("name", new Cell(3, 1)),
+                //new Bishop("second", new Cell(4, 2))
         };
 
         Board board = new Board(figures);
         try {
-            boolean result = board.move(new Cell(3,1), new Cell(10, 6));
+            boolean result = board.move(new Cell(3,1), new Cell(5, 1));
             assertThat(result, is(true));
-        }
-        catch(ImpossibleMoveException ime) {
-            System.out.println(ime.getMessage());
         }
         catch(FigureNotFoundException fnf) {
             System.out.println(fnf.getMessage());
+        }
+        catch(ImpossibleMoveException ime) {
+            System.out.println(ime.getMessage());
         }
         catch(OccupiedWayException owe) {
             System.out.println(owe.getMessage());
