@@ -1,5 +1,6 @@
-package ru.job4j.chess;
+package ru.job4j.chess.firures;
 
+import ru.job4j.chess.Cell;
 import ru.job4j.chess.Exceptions.ImpossibleMoveException;
 
 import java.util.Arrays;
@@ -17,13 +18,13 @@ public class Bishop extends AbstractFigure {
      * @param name
      * @param position
      */
-    public Bishop(String name, Cell position) {
-        super(name, position);
+    public Bishop(String name, Cell position, boolean isWhite) {
+        super(name, position, isWhite);
     }
 
 
     @Override
-    Cell[] way(Cell dist) throws ImpossibleMoveException {
+    public Cell[] way(Cell dist) {
         Cell[] result = new Cell[7];
         int count = 0;
         if (this.getFigurePosition().getX() < dist.getX() && this.getFigurePosition().getY() < dist.getY()) {
@@ -50,7 +51,7 @@ public class Bishop extends AbstractFigure {
     }
 
     @Override
-    boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
+    public boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
         if (((this.getFigurePosition().getX() + this.getFigurePosition().getY() == cell.getX() + cell.getY()) ||
                 this.getFigurePosition().getX() - this.getFigurePosition().getY() == cell.getX() - cell.getY()) &&
                 (0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9)) {

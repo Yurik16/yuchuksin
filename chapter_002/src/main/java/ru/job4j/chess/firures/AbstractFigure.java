@@ -1,5 +1,6 @@
-package ru.job4j.chess;
+package ru.job4j.chess.firures;
 
+import ru.job4j.chess.Cell;
 import ru.job4j.chess.Exceptions.ImpossibleMoveException;
 
 /**
@@ -8,7 +9,7 @@ import ru.job4j.chess.Exceptions.ImpossibleMoveException;
  * @author Yury Chuksin (chuksin.yury@gmail.com)
  * @since 30.04.2017.
  */
-abstract class AbstractFigure {
+public abstract class AbstractFigure {
 
     /**
      * Name of Figure.
@@ -20,12 +21,19 @@ abstract class AbstractFigure {
      */
     private Cell position;
 
+
+    /**
+     * Color of figure.
+     */
+    private boolean isWhite;
+
     /**
      * Constructor of AbstractFigure.
      */
-    public AbstractFigure(String name, Cell position) {
+    public AbstractFigure(String name, Cell position, boolean white) {
         this.position = position;
         this.name = name;
+        this.isWhite = white;
     }
 
     /**
@@ -33,11 +41,10 @@ abstract class AbstractFigure {
      *
      * @param dist destination point.
      * @return array of Cells
-     * @throws ImpossibleMoveException
      */
-    abstract Cell[] way(Cell dist) throws ImpossibleMoveException;
+    public abstract Cell[] way(Cell dist);
 
-    abstract boolean isCorrectWay(Cell cell) throws ImpossibleMoveException;
+    public abstract boolean isCorrectWay(Cell cell) throws ImpossibleMoveException;
     /**
      * Getter position.
      *
@@ -45,6 +52,10 @@ abstract class AbstractFigure {
      */
     public Cell getFigurePosition() {
         return this.position;
+    }
+
+    public boolean getFigureColor() {
+        return isWhite;
     }
 
     public void setFigurePosition(Cell position) {

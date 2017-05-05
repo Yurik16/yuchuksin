@@ -3,6 +3,7 @@ package ru.job4j.chess;
 import ru.job4j.chess.Exceptions.FigureNotFoundException;
 import ru.job4j.chess.Exceptions.ImpossibleMoveException;
 import ru.job4j.chess.Exceptions.OccupiedWayException;
+import ru.job4j.chess.firures.AbstractFigure;
 
 /**
  * Main class.
@@ -37,6 +38,7 @@ public class Board {
                 movingFigure = x;
             } else throw new FigureNotFoundException("There is no any figure at this Cell.");
         }
+        assert movingFigure != null;
         if (movingFigure.isCorrectWay(dist)) {
 
             Cell[] resaltCellArray = movingFigure.way(dist);
