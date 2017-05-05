@@ -51,7 +51,8 @@ public class Bishop extends AbstractFigure {
 
     @Override
     boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
-        if ((Math.abs(this.getFigurePosition().getX() - cell.getX()) == Math.abs(this.getFigurePosition().getY() - cell.getY())) ||
+        if (((this.getFigurePosition().getX() + this.getFigurePosition().getY() == cell.getX() + cell.getY()) ||
+                this.getFigurePosition().getX() - this.getFigurePosition().getY() == cell.getX() - cell.getY()) &&
                 (0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9)) {
             return true;
         } else throw new ImpossibleMoveException("Destination cell can`t be touched.");
