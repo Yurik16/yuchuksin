@@ -1,8 +1,8 @@
 package ru.job4j.chess;
 
 import org.junit.Test;
-import ru.job4j.chess.firures.AbstractFigure;
-import ru.job4j.chess.firures.Queen;
+import ru.job4j.chess.figures.AbstractFigure;
+import ru.job4j.chess.figures.Queen;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;

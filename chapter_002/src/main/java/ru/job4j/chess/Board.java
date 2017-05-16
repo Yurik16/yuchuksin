@@ -3,7 +3,7 @@ package ru.job4j.chess;
 import ru.job4j.chess.Exceptions.FigureNotFoundException;
 import ru.job4j.chess.Exceptions.ImpossibleMoveException;
 import ru.job4j.chess.Exceptions.OccupiedWayException;
-import ru.job4j.chess.firures.AbstractFigure;
+import ru.job4j.chess.figures.AbstractFigure;
 
 /**
  * Main class.
@@ -41,9 +41,9 @@ public class Board {
         assert movingFigure != null;
         if (movingFigure.isCorrectWay(dist)) {
 
-            Cell[] resaltCellArray = movingFigure.way(dist);
+            Cell[] resultCellArray = movingFigure.way(dist);
             for (AbstractFigure x : this.figures) {
-                for (Cell cellFromWay : resaltCellArray) {
+                for (Cell cellFromWay : resultCellArray) {
                     if (x.getFigurePosition().equals(cellFromWay)) {
                         throw new OccupiedWayException("There is another figure on this way.");
                     }

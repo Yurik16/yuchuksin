@@ -1,4 +1,4 @@
-package ru.job4j.chess.firures;
+package ru.job4j.chess.figures;
 
 import ru.job4j.chess.Cell;
 import ru.job4j.chess.Exceptions.ImpossibleMoveException;

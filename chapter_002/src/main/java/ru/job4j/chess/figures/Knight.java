@@ -1,4 +1,4 @@
-package ru.job4j.chess.firures;
+package ru.job4j.chess.figures;
 
 import ru.job4j.chess.Cell;
 import ru.job4j.chess.Exceptions.ImpossibleMoveException;
@@ -24,8 +24,7 @@ public class Knight extends AbstractFigure {
 
     @Override
     public Cell[] way(Cell dist) {
-        Cell[] result = {dist};
-        return result;
+        return new Cell[]{dist};
     }
 
     @Override
