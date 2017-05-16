@@ -25,9 +25,11 @@ public class Queen extends AbstractFigure {
 
     @Override
     public Cell[] way(Cell dist) {
+
         Cell temp = new Cell(this.getFigurePosition().getX(),this.getFigurePosition().getY());
         Bishop bishop = new Bishop("bishop", temp,true);
         Rook rook = new Rook("rook", temp, true);
+
         if(this.getFigurePosition().getX() == dist.getX() || this.getFigurePosition().getY() == dist.getY()) {
             return bishop.way(dist);
         } else {
@@ -37,16 +39,16 @@ public class Queen extends AbstractFigure {
 
     @Override
     public boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
-        boolean result;
+
         Cell temp = new Cell(this.getFigurePosition().getX(),this.getFigurePosition().getY());
         Bishop bishop = new Bishop("bishop", temp,true);
         Rook rook = new Rook("rook", temp, true);
-        try {
-            result = bishop.isCorrectWay(cell);
+
+        if(bishop.isCorrectWay(cell)) {
+            return true;
         }
-        catch (ImpossibleMoveException ime) {
-            result = rook.isCorrectWay(cell);
-        }
-            return result;
+        if(rook.isCorrectWay(cell)) {
+            return true;
+        } else throw new ImpossibleMoveException("Destination cell can`t be touched by Queen.");
     }
 }

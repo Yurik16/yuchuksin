@@ -28,24 +28,30 @@ public class Bishop extends AbstractFigure {
     public Cell[] way(Cell dist) {
         Cell[] result = new Cell[7];
         int count = 0;
+        int deltaX = Math.abs(this.getFigurePosition().getX() - dist.getX());
+
         if (this.getFigurePosition().getX() < dist.getX() && this.getFigurePosition().getY() < dist.getY()) {
-            for (int i = 0; i < dist.getX() - this.getFigurePosition().getX(); i++) {
+            for (int i = 0; i < deltaX; i++) {
                 result[count++] = this.oneStepUp(this.oneStepRight(this.getFigurePosition()));
+                this.setFigurePosition(result[i]);
             }
         }
         if (this.getFigurePosition().getX() < dist.getX() && this.getFigurePosition().getY() > dist.getY()) {
-            for (int i = 0; i < dist.getX() - this.getFigurePosition().getX(); i++) {
+            for (int i = 0; i < deltaX; i++) {
                 result[count++] = this.oneStepDown(this.oneStepRight(this.getFigurePosition()));
+                this.setFigurePosition(result[i]);
             }
         }
         if (this.getFigurePosition().getX() > dist.getX() && this.getFigurePosition().getY() > dist.getY()) {
-            for (int i = 0; i < this.getFigurePosition().getX() - dist.getX(); i++) {
+            for (int i = 0; i < deltaX; i++) {
                 result[count++] = this.oneStepDown(this.oneStepLeft(this.getFigurePosition()));
+                this.setFigurePosition(result[i]);
             }
         }
         if (this.getFigurePosition().getX() > dist.getX() && this.getFigurePosition().getY() < dist.getY()) {
-            for (int i = 0; i < this.getFigurePosition().getX() - dist.getX(); i++) {
+            for (int i = 0; i < deltaX; i++) {
                 result[count++] = this.oneStepUp(this.oneStepLeft(this.getFigurePosition()));
+                this.setFigurePosition(result[i]);
             }
         }
         return Arrays.copyOf(result, count);

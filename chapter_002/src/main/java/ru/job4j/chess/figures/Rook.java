@@ -29,21 +29,28 @@ public class Rook extends AbstractFigure {
     public Cell[] way(Cell dist) {
         Cell[] result = new Cell[7];
         int count = 0;
+        int deltaX = Math.abs(this.getFigurePosition().getX() - dist.getX());
+        int deltaY = Math.abs(this.getFigurePosition().getY() - dist.getY());
+
         if(this.getFigurePosition().getX() == dist.getX()) {
-            for (int i = 0; i < Math.abs(this.getFigurePosition().getY() - dist.getY()); i++) {
+            for (int i = 0; i < deltaY; i++) {
                 if(this.getFigurePosition().getY() < dist.getY()) {
                     result[count++] = this.oneStepUp(this.getFigurePosition());
+                    this.setFigurePosition(result[i]);
                 } else {
                     result[count++] = this.oneStepDown(this.getFigurePosition());
+                    this.setFigurePosition(result[i]);
                 }
             }
         }
         if(this.getFigurePosition().getY() == dist.getY()) {
-            for (int i = 0; i < Math.abs(this.getFigurePosition().getY() - dist.getY()); i++) {
+            for (int i = 0; i < deltaX; i++) {
                 if(this.getFigurePosition().getX() < dist.getX()) {
                     result[count++] = this.oneStepRight(this.getFigurePosition());
+                    this.setFigurePosition(result[i]);
                 } else {
                     result[count++] = this.oneStepLeft(this.getFigurePosition());
+                    this.setFigurePosition(result[i]);
                 }
             }
         }

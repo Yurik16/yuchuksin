@@ -22,8 +22,8 @@ public class Board {
     public Cell[][] board = new Cell[8][8];
 
     public void initBorad() {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = 1; i < 9; i++) {
+            for (int j = 1; j < 9; j++) {
                 board[i][j] = new Cell(i + 1, j + 1);
             }
         }
