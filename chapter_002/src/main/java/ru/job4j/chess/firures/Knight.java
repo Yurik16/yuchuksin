@@ -11,8 +11,15 @@ import ru.job4j.chess.Exceptions.ImpossibleMoveException;
  */
 public class Knight extends AbstractFigure {
 
-    public Knight(String name, Cell position, boolean white) {
-        super(name, position, white);
+    /**
+     * Constructor of Knight.
+     *
+     * @param name name of the figure
+     * @param position position of the figure
+     * @param isWhite color of the figure
+     */
+    public Knight(String name, Cell position, boolean isWhite) {
+        super(name, position, isWhite);
     }
 
     @Override

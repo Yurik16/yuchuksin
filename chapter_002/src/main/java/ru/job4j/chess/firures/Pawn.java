@@ -12,8 +12,15 @@ import ru.job4j.chess.Exceptions.ImpossibleMoveException;
 public class Pawn extends AbstractFigure {
 
 
-    public Pawn(String name, Cell position, boolean white) {
-        super(name, position, white);
+    /**
+     * Constructor of Pawn.
+     *
+     * @param name name of the figure
+     * @param position position of the figure
+     * @param isWhite color of the figure
+     */
+    public Pawn(String name, Cell position, boolean isWhite) {
+        super(name, position, isWhite);
     }
 
     @Override

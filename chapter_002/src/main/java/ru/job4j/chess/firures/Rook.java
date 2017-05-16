@@ -13,33 +13,41 @@ import java.util.Arrays;
  */
 public class Rook extends AbstractFigure {
 
-    public Rook(String name, Cell position, boolean white) {
-        super(name, position, white);
+    /**
+     * Constructor of Rook.
+     *
+     * @param name name of the figure
+     * @param position position of the figure
+     * @param isWhite color of the figure
+     */
+
+    public Rook(String name, Cell position, boolean isWhite) {
+        super(name, position, isWhite);
     }
 
     @Override
     public Cell[] way(Cell dist) {
         Cell[] result = new Cell[7];
-        int cout = 0;
+        int count = 0;
         if(this.getFigurePosition().getX() == dist.getX()) {
             for (int i = 0; i < Math.abs(this.getFigurePosition().getY() - dist.getY()); i++) {
                 if(this.getFigurePosition().getY() < dist.getY()) {
-                    result[cout++] = this.oneStepUp(this.getFigurePosition());
+                    result[count++] = this.oneStepUp(this.getFigurePosition());
                 } else {
-                    result[cout++] = this.oneStepDown(this.getFigurePosition());
+                    result[count++] = this.oneStepDown(this.getFigurePosition());
                 }
             }
         }
         if(this.getFigurePosition().getY() == dist.getY()) {
             for (int i = 0; i < Math.abs(this.getFigurePosition().getY() - dist.getY()); i++) {
                 if(this.getFigurePosition().getX() < dist.getX()) {
-                    result[cout++] = this.oneStepRight(this.getFigurePosition());
+                    result[count++] = this.oneStepRight(this.getFigurePosition());
                 } else {
-                    result[cout++] = this.oneStepLeft(this.getFigurePosition());
+                    result[count++] = this.oneStepLeft(this.getFigurePosition());
                 }
             }
         }
-        return Arrays.copyOf(result, cout);
+        return Arrays.copyOf(result, count);
     }
 
     @Override

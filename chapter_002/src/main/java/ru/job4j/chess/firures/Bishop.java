@@ -15,8 +15,9 @@ public class Bishop extends AbstractFigure {
     /**
      * Constructor of Bishop.
      *
-     * @param name
-     * @param position
+     * @param name name of the figure
+     * @param position position of the figure
+     * @param isWhite color of the figure
      */
     public Bishop(String name, Cell position, boolean isWhite) {
         super(name, position, isWhite);

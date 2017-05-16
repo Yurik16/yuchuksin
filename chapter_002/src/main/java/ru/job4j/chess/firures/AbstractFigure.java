@@ -30,10 +30,10 @@ public abstract class AbstractFigure {
     /**
      * Constructor of AbstractFigure.
      */
-    public AbstractFigure(String name, Cell position, boolean white) {
+    public AbstractFigure(String name, Cell position, boolean isWhite) {
         this.position = position;
         this.name = name;
-        this.isWhite = white;
+        this.isWhite = isWhite;
     }
 
     /**
