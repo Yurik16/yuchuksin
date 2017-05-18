@@ -14,11 +14,11 @@ import static org.junit.Assert.assertThat;
  */
 public class PawnTest {
 
-    private final Cell cell = new Cell(5, 3);
-    private final Pawn pawn = new Pawn("Pawn", cell, true);
-    private final Cell dest = new Cell(5, 4);
-    private final Cell[] result = new Cell[]{new Cell(5, 4)};
-    //private final Cell[] result = new Cell[]{new Cell(5, 3), new Cell(5, 4)};
+    private final Cell cell = new Cell(5, 7);
+    private final Pawn pawn = new Pawn("Pawn", cell, false);
+    private final Cell dest = new Cell(5, 6);
+    private final Cell[] result = new Cell[]{new Cell(5, 6)};
+    //private final Cell[] result = new Cell[]{new Cell(5, 6), new Cell(5, 5)};
 
     /**
      * WhenDoWayMethodThenGetArrayOfCells compares two array, is the destination cell for Pawn is correct.

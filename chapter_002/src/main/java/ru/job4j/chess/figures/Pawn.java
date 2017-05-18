@@ -33,9 +33,13 @@ public class Pawn extends AbstractFigure {
     public Cell[] way(Cell dist) throws ImpossibleMoveException {
         Cell origin = this.getFigurePosition();
         Cell[] result = new Cell[2];
-        if (this.getFigureColor() && (this.getFigurePosition().getY() == 2)) {
+         if (Math.abs((this.getFigurePosition().getY() - dist.getY())) == 2) {
             for (int i = 0; i < 2; i++) {
-                result[i] = this.oneStepUp(this.getFigurePosition());
+                if(this.getFigureColor()) {
+                    result[i] = this.oneStepUp(this.getFigurePosition());
+                } else {
+                    result[i] = this.oneStepDown(this.getFigurePosition());
+                }
                 this.setFigurePosition(result[i]);
             }
             this.setFigurePosition(origin);
@@ -43,20 +47,9 @@ public class Pawn extends AbstractFigure {
         }
         if (this.getFigureColor()) {
             return new Cell[]{dist};
-        }
-        if (!this.getFigureColor() && (this.getFigurePosition().getY() == 7)) {
-            for (int i = 0; i < 2; i++) {
-                result[i] = this.oneStepDown(this.getFigurePosition());
-                this.setFigurePosition(result[i]);
-            }
-            this.setFigurePosition(origin);
-            return result;
-        }
-        if (!this.getFigureColor()) {
+        } else {
             return new Cell[]{dist};
         }
-        this.setFigurePosition(origin);
-        return result;
     }
 
     /**
@@ -68,7 +61,7 @@ public class Pawn extends AbstractFigure {
      */
     @Override
     public boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
-        if (this.getFigureColor() && (this.getFigurePosition().getY() == 2)) {
+        if (this.getFigureColor() && (this.getFigurePosition().getY() < cell.getY()) && (this.getFigurePosition().getY() == 2)) {
             if (movePawn(cell, 2)) {
                 return true;
             }
@@ -78,13 +71,13 @@ public class Pawn extends AbstractFigure {
                 return true;
             }
         }
-        if (!this.getFigureColor() && (this.getFigurePosition().getY() == 7)) {
-            if (movePawn(cell, -2)) {
+        if (!this.getFigureColor() && (this.getFigurePosition().getY() > cell.getY()) && (this.getFigurePosition().getY() == 7)) {
+            if (movePawn(cell, 2)) {
                 return true;
             }
         }
         if (!this.getFigureColor()) {
-            if (movePawn(cell, -1)) {
+            if (movePawn(cell, 1)) {
                 return true;
             }
         }
@@ -99,7 +92,9 @@ public class Pawn extends AbstractFigure {
      * @return boolean
      */
     private boolean movePawn(Cell cell, int step) {
-        return this.getFigurePosition().getX() == cell.getX() && ((this.getFigurePosition().getY() + step) == cell.getY()) &&
-                (0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9);
+        if (this.getFigurePosition().getX() == cell.getX())
+            if (Math.abs(this.getFigurePosition().getY() - cell.getY()) <= step)
+                if (0 < cell.getX()) if (cell.getX() < 9) if (0 < cell.getY()) if (cell.getY() < 9) return true;
+        return false;
     }
 }
