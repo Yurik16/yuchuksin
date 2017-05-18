@@ -40,16 +40,10 @@ public class Pawn extends AbstractFigure {
                 } else {
                     result[i] = this.oneStepDown(this.getFigurePosition());
                 }
-                this.setFigurePosition(result[i]);
             }
             this.setFigurePosition(origin);
             return result;
-        }
-        if (this.getFigureColor()) {
-            return new Cell[]{dist};
-        } else {
-            return new Cell[]{dist};
-        }
+        } else return new Cell[]{dist};
     }
 
     /**
