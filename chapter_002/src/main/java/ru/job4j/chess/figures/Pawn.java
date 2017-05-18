@@ -66,7 +66,7 @@ public class Pawn extends AbstractFigure {
                 return true;
             }
         }
-        if (this.getFigureColor()) {
+        if (this.getFigureColor() && (this.getFigurePosition().getY() < cell.getY())) {
             if (movePawn(cell, 1)) {
                 return true;
             }
@@ -76,7 +76,7 @@ public class Pawn extends AbstractFigure {
                 return true;
             }
         }
-        if (!this.getFigureColor()) {
+        if (!this.getFigureColor() && (this.getFigurePosition().getY() > cell.getY())) {
             if (movePawn(cell, 1)) {
                 return true;
             }
