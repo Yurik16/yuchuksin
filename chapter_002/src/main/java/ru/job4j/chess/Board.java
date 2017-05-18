@@ -36,9 +36,11 @@ public class Board {
         for (AbstractFigure x : this.figures) {
             if (x.getFigurePosition().equals(source)) {
                 movingFigure = x;
-            } else throw new FigureNotFoundException("There is no any figure at this Cell.");
+            }
         }
-        assert movingFigure != null;
+        if(movingFigure == null) {
+            throw new FigureNotFoundException("There is no any figure at this Cell.");
+        }
         if (movingFigure.isCorrectWay(dist)) {
 
             Cell[] resultCellArray = movingFigure.way(dist);

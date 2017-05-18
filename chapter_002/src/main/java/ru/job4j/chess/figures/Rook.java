@@ -27,6 +27,7 @@ public class Rook extends AbstractFigure {
 
     @Override
     public Cell[] way(Cell dist) {
+        Cell origin = this.getFigurePosition();
         Cell[] result = new Cell[7];
         int count = 0;
         int deltaX = Math.abs(this.getFigurePosition().getX() - dist.getX());
@@ -54,6 +55,7 @@ public class Rook extends AbstractFigure {
                 }
             }
         }
+        this.setFigurePosition(origin);
         return Arrays.copyOf(result, count);
     }
 
