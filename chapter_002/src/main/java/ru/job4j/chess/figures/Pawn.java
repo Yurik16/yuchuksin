@@ -15,11 +15,11 @@ public class Pawn extends AbstractFigure {
     /**
      * Constructor of Pawn.
      *
-     * @param name name of the figure
+     * @param name     name of the figure
      * @param position position of the figure
-     * @param isWhite color of the figure
+     * @param isWhite  color of the figure
      */
-    Pawn(String name, Cell position, boolean isWhite) {
+    public Pawn(String name, Cell position, boolean isWhite) {
         super(name, position, isWhite);
     }
 
@@ -31,7 +31,32 @@ public class Pawn extends AbstractFigure {
      */
     @Override
     public Cell[] way(Cell dist) throws ImpossibleMoveException {
-        return new Cell[]{dist};
+        Cell origin = this.getFigurePosition();
+        Cell[] result = new Cell[2];
+        if (this.getFigureColor() && (this.getFigurePosition().getY() == 2)) {
+            for (int i = 0; i < 2; i++) {
+                result[i] = this.oneStepUp(this.getFigurePosition());
+                this.setFigurePosition(result[i]);
+            }
+            this.setFigurePosition(origin);
+            return result;
+        }
+        if (this.getFigureColor()) {
+            return new Cell[]{dist};
+        }
+        if (!this.getFigureColor() && (this.getFigurePosition().getY() == 7)) {
+            for (int i = 0; i < 2; i++) {
+                result[i] = this.oneStepDown(this.getFigurePosition());
+                this.setFigurePosition(result[i]);
+            }
+            this.setFigurePosition(origin);
+            return result;
+        }
+        if (!this.getFigureColor()) {
+            return new Cell[]{dist};
+        }
+        this.setFigurePosition(origin);
+        return result;
     }
 
     /**
@@ -43,16 +68,38 @@ public class Pawn extends AbstractFigure {
      */
     @Override
     public boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
-        if(this.getFigureColor()) {
-            if(this.getFigurePosition().getX() == cell.getX() && ((this.getFigurePosition().getY() + 1) == cell.getY()) &&
-                    (0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9)) {
+        if (this.getFigureColor() && (this.getFigurePosition().getY() == 2)) {
+            if (movePawn(cell, 2)) {
                 return true;
             }
-        } else {
-            if(this.getFigurePosition().getX() == cell.getX() && ((this.getFigurePosition().getY() - 1) == cell.getY())) {
+        }
+        if (this.getFigureColor()) {
+            if (movePawn(cell, 1)) {
+                return true;
+            }
+        }
+        if (!this.getFigureColor() && (this.getFigurePosition().getY() == 7)) {
+            if (movePawn(cell, -2)) {
+                return true;
+            }
+        }
+        if (!this.getFigureColor()) {
+            if (movePawn(cell, -1)) {
                 return true;
             }
         }
         throw new ImpossibleMoveException("Destination cell can`t be touched.");
+    }
+
+    /**
+     * Return boolean depends on "first move" of Pawn.
+     *
+     * @param cell destination cell of moving figure
+     * @param step 1 or 2 cells to move
+     * @return boolean
+     */
+    private boolean movePawn(Cell cell, int step) {
+        return this.getFigurePosition().getX() == cell.getX() && ((this.getFigurePosition().getY() + step) == cell.getY()) &&
+                (0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9);
     }
 }

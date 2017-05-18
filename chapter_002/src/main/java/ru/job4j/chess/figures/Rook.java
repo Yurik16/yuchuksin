@@ -20,7 +20,7 @@ public class Rook extends AbstractFigure {
      * @param position position of the figure
      * @param isWhite  color of the figure
      */
-    Rook(String name, Cell position, boolean isWhite) {
+    public Rook(String name, Cell position, boolean isWhite) {
         super(name, position, isWhite);
     }
 

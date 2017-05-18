@@ -1,9 +1,7 @@
 package ru.job4j.chess;
 
 import org.junit.Test;
-import ru.job4j.chess.figures.AbstractFigure;
-import ru.job4j.chess.figures.Bishop;
-import ru.job4j.chess.figures.Queen;
+import ru.job4j.chess.figures.*;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -15,19 +13,38 @@ import static org.junit.Assert.assertThat;
  * @since 03.05.2017.
  */
 public class BoardTest {
+
+    final private AbstractFigure[] figures = {
+            new Pawn("P 1 w", new Cell(5, 2), true),
+            new Pawn("P 1 w", new Cell(4, 3), true),
+            new Rook("R 1 b", new Cell(3, 2), false),
+            new Knight("N 1 w", new Cell(3, 1), true),
+            new Bishop("B 1 b", new Cell(5, 1), false),
+            new Queen("Q b", new Cell(5, 1), false),
+            new King("K b", new Cell(5, 1), false)
+    };
+
+    /**
+     * whenMoveWhitePawnE2E4ThenPawnGo moving white Pawn on two cell up - first move.
+     */
     @Test
-    public void move() {
-        AbstractFigure[] figures = {
-                new Queen("name", new Cell(4, 4), true),
-                new Bishop("2nd", new Cell(3, 2), false),
-                new Bishop("3rd", new Cell(3, 1), true),
-                new Bishop("4th", new Cell(5, 1), false)
-        };
+    public void whenMovePawnE2E4ThenPawnGo() {
 
         Board board = new Board(figures);
-
-            boolean result = board.move(new Cell(4,4), new Cell(1, 7));
+            boolean result = board.move(new Cell(5,2), new Cell(5, 4));
             assertThat(result, is(true));
+
+    }
+
+    /**
+     * whenMoveWhitePawnE2E3ThenPawnGo moving white Pawn on one cell up.
+     */
+    @Test
+    public void whenMovePawnE2E3ThenPawnGo() {
+
+        Board board = new Board(figures);
+        boolean result = board.move(new Cell(4,3), new Cell(4, 4));
+        assertThat(result, is(true));
 
     }
 
