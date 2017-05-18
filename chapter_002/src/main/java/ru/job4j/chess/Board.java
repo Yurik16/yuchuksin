@@ -13,14 +13,28 @@ import ru.job4j.chess.figures.AbstractFigure;
  */
 public class Board {
 
+    /**
+     * Figures array  at this board.
+     */
     private AbstractFigure[] figures = new AbstractFigure[32];
 
-    public Board(AbstractFigure[] figures) {
+    /**
+     * Constructor of Board.
+     *
+     * @param figures all figures at this board
+     */
+    Board(AbstractFigure[] figures) {
         this.figures = figures;
     }
 
-    public Cell[][] board = new Cell[8][8];
+    /**
+     * Two dimension array with 64 cells.
+     */
+    Cell[][] board = new Cell[8][8];
 
+    /**
+     * Initiate chess board.
+     */
     public void initBorad() {
         for (int i = 1; i < 9; i++) {
             for (int j = 1; j < 9; j++) {
@@ -29,7 +43,17 @@ public class Board {
         }
     }
 
-    public boolean move(Cell source, Cell dist) throws ImpossibleMoveException, FigureNotFoundException, OccupiedWayException {
+    /**
+     * Method which moving figure.
+     *
+     * @param source
+     * @param dist
+     * @return boolean
+     * @throws ImpossibleMoveException
+     * @throws FigureNotFoundException
+     * @throws OccupiedWayException
+     */
+    boolean move(Cell source, Cell dist) throws ImpossibleMoveException, FigureNotFoundException, OccupiedWayException {
 
         AbstractFigure movingFigure = null;
 
@@ -38,7 +62,7 @@ public class Board {
                 movingFigure = x;
             }
         }
-        if(movingFigure == null) {
+        if (movingFigure == null) {
             throw new FigureNotFoundException("There is no any figure at this Cell.");
         }
         if (movingFigure.isCorrectWay(dist)) {

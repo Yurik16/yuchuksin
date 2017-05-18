@@ -16,30 +16,32 @@ public class Rook extends AbstractFigure {
     /**
      * Constructor of Rook.
      *
-     * @param name name of the figure
+     * @param name     name of the figure
      * @param position position of the figure
-     * @param isWhite color of the figure
+     * @param isWhite  color of the figure
      */
-
-    public Rook(String name, Cell position, boolean isWhite) {
+    Rook(String name, Cell position, boolean isWhite) {
         super(name, position, isWhite);
     }
 
+    /**
+     * Calculates path that figure must pass.
+     *
+     * @param dist destination point.
+     * @return cells array
+     */
     @Override
     public Cell[] way(Cell dist) {
 
-        /**
-         * origin original position of figure.
-         */
-        Cell origin = this.getFigurePosition();
+        Cell origin = this.getFigurePosition(); // origin original position of figure.
         Cell[] result = new Cell[7];
         int count = 0;
         int deltaX = Math.abs(this.getFigurePosition().getX() - dist.getX());
         int deltaY = Math.abs(this.getFigurePosition().getY() - dist.getY());
 
-        if(this.getFigurePosition().getX() == dist.getX()) {
+        if (this.getFigurePosition().getX() == dist.getX()) {
             for (int i = 0; i < deltaY; i++) {
-                if(this.getFigurePosition().getY() < dist.getY()) {
+                if (this.getFigurePosition().getY() < dist.getY()) {
                     result[count++] = this.oneStepUp(this.getFigurePosition());
                     this.setFigurePosition(result[i]); // setting new position of figure
                 } else {
@@ -48,9 +50,9 @@ public class Rook extends AbstractFigure {
                 }
             }
         }
-        if(this.getFigurePosition().getY() == dist.getY()) {
+        if (this.getFigurePosition().getY() == dist.getY()) {
             for (int i = 0; i < deltaX; i++) {
-                if(this.getFigurePosition().getX() < dist.getX()) {
+                if (this.getFigurePosition().getX() < dist.getX()) {
                     result[count++] = this.oneStepRight(this.getFigurePosition());
                     this.setFigurePosition(result[i]);
                 } else {
@@ -63,6 +65,13 @@ public class Rook extends AbstractFigure {
         return Arrays.copyOf(result, count);
     }
 
+    /**
+     * Checking is the destination point correct.
+     *
+     * @param cell destination point
+     * @return boolean
+     * @throws ImpossibleMoveException wrong destination point
+     */
     @Override
     public boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
         if ((this.getFigurePosition().getX() == cell.getX() ||

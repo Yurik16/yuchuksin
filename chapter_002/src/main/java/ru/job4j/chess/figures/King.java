@@ -23,11 +23,24 @@ public class King extends AbstractFigure {
         super(name, position, isWhite);
     }
 
+    /**
+     * Calculates path that figure must pass.
+     *
+     * @param dist destination point.
+     * @return cells array
+     */
     @Override
     public Cell[] way(Cell dist) {
         return new Cell[]{dist};
     }
 
+    /**
+     * Checking is the destination point correct.
+     *
+     * @param cell destination point
+     * @return boolean
+     * @throws ImpossibleMoveException wrong destination point
+     */
     @Override
     public boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
         if((0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9)) {

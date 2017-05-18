@@ -24,13 +24,16 @@ public class Bishop extends AbstractFigure {
     }
 
 
+    /**
+     * Calculates path that figure must pass.
+     *
+     * @param dist destination point.
+     * @return cells array
+     */
     @Override
     public Cell[] way(Cell dist) {
 
-        /**
-         * origin original position of figure.
-         */
-        Cell origin = this.getFigurePosition();
+        Cell origin = this.getFigurePosition(); //origin original position of figure
         Cell[] result = new Cell[7];
         int count = 0;
         int deltaX = Math.abs(this.getFigurePosition().getX() - dist.getX());
@@ -63,6 +66,13 @@ public class Bishop extends AbstractFigure {
         return Arrays.copyOf(result, count);
     }
 
+    /**
+     * Checking is the destination point correct.
+     *
+     * @param cell destination point
+     * @return boolean
+     * @throws ImpossibleMoveException wrong destination point
+     */
     @Override
     public boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
         if (((this.getFigurePosition().getX() + this.getFigurePosition().getY() == cell.getX() + cell.getY()) ||

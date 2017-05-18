@@ -19,15 +19,28 @@ public class Pawn extends AbstractFigure {
      * @param position position of the figure
      * @param isWhite color of the figure
      */
-    public Pawn(String name, Cell position, boolean isWhite) {
+    Pawn(String name, Cell position, boolean isWhite) {
         super(name, position, isWhite);
     }
 
+    /**
+     * Calculates path that figure must pass.
+     *
+     * @param dist destination point.
+     * @return cells array
+     */
     @Override
     public Cell[] way(Cell dist) throws ImpossibleMoveException {
         return new Cell[]{dist};
     }
 
+    /**
+     * Checking is the destination point correct.
+     *
+     * @param cell destination point
+     * @return boolean
+     * @throws ImpossibleMoveException wrong destination point
+     */
     @Override
     public boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
         if(this.getFigureColor()) {
