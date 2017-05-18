@@ -27,6 +27,10 @@ public class Rook extends AbstractFigure {
 
     @Override
     public Cell[] way(Cell dist) {
+
+        /**
+         * origin original position of figure.
+         */
         Cell origin = this.getFigurePosition();
         Cell[] result = new Cell[7];
         int count = 0;
@@ -37,7 +41,7 @@ public class Rook extends AbstractFigure {
             for (int i = 0; i < deltaY; i++) {
                 if(this.getFigurePosition().getY() < dist.getY()) {
                     result[count++] = this.oneStepUp(this.getFigurePosition());
-                    this.setFigurePosition(result[i]);
+                    this.setFigurePosition(result[i]); // setting new position of figure
                 } else {
                     result[count++] = this.oneStepDown(this.getFigurePosition());
                     this.setFigurePosition(result[i]);
@@ -55,7 +59,7 @@ public class Rook extends AbstractFigure {
                 }
             }
         }
-        this.setFigurePosition(origin);
+        this.setFigurePosition(origin); // get back original position to moving figure
         return Arrays.copyOf(result, count);
     }
 

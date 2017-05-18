@@ -26,6 +26,10 @@ public class Bishop extends AbstractFigure {
 
     @Override
     public Cell[] way(Cell dist) {
+
+        /**
+         * origin original position of figure.
+         */
         Cell origin = this.getFigurePosition();
         Cell[] result = new Cell[7];
         int count = 0;
@@ -34,28 +38,28 @@ public class Bishop extends AbstractFigure {
         if (this.getFigurePosition().getX() < dist.getX() && this.getFigurePosition().getY() < dist.getY()) {
             for (int i = 0; i < deltaX; i++) {
                 result[count++] = this.oneStepUp(this.oneStepRight(this.getFigurePosition()));
-                this.setFigurePosition(result[i]);
+                this.setFigurePosition(result[i]); // setting new position of figure
             }
         }
         if (this.getFigurePosition().getX() < dist.getX() && this.getFigurePosition().getY() > dist.getY()) {
             for (int i = 0; i < deltaX; i++) {
                 result[count++] = this.oneStepDown(this.oneStepRight(this.getFigurePosition()));
-                this.setFigurePosition(result[i]);
+                this.setFigurePosition(result[i]); // setting new position of figure
             }
         }
         if (this.getFigurePosition().getX() > dist.getX() && this.getFigurePosition().getY() > dist.getY()) {
             for (int i = 0; i < deltaX; i++) {
                 result[count++] = this.oneStepDown(this.oneStepLeft(this.getFigurePosition()));
-                this.setFigurePosition(result[i]);
+                this.setFigurePosition(result[i]); // setting new position of figure
             }
         }
         if (this.getFigurePosition().getX() > dist.getX() && this.getFigurePosition().getY() < dist.getY()) {
             for (int i = 0; i < deltaX; i++) {
                 result[count++] = this.oneStepUp(this.oneStepLeft(this.getFigurePosition()));
-                this.setFigurePosition(result[i]);
+                this.setFigurePosition(result[i]); // setting new position of figure
             }
         }
-        this.setFigurePosition(origin);
+        this.setFigurePosition(origin); // get back original position to moving figure
         return Arrays.copyOf(result, count);
     }
 
