@@ -16,7 +16,7 @@ public class BoardTest {
 
     final private AbstractFigure[] figures = {
             new Pawn("P 1 w", new Cell(5, 2), true),
-            new Pawn("P 1 w", new Cell(4, 7), false),
+            new Pawn("P 1 b", new Cell(4, 7), false),
             new Rook("R 1 b", new Cell(3, 2), false),
             new Knight("N 1 w", new Cell(3, 1), true),
             new Bishop("B 1 b", new Cell(5, 1), false),

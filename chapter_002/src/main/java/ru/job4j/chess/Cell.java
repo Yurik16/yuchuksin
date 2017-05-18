@@ -9,11 +9,21 @@ package ru.job4j.chess;
 public class Cell {
 
     /**
-     * Position of Cell at Board.
+     * Position x of Cell at Board.
      */
-    final private int x;
-    final private int y;
+    private final int x;
 
+    /**
+     * Position y of Cell at Board.
+     */
+    private final int y;
+
+    /**
+     * Constructor for Cell.
+     *
+     * @param x ordinate
+     * @param y abscissa
+     */
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
@@ -21,13 +31,16 @@ public class Cell {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Cell cell = (Cell) o;
 
-        if (x != cell.x) return false;
-        return y == cell.y;
+        return x == cell.x && y == cell.y;
     }
 
     @Override
@@ -37,10 +50,20 @@ public class Cell {
         return result;
     }
 
+    /**
+     * Getter for ordinate.
+     *
+     * @return x
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Getter for abscissa.
+     *
+     * @return y
+     */
     public int getY() {
         return y;
     }

@@ -30,7 +30,7 @@ public class Board {
     /**
      * Two dimension array with 64 cells.
      */
-    Cell[][] board = new Cell[8][8];
+    private Cell[][] board = new Cell[8][8];
 
     /**
      * Initiate chess board.
@@ -46,12 +46,12 @@ public class Board {
     /**
      * Method which moving figure.
      *
-     * @param source
-     * @param dist
+     * @param source start cell
+     * @param dist destination cell
      * @return boolean
-     * @throws ImpossibleMoveException
-     * @throws FigureNotFoundException
-     * @throws OccupiedWayException
+     * @throws ImpossibleMoveException can`t move like that
+     * @throws FigureNotFoundException there is no figure at this cell
+     * @throws OccupiedWayException another figure on the way
      */
     boolean move(Cell source, Cell dist) throws ImpossibleMoveException, FigureNotFoundException, OccupiedWayException {
 
