@@ -1,7 +1,13 @@
 package ru.job4j.chess;
 
 import org.junit.Test;
-import ru.job4j.chess.figures.*;
+import ru.job4j.chess.figures.AbstractFigure;
+import ru.job4j.chess.figures.Bishop;
+import ru.job4j.chess.figures.King;
+import ru.job4j.chess.figures.Knight;
+import ru.job4j.chess.figures.Pawn;
+import ru.job4j.chess.figures.Queen;
+import ru.job4j.chess.figures.Rook;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -17,7 +23,7 @@ public class BoardTest {
     /**
      * Figures array  at this board.
      */
-    final private AbstractFigure[] figures = {
+    private final AbstractFigure[] figures = {
             new Pawn("P 1 w", new Cell(5, 2), true),
             new Pawn("P 1 b", new Cell(4, 7), false),
             new Rook("R 1 b", new Cell(3, 2), false),

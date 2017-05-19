@@ -37,8 +37,10 @@ public class Pawn extends AbstractFigure {
             for (int i = 0; i < 2; i++) {
                 if (this.getFigureColor()) {
                     result[i] = this.oneStepUp(this.getFigurePosition());
+                    this.setFigurePosition(result[i]);
                 } else {
                     result[i] = this.oneStepDown(this.getFigurePosition());
+                    this.setFigurePosition(result[i]);
                 }
             }
             this.setFigurePosition(origin);

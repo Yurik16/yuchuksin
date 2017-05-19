@@ -14,20 +14,38 @@ import static org.junit.Assert.assertThat;
  */
 public class PawnTest {
 
+    /**
+     * Position for figure.
+     */
     private final Cell cell = new Cell(5, 7);
+
+    /**
+     * New figure.
+     */
     private final Pawn pawn = new Pawn("Pawn", cell, false);
+
+    /**
+     * Destination cell.
+     */
     private final Cell dest = new Cell(5, 5);
     //private final Cell[] result = new Cell[]{new Cell(5, 6)};
+
+    /**
+     * Expecting result - path from figure position to destination cell.
+     */
     private final Cell[] result = new Cell[]{new Cell(5, 6), new Cell(5, 5)};
 
     /**
-     * WhenDoWayMethodThenGetArrayOfCells compares two array, is the destination cell for Pawn is correct.
+     * Compares two path array.
      */
     @Test
     public void whenDoWayMethodThenGetArrayOfCells() {
         assertThat(result, is(pawn.way(dest)));
     }
 
+    /**
+     * Compares is it the wright destination cell.
+     */
     @Test
     public void whenDoIsCorrectWayThenGetBoolean() {
         assertThat(true, is(pawn.isCorrectWay(dest)));
