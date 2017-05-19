@@ -27,7 +27,7 @@ public class Bishop extends AbstractFigure {
     /**
      * Calculates path that figure must pass.
      *
-     * @param dist destination point.
+     * @param dist destination point
      * @return cells array
      */
     @Override
@@ -75,10 +75,12 @@ public class Bishop extends AbstractFigure {
      */
     @Override
     public boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
-        if (((this.getFigurePosition().getX() + this.getFigurePosition().getY() == cell.getX() + cell.getY()) ||
-                this.getFigurePosition().getX() - this.getFigurePosition().getY() == cell.getX() - cell.getY()) &&
-                (0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9)) {
+        if (((this.getFigurePosition().getX() + this.getFigurePosition().getY() == cell.getX() + cell.getY())
+                || this.getFigurePosition().getX() - this.getFigurePosition().getY() == cell.getX() - cell.getY())
+                && (0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9)) {
             return true;
-        } else throw new ImpossibleMoveException("Destination cell can`t be touched.");
+        } else {
+            throw new ImpossibleMoveException("Destination cell can`t be touched.");
+        }
     }
 }

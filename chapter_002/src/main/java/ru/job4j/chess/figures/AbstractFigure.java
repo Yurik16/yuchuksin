@@ -29,10 +29,14 @@ public abstract class AbstractFigure {
 
     /**
      * Constructor of AbstractFigure.
+     *
+     * @param name name of figure
+     * @param position cell
+     * @param isWhite boolean
      */
-    public AbstractFigure(String name, Cell position, boolean isWhite) {
-        this.position = position;
+    AbstractFigure(String name, Cell position, boolean isWhite) {
         this.name = name;
+        this.position = position;
         this.isWhite = isWhite;
     }
 
@@ -44,36 +48,78 @@ public abstract class AbstractFigure {
      */
     public abstract Cell[] way(Cell dist);
 
+    /**
+     * Calculates path that figure must pass.
+     *
+     * @param cell destination point
+     * @return cell array
+     * @throws ImpossibleMoveException my exception
+     */
     public abstract boolean isCorrectWay(Cell cell) throws ImpossibleMoveException;
+
     /**
      * Getter position.
      *
-     * @return
+     * @return cell
      */
     public Cell getFigurePosition() {
         return this.position;
     }
 
-    public boolean getFigureColor() {
+    /**
+     * Getter for color of figure.
+     *
+     * @return boolean
+     */
+    boolean getFigureColor() {
         return isWhite;
     }
 
+    /**
+     * Setter for figure position.
+     *
+     * @param position cell
+     */
     public void setFigurePosition(Cell position) {
         this.position = position;
     }
 
+    /**
+     * Moving figure on right.
+     *
+     * @param cell position of moving figure
+     * @return cell
+     */
     public Cell oneStepRight(Cell cell) {
         return new Cell(cell.getX() + 1, cell.getY());
     }
 
+    /**
+     * Moving figure on left.
+     *
+     * @param cell position of moving figure
+     * @return cell
+     */
     public  Cell oneStepLeft(Cell cell) {
         return new Cell(cell.getX() - 1, cell.getY());
     }
 
+    /**
+     * Moving figure up.
+     *
+     * @param cell position of moving figure
+     * @return cell
+     */
     public Cell oneStepUp(Cell cell) {
         return new Cell(cell.getX(), cell.getY() + 1);
     }
 
+    /**
+     * Moving figure down.
+     *
+     * @param cell position of moving figure
+     * @return cell
+     */
     public  Cell oneStepDown(Cell cell) {
         return new Cell(cell.getX(), cell.getY() - 1);
     }

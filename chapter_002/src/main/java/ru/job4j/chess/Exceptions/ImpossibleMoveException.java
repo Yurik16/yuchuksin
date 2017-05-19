@@ -8,6 +8,11 @@ package ru.job4j.chess.Exceptions;
  */
 public class ImpossibleMoveException extends RuntimeException {
 
+    /**
+     * Exception for situation then figure can`t move on destination cell.
+     *
+     * @param s description of exception
+     */
     public ImpossibleMoveException(String s) {
         super(s);
     }

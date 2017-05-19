@@ -35,7 +35,7 @@ public class Pawn extends AbstractFigure {
         Cell[] result = new Cell[2];
          if (Math.abs((this.getFigurePosition().getY() - dist.getY())) == 2) {
             for (int i = 0; i < 2; i++) {
-                if(this.getFigureColor()) {
+                if (this.getFigureColor()) {
                     result[i] = this.oneStepUp(this.getFigurePosition());
                 } else {
                     result[i] = this.oneStepDown(this.getFigurePosition());
@@ -43,7 +43,9 @@ public class Pawn extends AbstractFigure {
             }
             this.setFigurePosition(origin);
             return result;
-        } else return new Cell[]{dist};
+        } else {
+             return new Cell[]{dist};
+         }
     }
 
     /**
@@ -86,9 +88,13 @@ public class Pawn extends AbstractFigure {
      * @return boolean
      */
     private boolean movePawn(Cell cell, int step) {
-        if (this.getFigurePosition().getX() == cell.getX())
-            if (Math.abs(this.getFigurePosition().getY() - cell.getY()) <= step)
-                if (0 < cell.getX()) if (cell.getX() < 9) if (0 < cell.getY()) if (cell.getY() < 9) return true;
+        if (this.getFigurePosition().getX() == cell.getX()) {
+            if (Math.abs(this.getFigurePosition().getY() - cell.getY()) <= step) {
+                if ((0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9)) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 }

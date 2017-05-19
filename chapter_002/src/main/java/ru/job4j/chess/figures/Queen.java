@@ -14,9 +14,9 @@ public class Queen extends AbstractFigure {
     /**
      * Constructor of Queen.
      *
-     * @param name name of the figure
+     * @param name     name of the figure
      * @param position position of the figure
-     * @param isWhite color of the figure
+     * @param isWhite  color of the figure
      */
 
     public Queen(String name, Cell position, boolean isWhite) {
@@ -32,15 +32,14 @@ public class Queen extends AbstractFigure {
     @Override
     public Cell[] way(Cell dist) {
 
-        Cell temp = new Cell(this.getFigurePosition().getX(),this.getFigurePosition().getY());
-        Bishop bishop = new Bishop("bishop", temp,true);
+        Cell temp = new Cell(this.getFigurePosition().getX(), this.getFigurePosition().getY());
+        Bishop bishop = new Bishop("bishop", temp, true);
         Rook rook = new Rook("rook", temp, true);
 
         try {
             rook.isCorrectWay(dist);
             return rook.way(dist);
-        }
-        catch (ImpossibleMoveException ime) {
+        } catch (ImpossibleMoveException ime) {
             return bishop.way(dist);
         }
     }
@@ -55,17 +54,16 @@ public class Queen extends AbstractFigure {
     @Override
     public boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
 
-        Cell temp = new Cell(this.getFigurePosition().getX(),this.getFigurePosition().getY());
-        Bishop bishop = new Bishop("bishop", temp,true);
+        Cell temp = new Cell(this.getFigurePosition().getX(), this.getFigurePosition().getY());
+        Bishop bishop = new Bishop("bishop", temp, true);
         Rook rook = new Rook("rook", temp, true);
 
         try {
             rook.isCorrectWay(cell);
             return true;
-        }
-        catch(ImpossibleMoveException ime) {
+        } catch (ImpossibleMoveException ime) {
             bishop.isCorrectWay(cell);
-            return  true;
+            return true;
         }
     }
 }

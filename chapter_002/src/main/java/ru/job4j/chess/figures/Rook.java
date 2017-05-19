@@ -74,10 +74,12 @@ public class Rook extends AbstractFigure {
      */
     @Override
     public boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
-        if ((this.getFigurePosition().getX() == cell.getX() ||
-                this.getFigurePosition().getY() == cell.getY()) &&
-                (0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9)) {
+        if ((this.getFigurePosition().getX() == cell.getX()
+                || this.getFigurePosition().getY() == cell.getY())
+                && (0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9)) {
             return true;
-        } else throw new ImpossibleMoveException("Destination cell can`t be touched.");
+        } else {
+            throw new ImpossibleMoveException("Destination cell can`t be touched.");
+        }
     }
 }

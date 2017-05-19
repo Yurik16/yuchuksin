@@ -14,11 +14,10 @@ public class King extends AbstractFigure {
     /**
      * Constructor of King.
      *
-     * @param name name of the figure
+     * @param name     name of the figure
      * @param position position of the figure
-     * @param isWhite color of the figure
+     * @param isWhite  color of the figure
      */
-
     public King(String name, Cell position, boolean isWhite) {
         super(name, position, isWhite);
     }
@@ -43,11 +42,15 @@ public class King extends AbstractFigure {
      */
     @Override
     public boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
-        if((0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9)) {
-            if(((Math.abs(this.getFigurePosition().getX() - cell.getX()) == 1) && (this.getFigurePosition().getY() == cell.getY())) ||
-                    (Math.abs(this.getFigurePosition().getY() - cell.getY()) == 1) && (this.getFigurePosition().getX() == cell.getX())) {
+        if ((0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9)) {
+            if (((Math.abs(this.getFigurePosition().getX() - cell.getX()) == 1) && (this.getFigurePosition().getY() == cell.getY()))
+                    || (Math.abs(this.getFigurePosition().getY() - cell.getY()) == 1) && (this.getFigurePosition().getX() == cell.getX())) {
                 return true;
-            } else throw new ImpossibleMoveException("Destination cell can`t be touched by King.");
-        } else throw new ImpossibleMoveException("Destination cell can`t be touched.");
+            } else {
+                throw new ImpossibleMoveException("Destination cell can`t be touched by King.");
+            }
+        } else {
+            throw new ImpossibleMoveException("Destination cell can`t be touched.");
+        }
     }
 }

@@ -14,6 +14,9 @@ import static org.junit.Assert.assertThat;
  */
 public class BoardTest {
 
+    /**
+     * Figures array  at this board.
+     */
     final private AbstractFigure[] figures = {
             new Pawn("P 1 w", new Cell(5, 2), true),
             new Pawn("P 1 b", new Cell(4, 7), false),
@@ -30,7 +33,7 @@ public class BoardTest {
     @Test
     public void whenMovePawnE2E4ThenPawnGo() {
 
-        Board board = new Board(figures);
+        Board board = new Board(this.figures);
         boolean result = board.move(new Cell(5, 2), new Cell(5, 4));
         assertThat(result, is(true));
 
@@ -42,7 +45,7 @@ public class BoardTest {
     @Test
     public void whenMovePawnE2E3ThenPawnGo() {
 
-        Board board = new Board(figures);
+        Board board = new Board(this.figures);
         boolean result = board.move(new Cell(5, 2), new Cell(5, 3));
         assertThat(result, is(true));
 
@@ -54,7 +57,7 @@ public class BoardTest {
     @Test
     public void whenMovePawnD7D5ThenPawnGo() {
 
-        Board board = new Board(figures);
+        Board board = new Board(this.figures);
         boolean result = board.move(new Cell(4, 7), new Cell(4, 5));
         assertThat(result, is(true));
 
@@ -66,7 +69,7 @@ public class BoardTest {
     @Test
     public void whenMovePawnD7D6ThenPawnGo() {
 
-        Board board = new Board(figures);
+        Board board = new Board(this.figures);
         boolean result = board.move(new Cell(4, 7), new Cell(4, 6));
         assertThat(result, is(true));
 

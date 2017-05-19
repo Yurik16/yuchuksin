@@ -14,9 +14,9 @@ public class Knight extends AbstractFigure {
     /**
      * Constructor of Knight.
      *
-     * @param name name of the figure
+     * @param name     name of the figure
      * @param position position of the figure
-     * @param isWhite color of the figure
+     * @param isWhite  color of the figure
      */
     public Knight(String name, Cell position, boolean isWhite) {
         super(name, position, isWhite);
@@ -30,13 +30,15 @@ public class Knight extends AbstractFigure {
     @Override
     public boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
 
-        if (((Math.abs(this.getFigurePosition().getX() - cell.getX()) == 1 &&
-                Math.abs(this.getFigurePosition().getY() - cell.getY()) == 3) &&
-                ((0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9)) ||
-                ((Math.abs(this.getFigurePosition().getY() - cell.getY()) == 1 &&
-                        Math.abs(this.getFigurePosition().getX() - cell.getX()) == 3) &&
-                        ((0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9))))) {
+        if (((Math.abs(this.getFigurePosition().getX() - cell.getX()) == 1
+                && Math.abs(this.getFigurePosition().getY() - cell.getY()) == 3)
+                && ((0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9))
+                || ((Math.abs(this.getFigurePosition().getY() - cell.getY()) == 1
+                && Math.abs(this.getFigurePosition().getX() - cell.getX()) == 3)
+                && ((0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9))))) {
             return true;
-        } else throw new ImpossibleMoveException("Destination cell can`t be touched.");
+        } else {
+            throw new ImpossibleMoveException("Destination cell can`t be touched.");
+        }
     }
 }
