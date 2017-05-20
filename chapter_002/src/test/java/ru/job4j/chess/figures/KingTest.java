@@ -17,7 +17,7 @@ public class KingTest {
     /**
      * Position for figure.
      */
-    private final Cell cell = new Cell(5, 1);
+    private final Cell cell = new Cell(5, 5);
 
     /**
      * New figure.
@@ -27,12 +27,12 @@ public class KingTest {
     /**
      * Destination cell.
      */
-    private final Cell dest = new Cell(4, 1);
+    private final Cell dest = new Cell(4, 4);
 
     /**
      * Expecting result - path from figure position to destination cell.
      */
-    private final Cell[] result = new Cell[]{new Cell(4, 1)};
+    private final Cell[] result = new Cell[]{new Cell(4, 4)};
 
     /**
      * Compares two path array.

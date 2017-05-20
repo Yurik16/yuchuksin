@@ -28,12 +28,12 @@ public class KnightTest {
     /**
      * Destination cell.
      */
-    private final Cell dest = new Cell(6, 8);
+    private final Cell dest = new Cell(4, 7);
 
     /**
      * Expecting result - path from figure position to destination cell.
      */
-    private final Cell[] result = new Cell[]{new Cell(6, 8)};
+    private final Cell[] result = new Cell[]{new Cell(4, 7)};
 
     /**
      * Compares two path array.

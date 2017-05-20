@@ -27,10 +27,10 @@ public class BoardTest {
             new Pawn("P 1 w", new Cell(5, 2), true),
             new Pawn("P 1 b", new Cell(4, 7), false),
             new Rook("R 1 b", new Cell(3, 2), false),
-            new Knight("N 1 w", new Cell(3, 1), true),
+            new Knight("N 1 w", new Cell(2, 1), true),
             new Bishop("B 1 b", new Cell(5, 1), false),
-            new Queen("Q b", new Cell(5, 1), false),
-            new King("K b", new Cell(5, 1), false)
+            new Queen("Q b", new Cell(6, 1), false),
+            new King("K b", new Cell(5, 5), false)
     };
 
     /**
@@ -42,7 +42,6 @@ public class BoardTest {
         Board board = new Board(this.figures);
         boolean result = board.move(new Cell(5, 2), new Cell(5, 4));
         assertThat(result, is(true));
-
     }
 
     /**
@@ -54,11 +53,10 @@ public class BoardTest {
         Board board = new Board(this.figures);
         boolean result = board.move(new Cell(5, 2), new Cell(5, 3));
         assertThat(result, is(true));
-
     }
 
     /**
-     * whenMoveWhitePawnD7D5ThenPawnGo moving white Pawn on two cell down - first move.
+     * whenMoveWhitePawnD7D5ThenPawnGo moving black Pawn on two cell down - first move.
      */
     @Test
     public void whenMovePawnD7D5ThenPawnGo() {
@@ -66,11 +64,10 @@ public class BoardTest {
         Board board = new Board(this.figures);
         boolean result = board.move(new Cell(4, 7), new Cell(4, 5));
         assertThat(result, is(true));
-
     }
 
     /**
-     * whenMoveWhitePawnD7D6ThenPawnGo moving white Pawn on one cell down.
+     * whenMoveWhitePawnD7D6ThenPawnGo moving black Pawn on one cell down.
      */
     @Test
     public void whenMovePawnD7D6ThenPawnGo() {
@@ -78,6 +75,71 @@ public class BoardTest {
         Board board = new Board(this.figures);
         boolean result = board.move(new Cell(4, 7), new Cell(4, 6));
         assertThat(result, is(true));
+    }
 
+    /**
+     * whenMoveRookC2A2ThenRookGo moving black Rook.
+     */
+    @Test
+    public void whenMoveRookC2A2ThenRookGo() {
+
+        Board board = new Board(this.figures);
+        boolean result = board.move(new Cell(3, 2), new Cell(1, 2));
+        assertThat(result, is(true));
+    }
+
+    /**
+     * whenMoveKnightB1A3ThenKnightGo moving white Knight.
+     */
+    @Test
+    public void whenMoveKnightB1A3ThenKnightGo() {
+
+        Board board = new Board(this.figures);
+        boolean result = board.move(new Cell(2, 1), new Cell(1, 3));
+        assertThat(result, is(true));
+    }
+
+    /**
+     * whenMoveBishopE1A5ThenBishopGo moving black Bishop.
+     */
+    @Test
+    public void whenMoveBishopE1A5ThenBishopGo() {
+
+        Board board = new Board(this.figures);
+        boolean result = board.move(new Cell(5, 1), new Cell(1, 5));
+        assertThat(result, is(true));
+    }
+
+    /**
+     * whenMoveQueenD1A6ThenQueenGo moving black Queen.
+     */
+    @Test
+    public void whenMoveQueenD1A6ThenQueenGo() {
+
+        Board board = new Board(this.figures);
+        boolean result = board.move(new Cell(6, 1), new Cell(8, 3));
+        assertThat(result, is(true));
+    }
+
+    /**
+     * whenMoveQueenD1D6ThenQueenGo moving black Queen.
+     */
+    @Test
+    public void whenMoveQueenD1D6ThenQueenGo() {
+
+        Board board = new Board(this.figures);
+        boolean result = board.move(new Cell(6, 1), new Cell(6, 6));
+        assertThat(result, is(true));
+    }
+
+    /**
+     * whenMoveQueenD1D6ThenQueenGo moving black King.
+     */
+    @Test
+    public void whenMoveKingE8D7ThenKingGo() {
+
+        Board board = new Board(this.figures);
+        boolean result = board.move(new Cell(5, 5), new Cell(6, 4));
+        assertThat(result, is(true));
     }
 }

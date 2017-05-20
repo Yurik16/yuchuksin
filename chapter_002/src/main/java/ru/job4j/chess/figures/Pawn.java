@@ -79,7 +79,7 @@ public class Pawn extends AbstractFigure {
                 return true;
             }
         }
-        throw new ImpossibleMoveException("Destination cell can`t be touched.");
+        throw new ImpossibleMoveException("Destination cell can`t be touched by Pawn.");
     }
 
     /**

@@ -43,14 +43,13 @@ public class King extends AbstractFigure {
     @Override
     public boolean isCorrectWay(Cell cell) throws ImpossibleMoveException {
         if ((0 < cell.getX() && cell.getX() < 9) && (0 < cell.getY() && cell.getY() < 9)) {
-            if (((Math.abs(this.getFigurePosition().getX() - cell.getX()) == 1) && (this.getFigurePosition().getY() == cell.getY()))
-                    || (Math.abs(this.getFigurePosition().getY() - cell.getY()) == 1) && (this.getFigurePosition().getX() == cell.getX())) {
+            if ((Math.abs(this.getFigurePosition().getX() - cell.getX()) < 2)
+                    && (Math.abs(this.getFigurePosition().getY() - cell.getY()) < 2)) {
                 return true;
-            } else {
-                throw new ImpossibleMoveException("Destination cell can`t be touched by King.");
             }
         } else {
             throw new ImpossibleMoveException("Destination cell can`t be touched.");
         }
+        return false;
     }
 }
