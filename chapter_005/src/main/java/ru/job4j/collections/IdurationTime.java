@@ -10,7 +10,7 @@ import java.util.Collection;
  */
 public interface IdurationTime {
 
-    long add(Collection<String> collection, StringLine line, int amount);
+    long add(Collection<String> collection, int amount);
 
     long delete(Collection<String> collection, int amount);
 }
