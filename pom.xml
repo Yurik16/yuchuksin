@@ -15,7 +15,8 @@
 		<modules>
         		<module>chapter_001</module>
 				<module>chapter_002</module>
-		</modules>
+            <module>chapter_5</module>
+        </modules>
 	<dependencies>
        		<dependency>
       			<groupId>junit</groupId>
