@@ -22,6 +22,7 @@ public class CompareTimeAddDel {
         return timeFinish - timeStart;
     }
 
+
     public long delete(Collection<String> collection, int amount) {
         long timeStart = System.nanoTime();
         for (int i = 0; i < amount; i++) {
@@ -35,9 +36,9 @@ public class CompareTimeAddDel {
 
         CompareTimeAddDel storage = new CompareTimeAddDel();
         int cycles = 100000;
-        List<String> storageLinked = new LinkedList<>();
-        List<String> storageArray = new ArrayList<>();
-        Set<String> storageSet = new TreeSet<>();
+        LinkedList<String> storageLinked = new LinkedList<>();
+        ArrayList<String> storageArray = new ArrayList<>();
+        TreeSet<String> storageSet = new TreeSet<>();
         long timeL = storage.add(storageLinked, cycles);
         long timeA = storage.add(storageArray, cycles);
         long timeS = storage.add(storageSet, cycles);
