@@ -34,14 +34,17 @@ public class CompareTimeAddDel {
     public static void main(String[] args) {
 
         CompareTimeAddDel storage = new CompareTimeAddDel();
+        int cycles = 100000;
         List<String> storageLinked = new LinkedList<>();
         List<String> storageArray = new ArrayList<>();
         Set<String> storageSet = new TreeSet<>();
-        int cycles = 100000;
+        long timeL = storage.add(storageLinked, cycles);
+        long timeA = storage.add(storageArray, cycles);
+        long timeS = storage.add(storageSet, cycles);
 
-        System.out.println(String.format("Time of adding to Lin - %s", storage.add(storageLinked, cycles)));
-        System.out.println(String.format("Time of adding to Arr - %s", storage.add(storageArray, cycles)));
-        System.out.println(String.format("Time of adding to Set - %s", storage.add(storageSet, cycles)));
+        System.out.println(String.format("Time of adding to Lin - %s", timeL));
+        System.out.println(String.format("Time of adding to Arr - %s", timeA));
+        System.out.println(String.format("Time of adding to Set - %s", timeS));
         System.out.println(String.format("Time of delete to Lin - %s", storage.delete(storageLinked, cycles)));
         System.out.println(String.format("Time of delete to Arr - %s", storage.delete(storageArray, cycles)));
         System.out.println(String.format("Time of delete to Set - %s", storage.delete(storageSet, cycles)));
