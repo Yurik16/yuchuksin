@@ -1,6 +1,7 @@
 package ru.job4j.collections.conversion;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -50,6 +51,24 @@ public class ConvertList {
             list.add(i);            
         }
         return list;
+    }
+
+    public int[] initIntArray(int[] array, int length) {
+        array = new int[length];
+        for (int i = 0; i < length; i++) {
+            array[i] = i;
+        }
+        return array;
+    }
+
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> result = new LinkedList<>();
+        for (int[] elem : list) {
+            for (int i = 0; i < elem.length; i++) {
+                result.add(elem[i]);
+            }
+        }
+        return result;
     }
 
     public static void main(String[] args) {

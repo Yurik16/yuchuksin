@@ -32,6 +32,15 @@ public class ConvertListTest {
 
     private final List<Integer> expectedToList = new ArrayList<Integer>();
 
+    private final List<int[]> startIntArray = new ArrayList<>();
+
+    private final int[] one = new int[]{0, 1, 2};
+    private final int[] two = new int[]{0, 1, 2, 3, 4};
+    private final int[] thr = new int[]{0, 1,};
+    private final int[] fou = new int[]{0, 1, 2, 3 ,4, 5};
+
+    private final List<Integer> expectedIntList = new ArrayList<Integer>();
+
     /**
      *
      */
@@ -43,6 +52,32 @@ public class ConvertListTest {
     @Test
     public void whenDoToListThenArrayGoesList() {
         assertThat(conversion.initList(expectedToList, 9), is(conversion.toList(startAr)));
+    }
+
+    @Test
+    public void whenDoConvertThenListOfIntArrayGoesList() {
+        startIntArray.add(one);
+        startIntArray.add(two);
+        startIntArray.add(thr);
+        startIntArray.add(fou);
+
+        expectedIntList.add(0);
+        expectedIntList.add(1);
+        expectedIntList.add(2);
+        expectedIntList.add(0);
+        expectedIntList.add(1);
+        expectedIntList.add(2);
+        expectedIntList.add(3);
+        expectedIntList.add(4);
+        expectedIntList.add(0);
+        expectedIntList.add(1);
+        expectedIntList.add(0);
+        expectedIntList.add(1);
+        expectedIntList.add(2);
+        expectedIntList.add(3);
+        expectedIntList.add(4);
+        expectedIntList.add(5);
+        assertThat(expectedIntList, is(conversion.convert(startIntArray)));
     }
 
 }
