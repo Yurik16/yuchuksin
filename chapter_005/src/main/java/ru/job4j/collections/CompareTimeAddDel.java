@@ -10,9 +10,19 @@ import java.util.*;
  */
 public class CompareTimeAddDel {
 
+    /**
+     * Default constructor.
+     */
     public CompareTimeAddDel() {
     }
 
+    /**
+     * Calculates time in milli sec form adding.
+     *
+     * @param collection List or Set
+     * @param amount     adding acts
+     * @return time milli sec
+     */
     public long add(Collection<String> collection, int amount) {
         long timeStart = System.nanoTime();
         for (int i = 0; i < amount; i++) {
@@ -22,7 +32,13 @@ public class CompareTimeAddDel {
         return timeFinish - timeStart;
     }
 
-
+    /**
+     * Calculates time in milli sec form deleting.
+     *
+     * @param collection List or Set
+     * @param amount     del acts
+     * @return time milli sec
+     */
     public long delete(Collection<String> collection, int amount) {
         long timeStart = System.nanoTime();
         for (int i = 0; i < amount; i++) {

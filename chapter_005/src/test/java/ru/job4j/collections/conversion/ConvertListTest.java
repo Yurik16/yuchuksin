@@ -22,38 +22,74 @@ public class ConvertListTest {
     private final ConvertList conversion = new ConvertList();
 
     /**
-     *
+     * The list that will be changed with toArray().
      */
-    private final List<Integer> startList = new ArrayList<Integer>();
-
-    private final int[][] expectedToArray = new int[][]{{0, 1, 2, 3, 4, 5, 6, 7}, {8, 9, 10, 11, 12, 13, 14, 15}, {16, 17, 18, 19, 20, 21, 22, 23}, {24, 25, 26, 27, 28, 29, 0, 0}};
-
-    private final int[][] startAr = new int[][]{{0, 1, 2}, {3, 4, 5}, {6, 7, 8}};
-
-    private final List<Integer> expectedToList = new ArrayList<Integer>();
-
-    private final List<int[]> startIntArray = new ArrayList<>();
-
-    private final int[] one = new int[]{0, 1, 2};
-    private final int[] two = new int[]{0, 1, 2, 3, 4};
-    private final int[] thr = new int[]{0, 1,};
-    private final int[] fou = new int[]{0, 1, 2, 3 ,4, 5};
-
-    private final List<Integer> expectedIntList = new ArrayList<Integer>();
+    private final List<Integer> startList = conversion.initList(30);
 
     /**
-     *
+     * Expected result after toArray().
+     */
+    private final int[][] expectedToArray = new int[][]{{0, 1, 2, 3, 4, 5, 6, 7}, {8, 9, 10, 11, 12, 13, 14, 15}, {16, 17, 18, 19, 20, 21, 22, 23}, {24, 25, 26, 27, 28, 29, 0, 0}};
+
+    /**
+     * The array that will be changed with toList().
+     */
+    private final int[][] startAr = new int[][]{{0, 1, 2}, {3, 4, 5}, {6, 7, 8}};
+
+    /**
+     * Expected result after toList().
+     */
+    private final List<Integer> expectedToList = conversion.initList(9);
+
+    /**
+     * The list that will be changed with convert().
+     */
+    private final List<int[]> startIntArray = new ArrayList<>();
+
+    /**
+     * sample array one.
+     */
+    private final int[] one = new int[]{0, 1, 2};
+
+    /**
+     * sample array two.
+     */
+    private final int[] two = new int[]{0, 1, 2, 3, 4};
+
+    /**
+     * sample array three.
+     */
+    private final int[] thr = new int[]{0, 1,};
+
+    /**
+     * sample array four.
+     */
+    private final int[] fou = new int[]{0, 1, 2, 3 ,4, 5};
+
+    /**
+     * Expected result after convert().
+     */
+    private final List<Integer> expectedIntList = new ArrayList<>();
+
+    /**
+     * Compares two array.
      */
     @Test
     public void whenDoToArrayThenListGoesArray() {
-        assertThat(expectedToArray, is(conversion.toArray(conversion.initList(startList, 30), 4)));
+        assertThat(expectedToArray, is(conversion.toArray(startList, 4)));
     }
 
+    /**
+     * Compares two List.
+     */
     @Test
     public void whenDoToListThenArrayGoesList() {
-        assertThat(conversion.initList(expectedToList, 9), is(conversion.toList(startAr)));
+        assertThat(expectedToList, is(conversion.toList(startAr)));
     }
 
+    /**
+     * Cheks is the convert() makes from List of integer arrays with different length single List of integer.
+     */
     @Test
     public void whenDoConvertThenListOfIntArrayGoesList() {
         startIntArray.add(one);
