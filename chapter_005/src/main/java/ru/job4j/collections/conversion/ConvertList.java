@@ -18,8 +18,8 @@ public class ConvertList {
     List<Integer> toList(int[][] array) {
         List<Integer> result = new ArrayList<>();
         for (int[] line : array) {
-            for (int i : line) {
-                result.add(line[i]);
+            for (int x : line) {
+                result.add(x);
             }
         }
         return result;
@@ -45,20 +45,32 @@ public class ConvertList {
         }
         return result;
     }
-    
+
     public List<Integer> initList(List<Integer> list, int num) {
         for (int i = 0; i < num; i++) {
-            list.add(i);            
+            list.add(i);
         }
         return list;
     }
 
-    public int[] initIntArray(int[] array, int length) {
-        array = new int[length];
+    public int[] initIntArray(int length) {
+        int[] array = new int[length];
         for (int i = 0; i < length; i++) {
             array[i] = i;
         }
         return array;
+    }
+
+    public int[][] initTwoDArray(int row, int colum) {
+        int[][] result = new int[row][colum];
+        int x = 0;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < colum; j++) {
+                result[i][j] = x;
+                x++;
+            }
+        }
+        return result;
     }
 
     public List<Integer> convert(List<int[]> list) {
@@ -75,7 +87,7 @@ public class ConvertList {
 
         ConvertList convert = new ConvertList();
         ArrayList<Integer> ar = new ArrayList<Integer>();
-        int[][] startAr = new int[][]{{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+        int[][] startAr = convert.initTwoDArray(4, 4);
         convert.initList(ar, 30);
         System.out.println(String.format("ArrayList before toArray - %s", ar));
         int[][] twoDimAr = convert.toArray(ar, 4);
