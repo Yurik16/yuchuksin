@@ -17,16 +17,36 @@ import static org.junit.Assert.assertThat;
  */
 public class UserConvertTest {
 
-    UserConvert userConvert = new UserConvert();
+    /**
+     * Empty object UresConvert class.
+     */
+    private final UserConvert userConvert = new UserConvert();
 
-    List<User> listStart = new ArrayList<>();
+    /**
+     * Empty List of User`s.
+     */
+    private final List<User> listStart = new ArrayList<>();
 
-    User user1 = new User(1, "Li", "Beijin" );
-    User user2 = new User(2, "Pete", "NewYork" );
-    User user3 = new User(3, "Tolik", "Rostov" );
+    /**
+     * 1st User manual entry.
+     */
+    private final User user1 = new User(1, "Li", "Beijin");
+
+    /**
+     * 2nd User manual entry.
+     */
+    private final User user2 = new User(2, "Pete", "NewYork");
+
+    /**
+     * 3rd User manual entry.
+     */
+    private final User user3 = new User(3, "Tolik", "Rostov");
 
     HashMap<Integer, User> mapExpect = new HashMap<>();
 
+    /**
+     * Compares two HashMap<Integer, User> 1st Map - manual filling, 2nd Map - using process().
+     */
     @Test
     public void whenDoProcessThenMapGetsIdAndUser() {
         listStart.add(user1);

@@ -12,9 +12,18 @@ import java.util.List;
  */
 public class ConvertList {
 
+    /**
+     * Default constructor for ConvertUser.
+     */
     public ConvertList() {
     }
 
+    /**
+     * Convert int[][] to ArrayList.
+     *
+     * @param array source array
+     * @return List
+     */
     List<Integer> toList(int[][] array) {
         List<Integer> result = new ArrayList<>();
         for (int[] line : array) {
@@ -25,22 +34,28 @@ public class ConvertList {
         return result;
     }
 
+    /**
+     * Convert List to int[][].
+     *
+     * @param list source array
+     * @param row number of rows in returned array
+     * @return int[][]
+     */
     int[][] toArray(List<Integer> list, int row) {
-        int colums = list.size() / row;
-        int addingZerro = 0;
+        int columns = list.size() / row;
         int count = 0;
         if (list.size() % row != 0) {
-            colums += 1;
-            addingZerro = (colums * row) - list.size();
-            for (int i = 0; i < addingZerro; i++) {
-                list.add(0);
-            }
+            columns += 1;
         }
-        int[][] result = new int[row][colums];
+        int[][] result = new int[row][columns];
         for (int i = 0; i < row; i++) {
-            for (int j = 0; j < colums; j++) {
+            for (int j = 0; j < columns; j++) {
+                if(count < list.size())
                 result[i][j] = list.get(count);
                 count++;
+                if(count > list.size()) {
+                    result[i][j] = 0;
+                }
             }
         }
         return result;
@@ -91,7 +106,7 @@ public class ConvertList {
         convert.initList(ar, 30);
         System.out.println(String.format("ArrayList before toArray - %s", ar));
         int[][] twoDimAr = convert.toArray(ar, 4);
-        System.out.println(String.format("ArrayList after toArray - %s", ar));
+        System.out.println("ArrayList after toArray ");
         for (int i = 0; i < twoDimAr.length; i++) {
             for (int j = 0; j < twoDimAr[0].length; j++) {
                 if (twoDimAr[i][j] < 10 && -1 < twoDimAr[i][j]) {

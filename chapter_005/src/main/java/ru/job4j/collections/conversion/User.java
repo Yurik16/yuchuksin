@@ -8,14 +8,37 @@ package ru.job4j.collections.conversion;
  */
 public class User {
 
+    /**
+     * Unique number.
+     */
     private int id;
+
+    /**
+     * Name of User.
+     */
     private String name;
+
+    /**
+     * City name.
+     */
     private String city;
 
+    /**
+     * Getter for the id of the User.
+     *
+     * @return id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Constructor for User.
+     *
+     * @param id   unique number
+     * @param name name of User
+     * @param city city name
+     */
     public User(int id, String name, String city) {
         this.id = id;
         this.name = name;

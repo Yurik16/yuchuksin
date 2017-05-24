@@ -11,9 +11,18 @@ import java.util.List;
  */
 public class UserConvert {
 
+    /**
+     * Defolt constructor for UserConvert.
+     */
     public UserConvert() {
     }
 
+    /**
+     * Getting List of Users and return Map with id key and User value.
+     *
+     * @param list list of User
+     * @return HashMap with id, User
+     */
     HashMap<Integer, User> process(List<User> list) {
         HashMap<Integer, User> result = new HashMap<>();
         for (User user : list) {
