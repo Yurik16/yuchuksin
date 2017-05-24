@@ -16,10 +16,10 @@ public class ConvertList {
     }
 
     List<Integer> toList(int[][] array) {
-        List<Integer> result = new ArrayList<>(array.length * array[0].length);
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[0].length; j++) {
-                result.add(array[i][j]);
+        List<Integer> result = new ArrayList<>();
+        for (int[] line : array) {
+            for (int i : line) {
+                result.add(line[i]);
             }
         }
         return result;
@@ -64,7 +64,7 @@ public class ConvertList {
     public List<Integer> convert(List<int[]> list) {
         List<Integer> result = new LinkedList<>();
         for (int[] elem : list) {
-            for (int i = 0; i < elem.length; i++) {
+            for (int i : elem) {
                 result.add(elem[i]);
             }
         }
@@ -91,9 +91,9 @@ public class ConvertList {
             System.out.println();
         }
         System.out.println("Two dimmension array before toList");
-        for (int i = 0; i < startAr.length; i++) {
-            for (int j = 0; j < startAr[0].length; j++) {
-                System.out.print(String.format("%s ", startAr[i][j]));
+        for (int[] line : startAr) {
+            for (int i : line) {
+                System.out.print(String.format("%s ", i));
             }
             System.out.println();
         }
