@@ -42,7 +42,10 @@ public class UserConvertTest {
      */
     private final User user3 = new User(3, "Tolik", "Rostov");
 
-    HashMap<Integer, User> mapExpect = new HashMap<>();
+    /**
+     * Expecting HashMap after process().
+     */
+    private final HashMap<Integer, User> mapExpect = new HashMap<>();
 
     /**
      * Compares two HashMap<Integer, User> 1st Map - manual filling, 2nd Map - using process().

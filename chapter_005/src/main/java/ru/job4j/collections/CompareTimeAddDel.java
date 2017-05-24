@@ -1,6 +1,9 @@
 package ru.job4j.collections;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.TreeSet;
 
 /**
  * Main class.
@@ -48,7 +51,11 @@ public class CompareTimeAddDel {
         return timeFinish - timeStart;
     }
 
-
+    /**
+     * Main method.
+     *
+     * @param args args
+     */
     public static void main(String[] args) {
 
         CompareTimeAddDel storage = new CompareTimeAddDel();

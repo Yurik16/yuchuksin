@@ -50,10 +50,11 @@ public class ConvertList {
         int[][] result = new int[row][columns];
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < columns; j++) {
-                if(count < list.size())
-                result[i][j] = list.get(count);
-                count++;
-                if(count > list.size()) {
+                if (count < list.size()) {
+                    result[i][j] = list.get(count);
+                    count++;
+                }
+                if (count > list.size()) {
                     result[i][j] = 0;
                 }
             }
@@ -75,6 +76,12 @@ public class ConvertList {
         return list;
     }
 
+    /**
+     * Makes int array of the given length.
+     *
+     * @param length integer
+     * @return int array
+     */
     public int[] initIntArray(int length) {
         int[] array = new int[length];
         for (int i = 0; i < length; i++) {
@@ -83,6 +90,13 @@ public class ConvertList {
         return array;
     }
 
+    /**
+     * Makes two dimension int array of the given length and width.
+     *
+     * @param row length
+     * @param column width
+     * @return two dimension int array
+     */
     public int[][] initTwoDArray(int row, int column) {
         int[][] result = new int[row][column];
         int x = 0;
@@ -95,6 +109,12 @@ public class ConvertList {
         return result;
     }
 
+    /**
+     * Convert list of int array to List of integer.
+     *
+     * @param list source list of int array
+     * @return List of integer
+     */
     public List<Integer> convert(List<int[]> list) {
         List<Integer> result = new LinkedList<>();
         for (int[] elem : list) {
@@ -105,6 +125,11 @@ public class ConvertList {
         return result;
     }
 
+    /**
+     * Main method.
+     *
+     * @param args args
+     */
     public static void main(String[] args) {
 
         ConvertList convert = new ConvertList();

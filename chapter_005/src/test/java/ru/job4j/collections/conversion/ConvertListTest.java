@@ -59,12 +59,12 @@ public class ConvertListTest {
     /**
      * sample array three.
      */
-    private final int[] thr = new int[]{0, 1,};
+    private final int[] thr = new int[]{0, 1};
 
     /**
      * sample array four.
      */
-    private final int[] fou = new int[]{0, 1, 2, 3 ,4, 5};
+    private final int[] fou = new int[]{0, 1, 2, 3, 4, 5};
 
     /**
      * Expected result after convert().
