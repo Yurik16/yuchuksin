@@ -59,7 +59,5 @@ public class UserConvertTest {
         mapExpect.put(2, user2);
         mapExpect.put(3, user3);
         assertThat(mapExpect, is(userConvert.process(listStart)));
-
     }
-
 }
