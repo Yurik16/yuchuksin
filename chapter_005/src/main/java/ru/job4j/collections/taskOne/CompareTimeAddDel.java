@@ -43,8 +43,10 @@ public class CompareTimeAddDel {
         Iterator<String> it = collection.iterator();
         long timeStart = System.nanoTime();
         for (int i = 0; i < amount; i++) {
-            it.next();
-            it.remove();
+            if (it.hasNext()) {
+                it.next();
+                it.remove();
+            }
         }
         long timeFinish = System.nanoTime();
         return timeFinish - timeStart;
