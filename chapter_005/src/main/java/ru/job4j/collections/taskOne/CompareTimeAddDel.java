@@ -1,9 +1,6 @@
-package ru.job4j.collections;
+package ru.job4j.collections.taskOne;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Main class.
@@ -43,9 +40,11 @@ public class CompareTimeAddDel {
      * @return time milli sec
      */
     public long delete(Collection<String> collection, int amount) {
+        Iterator<String> it = collection.iterator();
         long timeStart = System.nanoTime();
         for (int i = 0; i < amount; i++) {
-            collection.remove(Integer.toString(i));
+            it.next();
+            it.remove();
         }
         long timeFinish = System.nanoTime();
         return timeFinish - timeStart;

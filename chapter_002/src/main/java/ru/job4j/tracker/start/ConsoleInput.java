@@ -5,7 +5,9 @@ import ru.job4j.innerClass.MenuOutException;
 import java.util.Scanner;
 
 /**
- * Created by User on 21.02.2017.
+ * Main class.
+ * @author Yury Chuksin (chuksin.yury@gmail.com)
+ * @since 21.02.2017.
  */
 public class ConsoleInput implements Input {
     /**

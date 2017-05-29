@@ -1,9 +1,9 @@
 package ru.job4j.collections.tracker;
 
 import org.junit.Test;
-import ru.job4j.tracker.start.Input;
-import ru.job4j.tracker.start.StartUI;
-import ru.job4j.tracker.start.StubInput;
+import ru.job4j.collections.tracker.start.Input;
+import ru.job4j.collections.tracker.start.StartUI;
+import ru.job4j.collections.tracker.start.StubInput;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
