@@ -1,6 +1,7 @@
 package ru.job4j.collections.conversion;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,19 +44,15 @@ public class ConvertList {
      */
     int[][] toArray(List<Integer> list, int row) {
         int columns = list.size() / row;
-        int count = 0;
+        Iterator<Integer> it = list.iterator();
         if (list.size() % row != 0) {
             columns += 1;
         }
         int[][] result = new int[row][columns];
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < columns; j++) {
-                if (count < list.size()) {
-                    result[i][j] = list.get(count);
-                    count++;
-                }
-                if (count > list.size()) {
-                    result[i][j] = 0;
+                if (it.hasNext()) {
+                    result[i][j] = it.next();
                 }
             }
         }
