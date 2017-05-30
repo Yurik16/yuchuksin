@@ -5,6 +5,7 @@ import ru.job4j.collections.tracker.Tracker;
 import ru.job4j.collections.tracker.models.Item;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class StartUI {
 
     /**
      * setIsWorking setter for isWorking.
+     *
      * @param x boolean
      */
     public void setIsWorking(boolean x) {
@@ -44,7 +46,7 @@ public class StartUI {
     private final Input input;
 
     /**
-     * creating new class Tracker.
+     * Creating new object of class Tracker.
      */
     private Tracker tracker = new Tracker();
 
@@ -72,15 +74,13 @@ public class StartUI {
     /**
      * creating menu.
      */
-    private final String[] menu = {
-            "1.Adding new task",
+    private final List<String> menu = Arrays.asList("1.Adding new task",
             "2.Redacting task.",
             "3.Delete task.",
             "4.Get list of all tasks.",
             "5.Get list of tasks with filter.",
             "6.Add comment to task.",
-            "7.Exit from program."
-    };
+            "7.Exit from program.");
 
     /**
      * getMenuName returns asking question.
@@ -89,7 +89,7 @@ public class StartUI {
      * @return asking question
      */
     private String getMenuName(int point) {
-        return this.menu[point];
+        return this.menu.get(point);
     }
 
 
@@ -106,7 +106,7 @@ public class StartUI {
             }
             String name = input.ask("Enter the number 1 ... 7 : ");
             numOfClaim = Integer.parseInt(name);
-            int[] needTo = {0, 1, 2, 3, 4, 5, 6};
+            List<Integer> needTo = Arrays.asList(0, 1, 2, 3, 4, 5, 6);
             for (int x : needTo) {
                 if (x == numOfClaim - 1) {
                     System.out.println(getMenuName(numOfClaim - 1).substring(2));
