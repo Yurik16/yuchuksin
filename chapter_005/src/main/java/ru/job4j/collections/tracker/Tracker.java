@@ -3,6 +3,8 @@ package ru.job4j.collections.tracker;
 
 import ru.job4j.collections.tracker.models.Item;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -20,12 +22,31 @@ public class Tracker {
     /**
      * items list of objects Item.
      */
-    private Item[] items = new Item[10];
+    private List<Item> items = new ArrayList<>();
 
     /**
      * count counter for Item.
      */
     private int count = 0;
+
+    /**
+     * Default constructor of class Tracker.
+     */
+    public Tracker() {}
+
+    /**
+     * Constructor of class Tracker.
+     *
+     * @param items List of Items
+     */
+    public Tracker(List<Item> items) {
+        this.items = items;
+    }
+
+    /**
+     * Default object Tracker
+     */
+    private Tracker tracker = new Tracker(items);
 
     /**
      * addItem adding new object Item in array items.
@@ -36,7 +57,7 @@ public class Tracker {
     public Item addItem(Item item) {
         //item.setId(String.valueOf(rnd.nextInt(200)));
         item.setId(String.valueOf(count + 1));
-        this.items[this.count++] = item;
+        this.items.add(item);
         return item;
     }
 
@@ -63,15 +84,14 @@ public class Tracker {
      * @param name of searching Item
      * @return result searching Item by name
      */
-    public Item[] findByName(String name) {
-        Item[] result = new Item[10];
-        int pos = 0;
+    public List<Item> findByName(String name) {
+        List<Item> result = new ArrayList<>();
         for (Item x : this.items) {
             if (x != null && x.getName().equals(name)) {
-                result[pos++] = x;
+                result.add(x);
             }
         }
-        return cutArray(result);
+        return result;
     }
 
     /**
@@ -80,15 +100,14 @@ public class Tracker {
      * @param desc of searching Item
      * @return result searching Item by name
      */
-    public Item[] findByDesc(String desc) {
-        Item[] result = new Item[10];
-        int pos = 0;
+    public List<Item> findByDesc(String desc) {
+        List<Item> result = new ArrayList<>();
         for (Item x : this.items) {
             if (x != null && x.getDesc().equals(desc)) {
-                result[pos++] = x;
+                result.add(x);
             }
         }
-        return cutArray(result);
+        return result;
     }
 
     /**
@@ -99,51 +118,25 @@ public class Tracker {
      */
     public void redactItem(String id, Item item) {
         Item ask = findById(id);
-        for (int i = 0; i < this.count; i++) {
-            if (this.items[i] != null && this.items[i].getId().equals(ask.getId())) {
-                this.items[i] = item;
-                this.items[i].setId(ask.getId());
+        for (Item x : items) {
+            if (x != null && x.getId().equals(ask.getId())) {
+                x = item;
+                x.setId(ask.getId());
             }
         }
     }
 
     /**
-     * deleteItem purge all variables of Item.
+     * deleteItem delete Item by using ID of this Item.
      *
      * @param id unique name of Item
      */
     public void deleteItem(String id) {
-        for (int i = 0; i < this.count; i++) {
-            if (this.items[i] != null && this.items[i].getId().equals(id)) {
-                this.items[i] = null;
+        for (Item x : items) {
+            if (x != null && x.getId().equals(id)) {
+                items.remove(items.indexOf(x));
             }
         }
-        this.items = cutArray(this.items);
-        count--;
-    }
-
-    /**
-     * cutArray cuting null-tales.
-     *
-     * @param item Item which have null-tail
-     * @return result
-     */
-    public Item[] cutArray(Item[] item) {
-        Item[] result = new Item[item.length];
-        int k = 0;
-        for (int i = 0; i < item.length; i++) {
-            if (item[i] != null) {
-                result[i] = item[k];
-                k++;
-            }
-            if (item[i] == null) {
-                for (int j = i; j < this.count; j++) {
-                    result[i] = item[k + 1];
-                }
-                k += 2;
-            }
-        }
-        return result;
     }
 
     /**
@@ -151,11 +144,9 @@ public class Tracker {
      *
      * @return list array of all Item
      */
-    public Item[] getListOfItems() {
-        Item[] list = new Item[count];
-        for (int i = 0; i < this.count; i++) {
-            list[i] = this.items[i];
-        }
+    public List<Item> getListOfItems() {
+        List<Item> list = new ArrayList<>();
+        list.addAll(items);
         return list;
     }
 
@@ -166,7 +157,7 @@ public class Tracker {
      * @param comment comment for Item
      */
     public void addComment(String name, String comment) {
-        Item item = findByName(name)[0];
+        Item item = tracker.findByName(name).get(0);
         item.setComment(comment);
     }
 }

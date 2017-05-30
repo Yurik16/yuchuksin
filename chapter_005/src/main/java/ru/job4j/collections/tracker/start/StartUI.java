@@ -6,6 +6,7 @@ import ru.job4j.collections.tracker.models.Item;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * StartUI class.
@@ -146,7 +147,7 @@ public class StartUI {
         if (claim == 3) {
             String nameOfClaim = input.ask("Enter: Name of Task?");
             if (tracker.findByName(nameOfClaim) != null) {
-                tracker.deleteItem(tracker.findByName(nameOfClaim)[0].getId());
+                tracker.deleteItem(tracker.findByName(nameOfClaim).get(0).getId());
             } else {
                 System.out.println("There is no such Task");
             }
@@ -159,8 +160,8 @@ public class StartUI {
         if (claim == 5) {
             String nameOfClaim = input.ask("Enter: Name of Task?");
             if (tracker.findByName(nameOfClaim) != null) {
-                Item[] x = tracker.findByName(nameOfClaim);
-                System.out.println(x[0].getName() + " / " + x[0].getDesc() + " / " + format1.format(x[0].getLong()) + " / " + x[0].getId());
+                List<Item> x = tracker.findByName(nameOfClaim);
+                System.out.println(x.get(0).getName() + " / " + x.get(0).getDesc() + " / " + format1.format(x.get(0).getLong()) + " / " + x.get(0).getId());
             } else {
                 System.out.println("There is no such Task");
             }
@@ -170,7 +171,7 @@ public class StartUI {
             if (tracker.findByName(nameOfClaim) != null) {
                 String com = input.ask("Enter: The comment?");
                 tracker.addComment(nameOfClaim, com);
-                Item x = tracker.findByName(nameOfClaim)[0];
+                Item x = tracker.findByName(nameOfClaim).get(0);
                 System.out.println(x.getName() + " / " + x.getDesc() + " / " + format1.format(x.getLong()) + " / " + x.getId());
             } else {
                 System.out.println("There is no such Task");
