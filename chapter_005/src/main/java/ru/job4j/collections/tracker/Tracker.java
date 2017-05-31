@@ -5,7 +5,6 @@ import ru.job4j.collections.tracker.models.Item;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * class Tracker.
@@ -15,10 +14,7 @@ import java.util.Random;
  * @since 18.02.2017
  */
 public class Tracker {
-    /**
-     *
-     */
-    private Random rnd = new Random();
+
     /**
      * items list of objects Item.
      */
@@ -30,35 +26,15 @@ public class Tracker {
     private int count = 0;
 
     /**
-     * Default constructor of class Tracker.
-     */
-    public Tracker() {}
-
-    /**
-     * Constructor of class Tracker.
-     *
-     * @param items List of Items
-     */
-    public Tracker(List<Item> items) {
-        this.items = items;
-    }
-
-    /**
-     * Default object Tracker
-     */
-    private Tracker tracker = new Tracker(items);
-
-    /**
      * addItem adding new object Item in array items.
      *
-     * @param item new object of Item
-     * @return item
+     * @param item new object of Item     *
      */
-    public Item addItem(Item item) {
+    public void addItem(Item item) {
         //item.setId(String.valueOf(rnd.nextInt(200)));
-        item.setId(String.valueOf(count + 1));
+        count++;
+        item.setId(String.valueOf(count));
         this.items.add(item);
-        return item;
     }
 
     /**
@@ -117,11 +93,9 @@ public class Tracker {
      * @param id name of wanted Item
      */
     public void redactItem(String id, Item item) {
-        Item ask = findById(id);
         for (Item x : items) {
-            if (x != null && x.getId().equals(ask.getId())) {
-                x = item;
-                x.setId(ask.getId());
+            if (x != null && x.getId().equals(id)) {
+                items.set(items.indexOf(x), item);
             }
         }
     }
@@ -132,9 +106,9 @@ public class Tracker {
      * @param id unique name of Item
      */
     public void deleteItem(String id) {
-        for (Item x : items) {
+        for (Item x : this.getListOfItems()) {
             if (x != null && x.getId().equals(id)) {
-                items.remove(items.indexOf(x));
+                items.remove(x);
             }
         }
     }
@@ -157,7 +131,7 @@ public class Tracker {
      * @param comment comment for Item
      */
     public void addComment(String name, String comment) {
-        Item item = tracker.findByName(name).get(0);
+        Item item = findByName(name).get(0);
         item.setComment(comment);
     }
 }

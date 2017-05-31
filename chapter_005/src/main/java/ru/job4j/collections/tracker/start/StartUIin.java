@@ -41,7 +41,7 @@ public class StartUIin {
         int key;
         while (true) {
             menu.show();
-            key = input.ask("Enter 1 ... 7", listOfPoints);
+            key = input.ask("Pleas enter number 1 ... 7", listOfPoints);
             menu.act(key);
             if (key == 7) {
                 if ("y".equals(input.ask("EXIT!?('y')"))) {

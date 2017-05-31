@@ -1,5 +1,7 @@
 package ru.job4j.collections.tracker.start;
 
+import java.util.List;
+
 /**
  * Main class.
  *
@@ -15,9 +17,9 @@ public class ValidateInput extends ConsoleInput {
      * @param range list of validate data
      * @return key number of action
      */
-    public int ask(String question, int[] range) {
+    public int ask(String question, List<Integer> range) {
         boolean actual = true;
-        int key = 7;
+        int key = 6;
         do {
             try {
                 key = super.ask(question, range);

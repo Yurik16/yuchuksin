@@ -3,6 +3,9 @@ package ru.job4j.collections.tracker;
 import org.junit.Test;
 import ru.job4j.collections.tracker.models.Item;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -37,7 +40,7 @@ public class TrackerTest {
     /**
      * itemsR control array for test.
      */
-    private Item[] itemsR = {this.itemT1, this.itemT2};
+    private List<Item> itemsR = Arrays.asList(this.itemT1, this.itemT2);
 
     /**
      * whenDoAddItemThenGetAddingItemToArray compare two array.
@@ -56,7 +59,7 @@ public class TrackerTest {
     public void whenDoFindByNameThenGetItemByName() {
         this.tracker.addItem(this.itemT1);
         this.tracker.addItem(this.itemT2);
-        assertThat(this.itemT2, is(this.tracker.findByName("name2")[0]));
+        assertThat(this.itemT2, is(this.tracker.findByName("name2").get(0)));
     }
 
     /**
@@ -66,7 +69,7 @@ public class TrackerTest {
     public void whenFindByIdThenGetItemById() {
         this.tracker.addItem(this.itemT1);
         this.tracker.addItem(this.itemT2);
-        assertThat(this.itemT1, is(this.tracker.findById(this.tracker.getListOfItems()[0].getId())));
+        assertThat(this.itemT1, is(this.tracker.findById(this.tracker.getListOfItems().get(0).getId())));
     }
 
     /**
@@ -79,8 +82,8 @@ public class TrackerTest {
         this.itemT3.setComment("new comment");
         this.itemT3.setId("1");
         this.tracker.redactItem(this.itemT2.getId(), this.itemT3);
-        Item[] itemsOfTracker = this.tracker.getListOfItems();
-        assertThat(this.itemT3, is(itemsOfTracker[1]));
+        List<Item> itemsOfTracker = this.tracker.getListOfItems();
+        assertThat(this.itemT3, is(itemsOfTracker.get(1)));
     }
 
     /**

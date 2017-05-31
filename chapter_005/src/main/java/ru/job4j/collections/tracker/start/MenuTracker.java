@@ -70,7 +70,7 @@ public class MenuTracker {
     /**
      * position counter of number UserActions in MenuTracker.
      */
-    private int position = 0;
+    private int position = 1;
 
     /**
      * fillActions filling menu with possible actions.
@@ -78,13 +78,13 @@ public class MenuTracker {
      * @return actions list of actions
      */
     List<UserAction> fillActions() {
-        this.actions.set(position++, this.new AddItemFromAbstract(pointsOfMenu.get(position - 1), position));
-        this.actions.set(position++, new EditItemFromAbstract(pointsOfMenu.get(position - 1), position));
-        this.actions.set(position++, new DeleteItemFromAbstract(pointsOfMenu.get(position - 1), position));
-        this.actions.set(position++, new ShowItemsFromAbstract(pointsOfMenu.get(position - 1), position));
-        this.actions.set(position++, new FilterFromAbstract(pointsOfMenu.get(position - 1), position));
-        this.actions.set(position++, new Comments(pointsOfMenu.get(position - 1), position));
-        this.actions.set(position++, new Exit(pointsOfMenu.get(position - 1), position));
+        this.actions.add(this.new AddItemFromAbstract(pointsOfMenu.get(position - 1), position++));
+        this.actions.add(new EditItemFromAbstract(pointsOfMenu.get(position - 1), position++));
+        this.actions.add(new DeleteItemFromAbstract(pointsOfMenu.get(position - 1), position++));
+        this.actions.add(new ShowItemsFromAbstract(pointsOfMenu.get(position - 1), position++));
+        this.actions.add(new FilterFromAbstract(pointsOfMenu.get(position - 1), position++));
+        this.actions.add(new Comments(pointsOfMenu.get(position - 1), position++));
+        this.actions.add(new Exit(pointsOfMenu.get(position - 1), position++));
         return this.actions;
     }
 
@@ -96,8 +96,8 @@ public class MenuTracker {
      * @return menuRange
      */
     public List<Integer> fillRange(List<UserAction> list) {
-        for (int i = 0; i < list.size(); i++) {
-            this.menuRange.set(i, list.get(i).key());
+        for (UserAction x : list) {
+            this.menuRange.add(list.indexOf(x), x.key());
         }
         return this.menuRange;
     }
@@ -130,7 +130,7 @@ public class MenuTracker {
     /**
      * point counter for the filter menu.
      */
-    private int point = 0;
+    private int point = 1;
 
     /**
      * Create list of 'Filter by ...'.
@@ -138,11 +138,10 @@ public class MenuTracker {
      * @return findBy list of filter menu
      */
     private List<UserAction> fillFilter() {
-        findBy.set(point++, new FilterByName(pointsOfFilter.get(point - 1), point));
-        findBy.set(point++, new FilterByDesc(pointsOfFilter.get(point - 1), point));
-        findBy.set(point++, new FilterById(pointsOfFilter.get(point - 1), point));
-        findBy.set(point++, new ExitFromFilter(pointsOfFilter.get(point - 1), point));
-
+        findBy.add(new FilterByName(pointsOfFilter.get(point - 1), point++));
+        findBy.add(new FilterByDesc(pointsOfFilter.get(point - 1), point++));
+        findBy.add(new FilterById(pointsOfFilter.get(point - 1), point++));
+        findBy.add(new ExitFromFilter(pointsOfFilter.get(point - 1), point++));
         return this.findBy;
     }
 
@@ -226,12 +225,13 @@ public class MenuTracker {
                 if (tracker.findById(id) != null && x.getId().equals(id)) {
                     String newTask = input.ask("Enter: New Name of Task?");
                     String newDesc = input.ask("Enter: New Description of Task?");
-                    tracker.redactItem(id, new Item(newTask, newDesc, x.newTime()));
+                    Item newItem = new Item(newTask, newDesc, x.newTime());
+                    newItem.setId(x.getId());
+                    tracker.redactItem(id, newItem);
                     break;
-                } else {
-                    System.out.println("Are you sure?");
                 }
             }
+            System.out.println("Are you sure?");
         }
     }
 
@@ -336,7 +336,7 @@ public class MenuTracker {
             int filter;
             while (true) {
                 menuFilter.showFilter();
-                filter = input.ask("What filter? Choose number :", rangeOfFilter);
+                filter = input.ask("Choose number 1 ... 4:", rangeOfFilter);
                 menuFilter.actFind(filter);
                 if (filter == 4) {
                     if ("y".equals(input.ask("EXIT!?('y')"))) {
