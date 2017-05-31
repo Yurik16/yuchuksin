@@ -4,6 +4,8 @@ import ru.job4j.collections.tracker.Tracker;
 import ru.job4j.collections.tracker.models.Item;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -26,23 +28,23 @@ public class MenuTracker {
     /**
      * actions create new UserAction field.
      */
-    private UserAction[] actions = new UserAction[7];
+    private List<UserAction> actions = new ArrayList<>();
 
     /**
      * pointsOfMenu names of menus.
      */
-    private String[] pointsOfMenu = {"Add", "Edit", "Delete", "List", "Filter", "Comment", "Exit"};
+    private List<String> pointsOfMenu = Arrays.asList("Add", "Edit", "Delete", "List", "Filter", "Comment", "Exit");
 
     /**
      * pointsOfFilter names of filter menus.
      */
 
-    private String[] pointsOfFilter = {"... by Name", "... by Description", "... by ID", "Exit from Filter"};
+    private List<String> pointsOfFilter = Arrays.asList("... by Name", "... by Description", "... by ID", "Exit from Filter");
 
     /**
      * menuRange range of menu.
      */
-    private int[] menuRange = new int[7];
+    private List<Integer> menuRange = new ArrayList<>();
 
     /**
      * Constructor of MenuTracker.
@@ -50,7 +52,7 @@ public class MenuTracker {
      * @param input   enter data
      * @param tracker tasks
      */
-    public MenuTracker(Input input, Tracker tracker) {
+    MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
@@ -75,24 +77,15 @@ public class MenuTracker {
      *
      * @return actions list of actions
      */
-    public UserAction[] fillActions() {
-        this.actions[position++] = this.new AddItemFromAbstract(pointsOfMenu[position - 1], position);
-        this.actions[position++] = new EditItemFromAbstract(pointsOfMenu[position - 1], position);
-        this.actions[position++] = new DeleteItemFromAbstract(pointsOfMenu[position - 1], position);
-        this.actions[position++] = new MenuTracker.ShowItemsFromAbstract(pointsOfMenu[position - 1], position);
-        this.actions[position++] = new FilterFromAbstract(pointsOfMenu[position - 1], position);
-        this.actions[position++] = new Comments(pointsOfMenu[position - 1], position);
-        this.actions[position++] = new Exit(pointsOfMenu[position - 1], position);
+    List<UserAction> fillActions() {
+        this.actions.set(position++, this.new AddItemFromAbstract(pointsOfMenu.get(position - 1), position));
+        this.actions.set(position++, new EditItemFromAbstract(pointsOfMenu.get(position - 1), position));
+        this.actions.set(position++, new DeleteItemFromAbstract(pointsOfMenu.get(position - 1), position));
+        this.actions.set(position++, new ShowItemsFromAbstract(pointsOfMenu.get(position - 1), position));
+        this.actions.set(position++, new FilterFromAbstract(pointsOfMenu.get(position - 1), position));
+        this.actions.set(position++, new Comments(pointsOfMenu.get(position - 1), position));
+        this.actions.set(position++, new Exit(pointsOfMenu.get(position - 1), position));
         return this.actions;
-    }
-
-    /**
-     * addActions filling menu with pointing actions.
-     *
-     * @param action pointing action
-     */
-    public void addActions(UserAction action) {
-        this.actions[position++] = action;
     }
 
 
@@ -102,9 +95,9 @@ public class MenuTracker {
      * @param list list of possible menus
      * @return menuRange
      */
-    public int[] fillRange(UserAction[] list) {
-        for (int i = 0; i < list.length; i++) {
-            this.menuRange[i] = list[i].key();
+    public List<Integer> fillRange(List<UserAction> list) {
+        for (int i = 0; i < list.size(); i++) {
+            this.menuRange.set(i, list.get(i).key());
         }
         return this.menuRange;
     }
@@ -125,14 +118,14 @@ public class MenuTracker {
      *
      * @param key number of action to execute
      */
-    public void act(int key) {
-        this.actions[key - 1].execute(this.input, this.tracker);
+    void act(int key) {
+        this.actions.get(key - 1).execute(this.input, this.tracker);
     }
 
     /**
      * findBy list of filters.
      */
-    private UserAction[] findBy = new UserAction[4];
+    private List<UserAction> findBy = new ArrayList<>();
 
     /**
      * point counter for the filter menu.
@@ -144,11 +137,11 @@ public class MenuTracker {
      *
      * @return findBy list of filter menu
      */
-    private UserAction[] fillFilter() {
-        findBy[point++] = new FilterByName(pointsOfFilter[point - 1], point);
-        findBy[point++] = new FilterByDesc(pointsOfFilter[point - 1], point);
-        findBy[point++] = new FilterById(pointsOfFilter[point - 1], point);
-        findBy[point++] = new ExitFromFilter(pointsOfFilter[point - 1], point);
+    private List<UserAction> fillFilter() {
+        findBy.set(point++, new FilterByName(pointsOfFilter.get(point - 1), point));
+        findBy.set(point++, new FilterByDesc(pointsOfFilter.get(point - 1), point));
+        findBy.set(point++, new FilterById(pointsOfFilter.get(point - 1), point));
+        findBy.set(point++, new ExitFromFilter(pointsOfFilter.get(point - 1), point));
 
         return this.findBy;
     }
@@ -170,7 +163,7 @@ public class MenuTracker {
      * @param key number of filter to execute
      */
     private void actFind(int key) {
-        this.findBy[key - 1].execute(this.input, this.tracker);
+        this.findBy.get(key - 1).execute(this.input, this.tracker);
     }
 
     /**
@@ -338,8 +331,8 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             MenuTracker menuFilter = new MenuTracker(input, tracker);
-            UserAction[] listOfFilter = menuFilter.fillFilter();
-            int[] rangeOfFilter = menuFilter.fillRange(listOfFilter);
+            List<UserAction> listOfFilter = menuFilter.fillFilter();
+            List<Integer> rangeOfFilter = menuFilter.fillRange(listOfFilter);
             int filter;
             while (true) {
                 menuFilter.showFilter();

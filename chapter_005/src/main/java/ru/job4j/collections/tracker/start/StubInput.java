@@ -1,13 +1,15 @@
 package ru.job4j.collections.tracker.start;
 
+import java.util.List;
+
 /**
- * Created by User on 23.02.2017.
+ * Created by User on 31.05.2017.
  */
 public class StubInput implements Input {
     /**
      * new List of answers.
      */
-    private String[] answers;
+    private List<String> answers;
 
     /**
      * counter for num of answers.
@@ -18,7 +20,7 @@ public class StubInput implements Input {
      * StubInput constructor.
      * @param answers List of strings
      */
-    public StubInput(String[] answers) {
+    public StubInput(List<String> answers) {
         this.answers = answers;
     }
 
@@ -28,11 +30,11 @@ public class StubInput implements Input {
      * @return answers
      */
     public String ask(String question) {
-        return this.answers[count++];
+        return this.answers.get(count++);
     }
 
     @Override
-    public int ask(String question, int[] range)  {
-        return Integer.parseInt(this.answers[count++]);
+    public int ask(String question, List<Integer> range)  {
+        return Integer.parseInt(this.answers.get(count++));
     }
 }

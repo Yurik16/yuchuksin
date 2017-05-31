@@ -1,10 +1,9 @@
-package ru.job4j.collections.tracker.innerCalss;
+package ru.job4j.collections.tracker.start;
 
 import org.junit.Test;
-import ru.job4j.innerClass.StartUIin;
-import ru.job4j.tracker.Tracker;
-import ru.job4j.tracker.start.Input;
-import ru.job4j.tracker.start.StubInput;
+import ru.job4j.collections.tracker.Tracker;
+
+import java.util.Arrays;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -13,21 +12,21 @@ import static org.junit.Assert.assertThat;
  * Main class.
  *
  * @author Yury Chuksin (chuksin.yury@gmail.com)
- * @since 02.04.2017.
+ * @since 31.05.2017.
  */
-public class StartUiInnerTest {
+public class StartUIinTest {
     /**
      * whenAddNewItemThenItComesToTracker compare Name and Desc of entering by User with expected data.
      */
     @Test
     public void whenAddNewItemThenItComesToTracker() {
         //StartUIin.isWorking = true;
-        Input input = new StubInput(new String[]{"1", "1t", "1d", "7", "y"});
+        Input input = new StubInput(Arrays.asList("1", "1t", "1d", "7", "y"));
         Tracker tracker = new Tracker();
         StartUIin startTest = new StartUIin(input, tracker);
         startTest.init();
-        assertThat(tracker.getListOfItems()[0].getName(), is("1t"));
-        assertThat(tracker.getListOfItems()[0].getDesc(), is("1d"));
+        assertThat(tracker.getListOfItems().get(0).getName(), is("1t"));
+        assertThat(tracker.getListOfItems().get(0).getDesc(), is("1d"));
     }
 
     /**
@@ -37,11 +36,11 @@ public class StartUiInnerTest {
     public void whenEditItemThenItemChanges() {
         //StartUIin.isWorking = true;
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"1", "1t", "1d", "2", "1", "1tt", "1dd", "7", "y"});
+        Input input = new StubInput(Arrays.asList("1", "1t", "1d", "2", "1", "1tt", "1dd", "7", "y"));
         StartUIin startTest = new StartUIin(input, tracker);
         startTest.init();
-        assertThat(tracker.getListOfItems()[0].getName(), is("1tt"));
-        assertThat(tracker.getListOfItems()[0].getDesc(), is("1dd"));
+        assertThat(tracker.getListOfItems().get(0).getName(), is("1tt"));
+        assertThat(tracker.getListOfItems().get(0).getDesc(), is("1dd"));
     }
 
     /**
@@ -50,12 +49,12 @@ public class StartUiInnerTest {
     @Test
     public void whenDeleteItemThenItemDeleteFromTracker() {
         //StartUIin.isWorking = true;
-        Input input = new StubInput(new String[]{"1", "1t", "1d", "1", "2t", "2d", "3", "1t", "7", "y"});
+        Input input = new StubInput(Arrays.asList("1", "1t", "1d", "1", "2t", "2d", "3", "1t", "7", "y"));
         Tracker tracker = new Tracker();
         StartUIin startTest = new StartUIin(input, tracker);
         startTest.init();
-        assertThat(tracker.getListOfItems()[0].getName(), is("2t"));
-        assertThat(tracker.getListOfItems()[0].getDesc(), is("2d"));
+        assertThat(tracker.getListOfItems().get(0).getName(), is("2t"));
+        assertThat(tracker.getListOfItems().get(0).getDesc(), is("2d"));
     }
 
     /**
@@ -64,14 +63,14 @@ public class StartUiInnerTest {
     @Test
     public void whenDoListThenGetListOfItems() {
         //StartUIin.isWorking = true;
-        Input input = new StubInput(new String[]{"1", "1t", "1d", "1", "2t", "2d", "7", "y"});
+        Input input = new StubInput(Arrays.asList("1", "1t", "1d", "1", "2t", "2d", "7", "y"));
         Tracker tracker = new Tracker();
         StartUIin startTest = new StartUIin(input, tracker);
         startTest.init();
-        assertThat(tracker.getListOfItems()[0].getName(), is("1t"));
-        assertThat(tracker.getListOfItems()[0].getDesc(), is("1d"));
-        assertThat(tracker.getListOfItems()[1].getName(), is("2t"));
-        assertThat(tracker.getListOfItems()[1].getDesc(), is("2d"));
+        assertThat(tracker.getListOfItems().get(0).getName(), is("1t"));
+        assertThat(tracker.getListOfItems().get(0).getDesc(), is("1d"));
+        assertThat(tracker.getListOfItems().get(1).getName(), is("2t"));
+        assertThat(tracker.getListOfItems().get(1).getDesc(), is("2d"));
     }
 
     /**
@@ -80,12 +79,12 @@ public class StartUiInnerTest {
     @Test
     public void whenDoFilterThenGetListWithFilterByName() {
         //StartUIin.isWorking = true;
-        Input input = new StubInput(new String[]{"1", "1t", "1d", "1", "2t", "2d", "5", "1", "2t", "4", "y", "7", "y"});
+        Input input = new StubInput(Arrays.asList("1", "1t", "1d", "1", "2t", "2d", "5", "1", "2t", "4", "y", "7", "y"));
         Tracker tracker = new Tracker();
         StartUIin startTest = new StartUIin(input, tracker);
         startTest.init();
-        assertThat(tracker.findByName("2t")[0].getName(), is("2t"));
-        assertThat(tracker.findByName("2t")[0].getDesc(), is("2d"));
+        assertThat(tracker.findByName("2t").get(0).getName(), is("2t"));
+        assertThat(tracker.findByName("2t").get(0).getDesc(), is("2d"));
     }
 
     /**
@@ -94,13 +93,10 @@ public class StartUiInnerTest {
     @Test
     public void whenAddCommentThenAddingCommentByNameOfTask() {
         //StartUIin.isWorking = true;
-        Input input = new StubInput(new String[]{"1", "1t", "1d", "6", "1", "Comment", "7", "y"});
+        Input input = new StubInput(Arrays.asList("1", "1t", "1d", "6", "1", "Comment", "7", "y"));
         Tracker tracker = new Tracker();
         StartUIin startTest = new StartUIin(input, tracker);
         startTest.init();
-        assertThat(tracker.getListOfItems()[0].getComment(), is("Comment"));
+        assertThat(tracker.getListOfItems().get(0).getComment(), is("Comment"));
     }
 }
-
-
-

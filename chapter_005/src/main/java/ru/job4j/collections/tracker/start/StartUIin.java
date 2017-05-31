@@ -2,6 +2,8 @@ package ru.job4j.collections.tracker.start;
 
 import ru.job4j.collections.tracker.Tracker;
 
+import java.util.List;
+
 /**
  * Main class.
  * @author Yury Chuksin (chuksin.yury@gmail.com)
@@ -32,10 +34,10 @@ public class StartUIin {
     /**
      * Screening menu and asking what to do form User.
      */
-    public void init() {
+    void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        UserAction[] listOfAct = menu.fillActions();
-        int[] listOfPoints = menu.fillRange(listOfAct);
+        List<UserAction> listOfAct = menu.fillActions();
+        List<Integer> listOfPoints = menu.fillRange(listOfAct);
         int key;
         while (true) {
             menu.show();
@@ -54,6 +56,7 @@ public class StartUIin {
      * @param args arguments
      */
     public static void main(String[] args) {
+
         /**
          * Creating new object of Console Interface.
          */
