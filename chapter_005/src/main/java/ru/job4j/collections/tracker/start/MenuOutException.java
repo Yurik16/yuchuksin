@@ -1,10 +1,10 @@
-package ru.job4j.innerClass;
+package ru.job4j.collections.tracker.start;
 
 /**
  * Main class.
  *
  * @author Yury Chuksin (chuksin.yury@gmail.com)
- * @since 05.04.2017.
+ * @since 31.05.2017.
  */
 public class MenuOutException extends RuntimeException {
 

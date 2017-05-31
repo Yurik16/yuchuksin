@@ -1,7 +1,7 @@
 package ru.job4j.collections.tracker.start;
 
 /**
- * Created by User on 21.02.2017.
+ * Created by User on 31.05.2017.
  */
 public interface Input {
 
