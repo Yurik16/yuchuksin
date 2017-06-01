@@ -93,9 +93,9 @@ public class Tracker {
      * @param id name of wanted Item
      */
     public void redactItem(String id, Item item) {
-        for (Item x : items) {
-            if (x != null && x.getId().equals(id)) {
-                items.set(items.indexOf(x), item);
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i) != null && items.get(i).getId().equals(id)) {
+                items.set(i, item);
             }
         }
     }
@@ -109,6 +109,7 @@ public class Tracker {
         for (Item x : this.getListOfItems()) {
             if (x != null && x.getId().equals(id)) {
                 items.remove(x);
+                break;
             }
         }
     }
