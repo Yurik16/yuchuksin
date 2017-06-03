@@ -20,13 +20,17 @@ public class SortUser {
 
     public static void main(String[] args) {
         List<User> list = new ArrayList<>(Arrays.asList(
-                new User("Yeti", 19),
+                new User("Yeti", 55),
                 new User("Nik", 22),
                 new User("Akim", 34),
-                new User("Tim", 50)));
+                new User("Tim", 19)));
+
+        Set<User> set = new TreeSet<>();
         SortUser sortUser = new SortUser();
-        sortUser.sort(list);
-        System.out.println(list);
-        System.out.println(sortUser.sort(list));
+        System.out.println(list); // - original List
+        set.addAll(list); // adding List to TreeSet
+        System.out.println(set); // new TreeSet as sorted?
+        sortUser.sort(list); // sorting? TreeSet
+        System.out.println(sortUser.sort(list)); // result equals new TreeSet
     }
 }
