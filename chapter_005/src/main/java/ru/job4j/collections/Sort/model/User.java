@@ -8,13 +8,21 @@ package ru.job4j.collections.Sort.model;
  */
 public class User implements Comparable<User>{
 
+    public String getName() {
+        return name;
+    }
+
     private String name;
 
     private int age;
 
+    private int hC;
+
     public User(String name, int age) {
         this.name = name;
         this.age = age;
+        this.hC = this.hashCode();
+
     }
 
     @Override
@@ -27,6 +35,7 @@ public class User implements Comparable<User>{
         return "User{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", @" + hC +
                 '}';
     }
 }
