@@ -2,7 +2,12 @@ package ru.job4j.collections.Sort;
 
 import ru.job4j.collections.Sort.model.User;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Main class.
@@ -25,7 +30,7 @@ public class SortUser {
     }
 
     /**
-     * Sorting Users by comparing hashCode of Users
+     * Sorting Users by comparing hashCode of Users.
      *
      * @param list List of Users
      * @return List of Users
@@ -36,7 +41,7 @@ public class SortUser {
     }
 
     /**
-     * Sorting Users by comparing length of name of Users
+     * Sorting Users by comparing length of name of Users.
      *
      * @param list List of Users
      * @return List of Users

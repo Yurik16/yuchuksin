@@ -6,7 +6,7 @@ package ru.job4j.collections.Sort.model;
  * @author Yury Chuksin (chuksin.yury@gmail.com)
  * @since 02.06.2017.
  */
-public class User implements Comparable<User>{
+public class User implements Comparable<User> {
 
     /**
      * Getter for name.
@@ -17,10 +17,19 @@ public class User implements Comparable<User>{
         return name;
     }
 
+    /**
+     * Name of User.
+     */
     private String name;
 
+    /**
+     * Age of User.
+     */
     private int age;
 
+    /**
+     * HashCode of object User.
+     */
     private int hC;
 
     /**
@@ -54,10 +63,6 @@ public class User implements Comparable<User>{
      */
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", @" + hC +
-                '}';
+        return String.format("User{name='%s', age=%d, @%d}", name, age, hC);
     }
 }
