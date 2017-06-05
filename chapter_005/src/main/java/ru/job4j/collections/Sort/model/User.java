@@ -8,6 +8,11 @@ package ru.job4j.collections.Sort.model;
  */
 public class User implements Comparable<User>{
 
+    /**
+     * Getter for name.
+     *
+     * @return String name
+     */
     public String getName() {
         return name;
     }
@@ -18,6 +23,12 @@ public class User implements Comparable<User>{
 
     private int hC;
 
+    /**
+     * Constructor for User class.
+     *
+     * @param name name
+     * @param age age
+     */
     public User(String name, int age) {
         this.name = name;
         this.age = age;
@@ -25,11 +36,22 @@ public class User implements Comparable<User>{
 
     }
 
+    /**
+     * Comparing age of User.
+     *
+     * @param o User object
+     * @return int
+     */
     @Override
     public int compareTo(User o) {
         return this.age - o.age;
     }
 
+    /**
+     * toStirng for printing User object.
+     *
+     * @return String
+     */
     @Override
     public String toString() {
         return "User{" +

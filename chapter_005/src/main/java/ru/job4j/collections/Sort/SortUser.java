@@ -12,32 +12,45 @@ import java.util.*;
  */
 public class SortUser {
 
+    /**
+     * Sorting Users by comparing age of Users.
+     *
+     * @param list list of Users
+     * @return TreeSet
+     */
     Set<User> sort(List<User> list) {
         Set<User> sorted = new TreeSet<>();
         sorted.addAll(list);
         return sorted;
     }
 
+    /**
+     * Sorting Users by comparing hashCode of Users
+     *
+     * @param list List of Users
+     * @return List of Users
+     */
     public List<User> sortHash(List<User> list) {
-        Collections.sort(list, new Comparator<User>() {
-            @Override
-            public int compare(User o1, User o2) {
-                return o1.hashCode() - o2.hashCode();
-            }
-        });
+        Collections.sort(list, (o1, o2) -> o1.hashCode() - o2.hashCode());
         return list;
     }
 
+    /**
+     * Sorting Users by comparing length of name of Users
+     *
+     * @param list List of Users
+     * @return List of Users
+     */
     public List<User> sortLength(List<User> list) {
-        Collections.sort(list, new Comparator<User>() {
-            @Override
-            public int compare(User o1, User o2) {
-                return o1.getName().length() - o2.getName().length();
-            }
-        });
+        Collections.sort(list, (o1, o2) -> o1.getName().length() - o2.getName().length());
         return list;
     }
 
+    /**
+     * Main method.
+     *
+     * @param args args
+     */
     public static void main(String[] args) {
         List<User> list = new ArrayList<>(Arrays.asList(
                 new User("Yetifoot", 55),
