@@ -36,7 +36,7 @@ public class User implements Comparable<User> {
      * Constructor for User class.
      *
      * @param name name
-     * @param age age
+     * @param age  age
      */
     public User(String name, int age) {
         this.name = name;
@@ -64,5 +64,23 @@ public class User implements Comparable<User> {
     @Override
     public String toString() {
         return String.format("User{name='%s', age=%d, @%d}", name, age, hC);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (age != user.age) return false;
+        return name.equals(user.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + hC;
+        return result;
     }
 }
