@@ -23,23 +23,23 @@ public class SortUserTest {
      */
     private SortUser sortUser = new SortUser();
 
+    private User user1 = new User("Yetifoot", 55);
+    private User user2 = new User("Nik", 22);
+    private User user3 = new User("Arkim", 34);
+    private User user4 = new User("Time", 19);
+
+    private List<User> startList = new ArrayList<>(Arrays.asList(user1, user2, user3, user4));
+
+
     /**
      * Compare two lists, is method Sorting Users by age of Users.
      */
     @Test
     public void whenDoSortThenSortByAge() {
 
-        List<User> listS = new ArrayList<>(Arrays.asList(
-                new User("Yetifoot", 55),
-                new User("Nik", 22),
-                new User("Arkim", 34),
-                new User("Time", 19)));
-
-        List<User> expected = new ArrayList<>(Arrays.asList(
-                new User("Time", 19),
-                new User("Nik", 22),
-                new User("Arkim", 34),
-                new User("Yetifoot", 55)));
+        List<User> listS = new ArrayList<>();
+        listS.addAll(startList);
+        List<User> expected = new ArrayList<>(Arrays.asList(user4, user2, user3, user1));
         assertThat(expected, is(sortUser.sort(listS)));
     }
 
@@ -49,17 +49,9 @@ public class SortUserTest {
     @Test
     public void whenDoSortHashThenSortByHashCode() {
 
-        List<User> listH = new ArrayList<>(Arrays.asList(
-                new User("Yetifoot", 55),
-                new User("Nik", 22),
-                new User("Arkim", 34),
-                new User("Time", 19)));
-
-        List<User> expected = new ArrayList<>(Arrays.asList(
-                new User("Nik", 22),
-                new User("Time", 19),
-                new User("Arkim", 34),
-                new User("Yetifoot", 55)));
+        List<User> listH = new ArrayList<>();
+        listH.addAll(startList);
+        List<User> expected = new ArrayList<>(Arrays.asList(user2, user4, user3, user1));
         assertThat(expected, is(sortUser.sortHash(listH)));
     }
 

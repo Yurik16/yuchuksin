@@ -2,12 +2,7 @@ package ru.job4j.collections.Sort;
 
 import ru.job4j.collections.Sort.model.User;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Main class.
@@ -50,6 +45,8 @@ public class SortUser {
         Collections.sort(list, (o1, o2) -> o1.getName().length() - o2.getName().length());
         return list;
     }
+
+
 
     /**
      * Main method.
