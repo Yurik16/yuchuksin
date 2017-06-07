@@ -77,10 +77,9 @@ public class User implements Comparable<User> {
         return name.equals(user.name);
     }
 
+
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + hC;
-        return result;
+        return name.length()*10 + age;
     }
 }

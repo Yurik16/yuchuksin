@@ -58,8 +58,8 @@ public class SortUserTest {
         List<User> expected = new ArrayList<>(Arrays.asList(
                 new User("Nik", 22),
                 new User("Time", 19),
-                new User("Yetifoot", 55),
-                new User("Arkim", 34)));
+                new User("Arkim", 34),
+                new User("Yetifoot", 55)));
         assertThat(expected, is(sortUser.sortHash(listH)));
     }
 
