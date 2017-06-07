@@ -40,7 +40,7 @@ public class SortUserTest {
         List<User> listS = new ArrayList<>();
         listS.addAll(startList);
         List<User> expected = new ArrayList<>(Arrays.asList(user4, user2, user3, user1));
-        assertThat(expected, is(sortUser.sort(listS)));
+        assertThat(expected.toArray(), is(sortUser.sort(listS).toArray()));
     }
 
     /**
@@ -52,7 +52,7 @@ public class SortUserTest {
         List<User> listH = new ArrayList<>();
         listH.addAll(startList);
         List<User> expected = new ArrayList<>(Arrays.asList(user2, user4, user3, user1));
-        assertThat(expected, is(sortUser.sortHash(listH)));
+        assertThat(expected.toArray(), is(sortUser.sortHash(listH).toArray()));
     }
 
     /**
@@ -61,17 +61,10 @@ public class SortUserTest {
     @Test
     public void whenDoSortLengthThenSortByNameLength() {
 
-        List<User> listL = new ArrayList<>(Arrays.asList(
-                new User("Yetifoot", 55),
-                new User("Nik", 22),
-                new User("Arkim", 34),
-                new User("Time", 19)));
+        List<User> listL = new ArrayList<>();
+        listL.addAll(startList);
 
-        List<User> expected = new ArrayList<>(Arrays.asList(
-                new User("Nik", 22),
-                new User("Time", 19),
-                new User("Arkim", 34),
-                new User("Yetifoot", 55)));
-        assertThat(expected, is(sortUser.sortLength(listL)));
+        List<User> expected = new ArrayList<>(Arrays.asList(user2, user4, user3, user1));
+        assertThat(expected.toArray(), is(sortUser.sortLength(listL).toArray()));
     }
 }
