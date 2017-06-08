@@ -31,7 +31,13 @@ public class SortUser {
      * @return List of Users
      */
     public List<User> sortHash(List<User> list) {
-        Collections.sort(list, (o1, o2) -> o1.hashCode() - o2.hashCode());
+
+        Collections.sort(list, new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                return o1.hashCode() - o2.hashCode();
+            }
+        });
         return list;
     }
 
