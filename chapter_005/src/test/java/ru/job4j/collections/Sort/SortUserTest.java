@@ -52,7 +52,7 @@ public class SortUserTest {
         List<User> listH = new ArrayList<>();
         listH.addAll(startList);
         List<User> expected = new ArrayList<>(Arrays.asList(user2, user4, user3, user1));
-        assertThat(expected.toArray(), is(sortUser.sortHash(listH).toArray()));
+        assertThat(expected.toArray(), is(sortUser.sortByAllFields(listH).toArray()));
     }
 
     /**

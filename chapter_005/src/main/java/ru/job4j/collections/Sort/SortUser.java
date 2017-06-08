@@ -30,12 +30,16 @@ public class SortUser {
      * @param list List of Users
      * @return List of Users
      */
-    public List<User> sortHash(List<User> list) {
+    public List<User> sortByAllFields(List<User> list) {
 
         Collections.sort(list, new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
-                return o1.hashCode() - o2.hashCode();
+                int result = o1.getName().compareTo(o2.getName());
+                if (result == 0) {
+                    result = o1.getAge() - (o2.getAge());
+                }
+                return result;
             }
         });
         return list;
@@ -51,7 +55,6 @@ public class SortUser {
         Collections.sort(list, (o1, o2) -> o1.getName().length() - o2.getName().length());
         return list;
     }
-
 
 
     /**
@@ -73,7 +76,7 @@ public class SortUser {
         System.out.println(set); // new TreeSet as sorted?
         sortUser.sort(list); // sorting? TreeSet
         System.out.println(sortUser.sort(list)); // result equals new TreeSet
-        System.out.println(sortUser.sortHash(list));
+        System.out.println(sortUser.sortByAllFields(list));
         System.out.println(sortUser.sortLength(list));
     }
 }

@@ -32,6 +32,10 @@ public class User implements Comparable<User> {
      */
     private int hC;
 
+    public int getAge() {
+        return age;
+    }
+
     /**
      * Constructor for User class.
      *
