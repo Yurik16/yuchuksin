@@ -44,7 +44,7 @@ public class SortUserTest {
      * Compare two lists, is method Sorting Users by hashCode of Users.
      */
     @Test
-    public void whenDoSortHashThenSortByHashCode() {
+    public void whenDoSortHashThenSortByAllCode() {
 
         List<User> expected = new ArrayList<>(Arrays.asList(user3, user2, user4, user1));
         assertThat(expected.toArray(), is(sortUser.sortByAllFields(startList).toArray()));
