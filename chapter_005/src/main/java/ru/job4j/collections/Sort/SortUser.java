@@ -25,7 +25,7 @@ public class SortUser {
     }
 
     /**
-     * Sorting Users by comparing hashCode of Users.
+     * Sorting Users by comparing name and age of Users.
      *
      * @param list List of Users
      * @return List of Users
@@ -51,32 +51,13 @@ public class SortUser {
      * @param list List of Users
      * @return List of Users
      */
-    public List<User> sortLength(List<User> list) {
-        Collections.sort(list, (o1, o2) -> o1.getName().length() - o2.getName().length());
+    public List<User> sortByLength(List<User> list) {
+        Collections.sort(list, new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                return o1.getName().length() - o2.getName().length();
+            }
+        });
         return list;
-    }
-
-
-    /**
-     * Main method.
-     *
-     * @param args args
-     */
-    public static void main(String[] args) {
-        List<User> list = new ArrayList<>(Arrays.asList(
-                new User("Yetifoot", 55),
-                new User("Nik", 22),
-                new User("Arkim", 34),
-                new User("Time", 19)));
-
-        Set<User> set = new TreeSet<>();
-        SortUser sortUser = new SortUser();
-        System.out.println(list); // - original List
-        set.addAll(list); // adding List to TreeSet
-        System.out.println(set); // new TreeSet as sorted?
-        sortUser.sort(list); // sorting? TreeSet
-        System.out.println(sortUser.sort(list)); // result equals new TreeSet
-        System.out.println(sortUser.sortByAllFields(list));
-        System.out.println(sortUser.sortLength(list));
     }
 }
