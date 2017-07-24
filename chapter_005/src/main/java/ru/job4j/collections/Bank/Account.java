@@ -11,7 +11,7 @@ public class Account {
     /**
      * Quantity of money at Account of User.
      */
-    int value;
+    double value;
 
     /**
      * Current Bank account.
@@ -20,12 +20,19 @@ public class Account {
 
     /**
      * Default constructor of Account.
-     *
-     * @param value money
+     *  @param value money
      * @param requisites number
      */
-    public Account(int value, int requisites) {
+    public Account(double value, int requisites) {
         this.value = value;
         this.requisites = requisites;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public int getRequisites() {
+        return requisites;
     }
 }
