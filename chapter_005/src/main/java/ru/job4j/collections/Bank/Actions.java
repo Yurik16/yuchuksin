@@ -50,12 +50,10 @@ public class Actions {
      * @param acc  bank account
      */
     public void addAccount(User user, Account acc) {
-        for (Map.Entry<User, List<Account>> entry : clients.entrySet()) {
-            if (user.equals(entry.getKey())) {
-                entry.getValue().add(acc);
-            }
-        }
+        List<Account> temp = clients.get(user);
+        temp.add(acc);
     }
+
 
     /**
      * Delete one of User accounts.
@@ -94,11 +92,11 @@ public class Actions {
     /**
      * Transfer money from srcUser to dstUser.
      *
-     * @param srcUser name of User
+     * @param srcUser    name of User
      * @param srcAccount bank account
-     * @param dstUser name of User
+     * @param dstUser    name of User
      * @param dstAccount bank account
-     * @param amount transfer sum
+     * @param amount     transfer sum
      * @return boolean
      */
     public boolean transferMoney(User srcUser, Account srcAccount, User dstUser, Account dstAccount, double amount) {
