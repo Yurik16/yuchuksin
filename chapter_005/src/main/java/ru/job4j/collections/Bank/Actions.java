@@ -50,8 +50,7 @@ public class Actions {
      * @param acc  bank account
      */
     public void addAccount(User user, Account acc) {
-        List<Account> temp = clients.get(user);
-        temp.add(acc);
+        clients.get(user).add(acc);
     }
 
 
@@ -62,7 +61,7 @@ public class Actions {
      * @param acc  bank account
      */
     public void deleteAccount(User user, Account acc) {
-        Iterator<Map.Entry<User, List<Account>>> it = clients.entrySet().iterator();
+        /*Iterator<Map.Entry<User, List<Account>>> it = clients.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<User, List<Account>> client = it.next();
             if (clients.containsKey(user)) {
@@ -70,7 +69,9 @@ public class Actions {
                     client.getValue().remove(client.getValue().indexOf(acc));
                 }
             }
-        }
+        }*/
+        clients.get(user).remove(acc);
+
     }
 
     /**
@@ -79,14 +80,15 @@ public class Actions {
      * @param user name of User
      * @return list of User`s accounts
      */
-    public List<Account> getListOfUser(User user) {
-        List result = new ArrayList();
+    public List<Account> getListOfUserAccounts(User user) {
+        /*List result = new ArrayList();
         for (Map.Entry<User, List<Account>> entry : clients.entrySet()) {
             if (user.equals(entry.getKey())) {
                 result.addAll(entry.getValue());
             }
         }
-        return result;
+        return result;*/
+        return clients.get(user);
     }
 
     /**
@@ -103,16 +105,32 @@ public class Actions {
         boolean transaction = false;
         Actions action = new Actions((HashMap<User, List<Account>>) clients);
         if (clients.containsKey(srcUser) && clients.containsKey(dstUser)) {
+            List<Account> srcList = clients.get(srcUser);
+            List<Account> dstList = clients.get(dstUser);
+            double srcValue = srcList.get(srcList.indexOf(srcAccount)).getValue();
+            double dstValue = dstList.get(dstList.indexOf(dstAccount)).getValue();
+            int srcReq = srcList.get(srcList.indexOf(srcAccount)).getRequisites();
+            int dstReq = dstList.get(dstList.indexOf(dstAccount)).getRequisites();
+            if (srcList.contains(srcAccount) && dstList.contains(dstAccount) && srcValue >= amount) {
+                for(Map.Entry<User, List<Account>> entry : clients.entrySet()) {
+                    if(entry.getKey().equals(srcUser)) {
+                        for(Account account : entry.getValue()) {
+                            if(account.equals(srcAccount)) {
 
-            List<Account> sorceList = clients.get(srcUser);
-            List<Account> destList = clients.get(dstUser);
-            double srcValue = sorceList.get(sorceList.indexOf(srcAccount)).getValue();
-            int srcRequis = sorceList.get(sorceList.indexOf(srcAccount)).getRequisites();
-
-            if (sorceList.contains(srcAccount) && destList.contains(dstAccount) && srcValue >= amount) {
-                Account srcNew = new Account((srcValue - amount), srcRequis);
-                action.deleteAccount(srcUser, srcAccount);
-                action.addAccount(srcUser, srcNew);
+                            }
+                        }
+                    }
+                }
+                /*srcValue -= amount;
+                dstValue += amount;
+                int indexSrc = srcList.indexOf(srcAccount);
+                int indexDst = dstList.indexOf(dstAccount);
+                srcList.remove(indexSrc);
+                dstList.remove(indexDst);
+                srcList.add(new Account(srcValue, srcReq));
+                dstList.add(new Account(dstValue, dstReq));
+                ((HashMap<User, List<Account>>) clients).put(srcUser, srcList);
+                ((HashMap<User, List<Account>>) clients).put(dstUser, dstList);*/
                 transaction = true;
             }
         }

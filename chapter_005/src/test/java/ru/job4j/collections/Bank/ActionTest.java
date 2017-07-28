@@ -76,4 +76,18 @@ public class ActionTest {
         actions.addAccount(userC, accountCusd);
         assertThat(result, is(mapToAddAccount));
         }
+
+    @Test
+    public void whenDoGetListOfUserAccountsThenListReturns() {
+        Actions actions = new Actions((HashMap<User, List<Account>>) testMap);
+        List<Account> result = Arrays.asList(new Account(500, 1333), new Account(300, 2333));
+        assertThat(result, is(actions.getListOfUserAccounts(userA)));
+    }
+
+    @Test
+    public void whenDoTransferMoneyThenMonetGoesFromSrcUserToDstUser() {
+        Actions actions = new Actions((HashMap<User, List<Account>>) testMap);
+        boolean result = actions.transferMoney(userB, accountBeur, userA, accountAeur, 1000);
+        assertThat(result, is((accountAeur.getValue() == 1300) && (accountBeur.getValue() == 200)));
+    }
 }
