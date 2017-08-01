@@ -56,4 +56,12 @@ public class Account {
         result = 31 * result + requisites;
         return result;
     }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public void setRequisites(int requisites) {
+        this.requisites = requisites;
+    }
 }

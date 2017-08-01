@@ -35,9 +35,12 @@ public class ActionTest {
         put(userB, listBuser);
     }};
 
+    /**
+     * Checks is addUser method adding User to Map.
+     */
     @Test
     public void whenDoAddUserThenAddingUserToMap() {
-        Actions actions = new Actions((HashMap<User, List<Account>>) testMap);
+        Actions actions = new Actions(testMap);
         Map<User, List<Account>> result = new HashMap<User, List<Account>>() {{
             put(userA, listAuser);
             put(userB, listBuser);
@@ -47,6 +50,9 @@ public class ActionTest {
         assertThat(result, is(testMap));
     }
 
+    /**
+     * Checks is delUser method delete User from Map.
+     */
     @Test
     public void whenDoDeleteUserThenUserDeleteFromMap() {
         Map<User, List<Account>> needToDeleteUser = new HashMap<User, List<Account>>() {{
@@ -54,14 +60,17 @@ public class ActionTest {
             put(userB, listBuser);
             put(userC, listCuser);
         }};
-        Actions actions = new Actions((HashMap<User, List<Account>>) needToDeleteUser);
+        Actions actions = new Actions(needToDeleteUser);
         actions.delUser("And", 333);
         assertThat(testMap, is(needToDeleteUser));
     }
 
+    /**
+     * Checks is addAccount method adds Account to User.
+     */
     @Test
     public void whenDoAddAccountThenAddingAccToUserAtMap() {
-        List<Account> halfOfUserC = Arrays.asList(accountCusd);
+        List<Account> halfOfUserC = Collections.singletonList(accountCusd);
         Map<User, List<Account>> result = new HashMap<User, List<Account>>() {{
             put(userA, listAuser);
             put(userB, listBuser);
@@ -72,22 +81,46 @@ public class ActionTest {
             put(userB, listBuser);
             put(userC, new ArrayList<>());
         }};
-        Actions actions = new Actions((HashMap<User, List<Account>>) mapToAddAccount);
+        Actions actions = new Actions(mapToAddAccount);
         actions.addAccount(userC, accountCusd);
         assertThat(result, is(mapToAddAccount));
         }
 
+    /**
+     *
+     */
+        @Test
+        public void whenDoDelAccountThenDeletingAccountFromUserAtMap() {
+            Map<User, List<Account>> mapToDelAcc = new HashMap<User, List<Account>>() {{
+                put(userA, listAuser);
+                put(userB, listBuser);
+            }};
+            Actions actions = new Actions(mapToDelAcc);
+            /*Map<User, List<Account>> mapResult = new HashMap<User, List<Account>>() {{
+                put(userA, listAuser);
+                put(userB, new ArrayList<>(Collections.singletonList(accountBeur)));
+            }};
+
+            assertThat(mapResult, is(mapToDelAcc));*/
+            actions.deleteAccount(userB, accountBusd);
+        }
+    /**
+     * Compares two lists - 1st List getting by using getListOfUser method and 2nd manual entering List.
+     */
     @Test
     public void whenDoGetListOfUserAccountsThenListReturns() {
-        Actions actions = new Actions((HashMap<User, List<Account>>) testMap);
+        Actions actions = new Actions(testMap);
         List<Account> result = Arrays.asList(new Account(500, 1333), new Account(300, 2333));
         assertThat(result, is(actions.getListOfUserAccounts(userA)));
     }
 
+    /**
+     * Checking is transfer from userB to userA is correct.
+     */
     @Test
     public void whenDoTransferMoneyThenMonetGoesFromSrcUserToDstUser() {
-        Actions actions = new Actions((HashMap<User, List<Account>>) testMap);
+        Actions actions = new Actions(testMap);
         boolean result = actions.transferMoney(userB, accountBeur, userA, accountAeur, 1000);
-        assertThat(result, is((accountAeur.getValue() == 1300) && (accountBeur.getValue() == 200)));
+        assertThat(true, is((accountAeur.getValue() == 1300) && (accountBeur.getValue() == 200) && result));
     }
 }
