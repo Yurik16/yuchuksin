@@ -58,4 +58,5 @@ public class User {
         result = 31 * result + passport;
         return result;
     }
+
 }

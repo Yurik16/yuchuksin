@@ -60,4 +60,17 @@ public class SortUser {
         });
         return list;
     }
+
+    public static void main(String[] args) {
+        SortUser sortUser = new SortUser();
+        User user1 = new User("AAA", 20);
+        User user2 = new User("BB", 17);
+        User user3 = new User("CCCC", 34);
+        User user4 = new User("ABCDEF", 18);
+        User user5 = new User("BA", 16);
+        List<User> list = Arrays.asList(user1, user2, user3, user4, user5);
+        System.out.println(list);
+        System.out.println("After sort");
+        System.out.println(sortUser.sort(list));
+    }
 }

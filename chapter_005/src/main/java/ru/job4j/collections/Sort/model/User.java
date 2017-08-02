@@ -67,7 +67,7 @@ public class User implements Comparable<User> {
      */
     @Override
     public String toString() {
-        return String.format("User{name='%s', age=%d, @%d}", name, age, hC);
+        return String.format("N=%s, A=%d}", name, age);
     }
 
     @Override
