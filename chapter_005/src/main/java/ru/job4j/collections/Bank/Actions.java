@@ -61,7 +61,13 @@ public class Actions {
      * @param acc  bank account
      */
     public void deleteAccount(User user, Account acc) {
-        clients.get(user).remove(acc);
+
+        List<Account> list = clients.get(user);
+        for(Account x : list) {
+            if(x.equals(acc)) {
+                list.remove(acc);
+            }
+        }
     }
 
     /**

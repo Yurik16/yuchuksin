@@ -16,11 +16,27 @@ public class SortUnit {
         return sorted;
     }
 
-    public List<Unit> sortUpList(List<Unit> list) {
+    public List<Unit> sortDownList(List<Unit> list) {
         Collections.sort(list, new Comparator<Unit>() {
             @Override
             public int compare(Unit o1, Unit o2) {
-                int result = o1.getName().length() - o2.getName().length();
+                return o2.getName().compareTo(o1.getName());
+            }
+        });
+        return list;
+    }
+
+    /*public List<Unit> sortTwise(List<Unit> list) {
+        Iterator<Unit> it = list.iterator();
+        while (it.hasNext()) {
+
+        }
+    }*/
+
+    List<Unit> sortStraight(List<Unit> list) {
+        Collections.sort(list, new Comparator<Unit>() {
+            @Override
+            public int compare(Unit o1, Unit o2) {
                 return o2.getName().compareTo(o1.getName());
             }
         });
@@ -38,8 +54,11 @@ public class SortUnit {
                                         new Unit("K1"),
                                         new Unit("K1\\SK1"),
                                         new Unit("K1\\SK1\\SSK1"));
+        List<Unit> listP = Arrays.asList(new Unit("K1"), new Unit("K10"), new Unit("K5"));
         SortUnit sortUnit = new SortUnit();
+        System.out.println(list.toString());
         System.out.println(sortUnit.sortUp(list).toString());
-        System.out.println(sortUnit.sortUpList(list).toString());
+        System.out.println(sortUnit.sortDownList(list).toString());
+        System.out.println(sortUnit.sortStraight(listP).toString());
     }
 }
