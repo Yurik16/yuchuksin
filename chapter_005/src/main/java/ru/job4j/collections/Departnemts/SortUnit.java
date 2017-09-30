@@ -26,18 +26,25 @@ public class SortUnit {
         return list;
     }
 
-    /*public List<Unit> sortTwise(List<Unit> list) {
-        Iterator<Unit> it = list.iterator();
-        while (it.hasNext()) {
-
-        }
-    }*/
-
     List<Unit> sortStraight(List<Unit> list) {
         Collections.sort(list, new Comparator<Unit>() {
             @Override
             public int compare(Unit o1, Unit o2) {
                 return o2.getName().compareTo(o1.getName());
+            }
+        });
+        return list;
+    }
+
+    List<Unit> sortLetterAndDigit(List<Unit> list) {
+        Collections.sort(list, new Comparator<Unit>() {
+            @Override
+            public int compare(Unit o1, Unit o2) {
+                int length = o1.getName().length() < o2.getName().length() ? o1.getName().length() : o2.getName().length();
+                for(int i = 0; i < length; i++) {
+                    int equl = o1.getName().charAt(i)
+                }
+                return 0;
             }
         });
         return list;
